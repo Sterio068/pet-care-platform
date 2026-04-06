@@ -270,6 +270,24 @@ export const ARTICLES: ArticleMeta[] = [
   { slug: "dog-food-brand-comparison", title: "狗飼料怎麼選？成分表判讀與等級分析", description: "看懂成分表 5 個關鍵、台灣飼料等級分類、乾糧 vs 濕食比較、換飼料正確方式。", category: "food", keywords: ["狗飼料推薦", "飼料比較", "狗飼料品牌", "飼料成分"], publishedAt: "2026-04-06", readingMinutes: 8 },
   { slug: "how-to-choose-vet", title: "怎麼選獸醫院？8 個評估標準完整指南", description: "距離、設備、溝通方式、收費透明度、口碑——8 個標準幫你找到值得信賴的獸醫師。", category: "health", keywords: ["獸醫推薦", "獸醫院怎麼選", "動物醫院", "看診費用"], publishedAt: "2026-04-06", readingMinutes: 7 },
   { slug: "cat-tree-buying-guide", title: "貓跳台選購完整指南：6 大標準不踩雷", description: "高度、穩定性、材質、功能、尺寸、可拆洗——選購貓跳台的 6 個關鍵標準與價格分析。", category: "grooming", keywords: ["貓跳台推薦", "貓跳台選購", "貓傢俱", "貓塔"], publishedAt: "2026-04-06", readingMinutes: 6 },
+  {
+    slug: "cat-food-guide",
+    title: "貓飼料怎麼選？乾糧、濕食、生食完整比較指南",
+    description: "絕對肉食性動物的貓咪，飼料選錯影響一生健康。乾糧 vs 濕食 vs 生食完整比較、成分表判讀 4 原則、各生命階段選擇重點。",
+    category: "food",
+    keywords: ["貓飼料推薦", "貓咪飲食", "貓乾糧濕食", "貓飼料成分", "貓生食"],
+    publishedAt: "2026-04-13",
+    readingMinutes: 9,
+  },
+  {
+    slug: "dog-spring-shedding",
+    title: "春天換季狗狗大量掉毛怎麼辦？完整梳毛指南與工具推薦",
+    description: "春天換毛季來了！為什麼毛掉這麼多？哪些是異常訊號？正確梳毛工具、6 步驟梳毛法、魚油補充重點，一篇搞定換毛期照護。",
+    category: "grooming",
+    keywords: ["狗掉毛", "換毛期", "狗春天掉毛", "梳毛工具", "脫毛刷"],
+    publishedAt: "2026-04-13",
+    readingMinutes: 8,
+  },
 ];
 
 export const CATEGORY_LABELS: Record<ArticleCategory, string> = {
