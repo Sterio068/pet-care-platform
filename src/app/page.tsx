@@ -187,7 +187,7 @@ export default function HomePage() {
             {popularBreeds.map((b) => (
               <Link key={b.slug} href={`/breeds/${b.slug}`} className="group">
                 <Card padding="sm" className="h-full group-hover:shadow-[0_8px_24px_rgba(42,31,26,0.12)] transition-shadow overflow-hidden p-0">
-                  <BreedCover petType={b.petType} name={b.name} />
+                  <BreedCover petType={b.petType} name={b.name} coverUrl={b.coverUrl} />
                   <div className="p-3">
                     <h3 className="font-bold text-sm text-ink-900 group-hover:text-brand-600 transition-colors leading-snug">
                       {b.name}

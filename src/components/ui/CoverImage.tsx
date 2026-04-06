@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { PetType, ArticleCategory } from "@/types";
 
 interface ArticleCoverProps {
@@ -55,19 +56,33 @@ export function ArticleCover({ category, variant = "card" }: ArticleCoverProps) 
 interface BreedCoverProps {
   petType: PetType;
   name: string;
+  coverUrl?: string;
   variant?: "card" | "hero";
 }
 
-export function BreedCover({ petType, name, variant = "card" }: BreedCoverProps) {
+export function BreedCover({ petType, name, coverUrl, variant = "card" }: BreedCoverProps) {
+  const height = variant === "hero" ? "h-48 md:h-64" : "h-40";
+
+  if (coverUrl) {
+    return (
+      <div className={`relative overflow-hidden rounded-t-[20px] ${height}`}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={coverUrl}
+          alt={name}
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
+    );
+  }
+
   const emoji = petType === "dog" ? "🐶" : "🐱";
   const gradient =
     petType === "dog"
       ? "from-brand-100 via-orange-100 to-cream-100"
       : "from-accent-100 via-blue-100 to-cream-100";
-  const height = variant === "hero" ? "h-48 md:h-56" : "h-32";
   const emojiSize = variant === "hero" ? "text-8xl" : "text-5xl";
-
-  // 名稱首字母 / 首字作為裝飾
   const initial = name.charAt(0);
 
   return (
@@ -75,9 +90,7 @@ export function BreedCover({ petType, name, variant = "card" }: BreedCoverProps)
       className={`relative overflow-hidden rounded-t-[20px] ${height} bg-gradient-to-br ${gradient} flex items-center justify-center`}
       aria-hidden="true"
     >
-      <span
-        className="absolute top-2 right-3 text-[3rem] md:text-[4rem] font-black text-ink-900/5 select-none leading-none"
-      >
+      <span className="absolute top-2 right-3 text-[3rem] md:text-[4rem] font-black text-ink-900/5 select-none leading-none">
         {initial}
       </span>
       <span className={`${emojiSize} drop-shadow-sm relative z-10`}>{emoji}</span>

@@ -64,7 +64,7 @@ export default async function BreedDetailPage({
         />
 
         <div className="mb-6 -mx-4 sm:mx-0">
-          <BreedCover petType={breed.petType} name={breed.name} variant="hero" />
+          <BreedCover petType={breed.petType} name={breed.name} coverUrl={breed.coverUrl} variant="hero" />
         </div>
 
         {/* Header */}

@@ -40,6 +40,7 @@ export interface BreedProfile {
   petType: PetType;
   name: string;
   nameEn: string;
+  coverUrl?: string;
   origin: string;
   size: "xs" | "s" | "m" | "l" | "xl";
   sizeLabel: string;

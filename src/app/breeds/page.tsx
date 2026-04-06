@@ -46,7 +46,7 @@ export default function BreedsIndexPage() {
               className="group"
             >
               <Card padding="sm" className="h-full group-hover:shadow-[0_8px_24px_rgba(42,31,26,0.12)] transition-shadow overflow-hidden p-0">
-                <BreedCover petType={b.petType} name={b.name} />
+                <BreedCover petType={b.petType} name={b.name} coverUrl={b.coverUrl} />
                 <div className="p-4">
                 <h3 className="font-bold text-lg text-ink-900 mb-1 group-hover:text-brand-600 transition-colors">
                   {b.name}
@@ -84,7 +84,7 @@ export default function BreedsIndexPage() {
               className="group"
             >
               <Card padding="sm" className="h-full group-hover:shadow-[0_8px_24px_rgba(42,31,26,0.12)] transition-shadow overflow-hidden p-0">
-                <BreedCover petType={b.petType} name={b.name} />
+                <BreedCover petType={b.petType} name={b.name} coverUrl={b.coverUrl} />
                 <div className="p-4">
                 <h3 className="font-bold text-lg text-ink-900 mb-1 group-hover:text-brand-600 transition-colors">
                   {b.name}
