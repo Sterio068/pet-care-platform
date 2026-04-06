@@ -91,6 +91,38 @@ const TOOLS: SearchItem[] = [
     href: "/tools/breed-compare",
     keywords: ["比較", "品種", "並排", "compare"],
   },
+  {
+    type: "tool",
+    typeLabel: "工具",
+    title: "毒物查詢",
+    description: "查詢食物植物對狗貓是否安全",
+    href: "/tools/toxic-checker",
+    keywords: ["毒物", "中毒", "可以吃", "有毒"],
+  },
+  {
+    type: "tool",
+    typeLabel: "工具",
+    title: "急救指南",
+    description: "緊急情況步驟式急救流程",
+    href: "/tools/emergency-guide",
+    keywords: ["急救", "中暑", "噎到", "抽搐", "緊急"],
+  },
+  {
+    type: "tool",
+    typeLabel: "工具",
+    title: "飼料比較",
+    description: "比較飼料每千卡成本",
+    href: "/tools/food-compare",
+    keywords: ["飼料", "比較", "性價比"],
+  },
+  {
+    type: "tool",
+    typeLabel: "工具",
+    title: "就醫準備",
+    description: "看醫生前的準備清單",
+    href: "/tools/vet-prep",
+    keywords: ["就醫", "看醫生", "準備"],
+  },
 ];
 
 const PAGES: SearchItem[] = [

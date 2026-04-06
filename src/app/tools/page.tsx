@@ -82,6 +82,34 @@ const TOOLS = [
     desc: "選 2-3 個品種並排比較所有特性。",
     bg: "from-indigo-50 to-cream-50",
   },
+  {
+    href: "/tools/toxic-checker",
+    icon: "🔍",
+    title: "毒物查詢",
+    desc: "查詢食物或植物對狗貓是否安全。",
+    bg: "from-red-50 to-cream-50",
+  },
+  {
+    href: "/tools/emergency-guide",
+    icon: "🚨",
+    title: "急救指南",
+    desc: "6 種緊急情況的步驟式急救流程。",
+    bg: "from-rose-50 to-cream-50",
+  },
+  {
+    href: "/tools/food-compare",
+    icon: "📦",
+    title: "飼料比較",
+    desc: "比較飼料每千卡成本，找出最划算。",
+    bg: "from-amber-50 to-cream-50",
+  },
+  {
+    href: "/tools/vet-prep",
+    icon: "🏥",
+    title: "就醫準備",
+    desc: "看醫生前的準備清單自動產生。",
+    bg: "from-sky-50 to-cream-50",
+  },
 ];
 
 export default function ToolsIndexPage() {
