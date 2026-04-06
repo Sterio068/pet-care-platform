@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Card } from "@/components/ui/Card";
 import { ArticleCover, BreedCover } from "@/components/ui/CoverImage";
+import { SubscribeForm } from "@/components/newsletter/SubscribeForm";
 import {
   getAllArticles,
   CATEGORY_LABELS,
@@ -205,6 +206,13 @@ export default function HomePage() {
               全部品種 <span aria-hidden="true">→</span>
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Newsletter */}
+      <section className="py-8 md:py-12">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <SubscribeForm />
         </div>
       </section>
 

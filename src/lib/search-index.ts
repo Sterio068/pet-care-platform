@@ -59,6 +59,22 @@ const TOOLS: SearchItem[] = [
     href: "/tools/cost-calculator",
     keywords: ["花費", "費用", "預算", "cost"],
   },
+  {
+    type: "tool",
+    typeLabel: "工具",
+    title: "品種配對測驗",
+    description: "回答 5 題推薦最適合你的品種",
+    href: "/tools/breed-match",
+    keywords: ["品種", "配對", "推薦", "適合", "養什麼"],
+  },
+  {
+    type: "tool",
+    typeLabel: "工具",
+    title: "寵物取名器",
+    description: "100+ 精選名字隨機產生",
+    href: "/tools/name-generator",
+    keywords: ["名字", "取名", "命名", "name"],
+  },
 ];
 
 const PAGES: SearchItem[] = [

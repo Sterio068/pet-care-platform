@@ -54,6 +54,20 @@ const TOOLS = [
     desc: "試算養狗養貓月開銷與 10 年總花費，幫助財務規劃。",
     bg: "from-green-50 to-cream-50",
   },
+  {
+    href: "/tools/breed-match",
+    icon: "🎯",
+    title: "品種配對",
+    desc: "回答 5 題，推薦最適合你的犬貓品種。",
+    bg: "from-purple-50 to-cream-50",
+  },
+  {
+    href: "/tools/name-generator",
+    icon: "✨",
+    title: "寵物取名",
+    desc: "100+ 精選名字，依風格隨機產生。",
+    bg: "from-violet-50 to-cream-50",
+  },
 ];
 
 export default function ToolsIndexPage() {

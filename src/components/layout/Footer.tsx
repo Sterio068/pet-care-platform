@@ -65,10 +65,14 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        <div className="mt-10 pt-6 border-t border-ink-700 text-xs text-cream-300">
+        <div className="mt-10 pt-6 border-t border-ink-700 text-xs text-cream-300 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p>
             © {new Date().getFullYear()} 毛孩照護站 · 本站內容僅供參考，不能取代專業獸醫診療
           </p>
+          <div className="flex gap-4">
+            <Link href="/privacy" className="hover:text-cream-100">隱私權政策</Link>
+            <Link href="/terms" className="hover:text-cream-100">服務條款</Link>
+          </div>
         </div>
       </div>
     </footer>
