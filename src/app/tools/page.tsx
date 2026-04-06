@@ -68,6 +68,20 @@ const TOOLS = [
     desc: "100+ 精選名字，依風格隨機產生。",
     bg: "from-violet-50 to-cream-50",
   },
+  {
+    href: "/tools/vaccine-reminder",
+    icon: "🔔",
+    title: "疫苗提醒",
+    desc: "輸入出生日期，自動算出每次疫苗施打時間。",
+    bg: "from-red-50 to-cream-50",
+  },
+  {
+    href: "/tools/breed-compare",
+    icon: "⚖️",
+    title: "品種比較",
+    desc: "選 2-3 個品種並排比較所有特性。",
+    bg: "from-indigo-50 to-cream-50",
+  },
 ];
 
 export default function ToolsIndexPage() {
