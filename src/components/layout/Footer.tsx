@@ -16,27 +16,17 @@ export function Footer() {
           </div>
           <div>
             <h3 className="font-semibold mb-3 text-cream-100">工具</h3>
-            <ul className="space-y-2 text-sm text-cream-300">
-              <li>
-                <Link href="/tools/pet-age" className="hover:text-cream-100">
-                  寵物年齡換算
-                </Link>
-              </li>
-              <li>
-                <Link href="/tools/vaccine-schedule" className="hover:text-cream-100">
-                  疫苗時程表
-                </Link>
-              </li>
-              <li>
-                <Link href="/tools/symptom-checker" className="hover:text-cream-100">
-                  症狀檢查器
-                </Link>
-              </li>
-              <li>
-                <Link href="/tools/food-calculator" className="hover:text-cream-100">
-                  餵食計算機
-                </Link>
-              </li>
+            <ul className="columns-2 gap-x-6 space-y-2 text-sm text-cream-300">
+              <li><Link href="/tools/pet-age" className="hover:text-cream-100">年齡換算</Link></li>
+              <li><Link href="/tools/vaccine-schedule" className="hover:text-cream-100">疫苗時程</Link></li>
+              <li><Link href="/tools/vaccine-reminder" className="hover:text-cream-100">疫苗提醒</Link></li>
+              <li><Link href="/tools/symptom-checker" className="hover:text-cream-100">症狀檢查</Link></li>
+              <li><Link href="/tools/food-calculator" className="hover:text-cream-100">餵食計算</Link></li>
+              <li><Link href="/tools/weight-tracker" className="hover:text-cream-100">體重追蹤</Link></li>
+              <li><Link href="/tools/cost-calculator" className="hover:text-cream-100">花費計算</Link></li>
+              <li><Link href="/tools/breed-match" className="hover:text-cream-100">品種配對</Link></li>
+              <li><Link href="/tools/breed-compare" className="hover:text-cream-100">品種比較</Link></li>
+              <li><Link href="/tools/name-generator" className="hover:text-cream-100">寵物取名</Link></li>
             </ul>
           </div>
           <div>

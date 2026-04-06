@@ -75,6 +75,22 @@ const TOOLS: SearchItem[] = [
     href: "/tools/name-generator",
     keywords: ["名字", "取名", "命名", "name"],
   },
+  {
+    type: "tool",
+    typeLabel: "工具",
+    title: "疫苗提醒",
+    description: "輸入出生日期自動算出疫苗時間",
+    href: "/tools/vaccine-reminder",
+    keywords: ["疫苗", "提醒", "出生日期", "預防針"],
+  },
+  {
+    type: "tool",
+    typeLabel: "工具",
+    title: "品種比較",
+    description: "並排比較犬貓品種特性",
+    href: "/tools/breed-compare",
+    keywords: ["比較", "品種", "並排", "compare"],
+  },
 ];
 
 const PAGES: SearchItem[] = [

@@ -254,6 +254,19 @@ export const ARTICLES: ArticleMeta[] = [
     publishedAt: "2026-04-06",
     readingMinutes: 7,
   },
+  { slug: "dog-grass-eating", title: "狗狗為什麼一直吃草？5 個原因解析", description: "超過 80% 的健康狗會吃草。5 個常見原因、什麼時候該擔心、如何減少吃草行為。", category: "behavior", keywords: ["狗吃草", "狗狗吃草原因", "狗嘔吐"], publishedAt: "2026-04-06", readingMinutes: 4 },
+  { slug: "cat-purring-meaning", title: "貓咪咕嚕聲的 4 種含意：不只是開心", description: "滿足、求食、自我療癒、焦慮——解析貓咪咕嚕聲的真正含意。", category: "behavior", keywords: ["貓咕嚕", "貓呼嚕", "貓聲音"], publishedAt: "2026-04-06", readingMinutes: 4 },
+  { slug: "pet-insurance-guide", title: "寵物保險值得買嗎？台灣方案完整比較", description: "台灣寵物保險費用比較、適合買 vs 不需要、購買前注意事項。", category: "beginner", keywords: ["寵物保險", "狗保險", "貓保險"], publishedAt: "2026-04-06", readingMinutes: 5 },
+  { slug: "dog-homemade-food", title: "狗狗鮮食入門：3 道簡單食譜與注意事項", description: "鮮食優缺點、3 道入門食譜、絕對不能加的食材。", category: "food", keywords: ["狗鮮食", "狗食譜", "自製飼料"], publishedAt: "2026-04-06", readingMinutes: 5 },
+  { slug: "pet-travel-guide", title: "帶毛孩旅行完整攻略", description: "交通方式比較、行前準備清單、住宿選擇。", category: "beginner", keywords: ["帶狗旅行", "寵物旅行", "寵物友善"], publishedAt: "2026-04-06", readingMinutes: 6 },
+  { slug: "cat-indoor-enrichment", title: "室內貓環境豐富化：5 大原則", description: "垂直空間、躲藏空間、狩獵模擬、感官刺激、社交互動。", category: "behavior", keywords: ["室內貓", "貓環境", "貓玩具"], publishedAt: "2026-04-06", readingMinutes: 5 },
+  { slug: "dog-ear-care", title: "狗狗耳朵清潔完整指南", description: "不同耳型清潔頻率、正確步驟、就醫警訊。", category: "grooming", keywords: ["狗耳朵清潔", "狗耳朵臭", "狗中耳炎"], publishedAt: "2026-04-06", readingMinutes: 5 },
+  { slug: "cat-carrier-training", title: "貓咪外出籠訓練：7 天減壓法", description: "7 天漸進訓練法、外出籠選擇、就醫減壓技巧。", category: "behavior", keywords: ["貓外出籠", "貓看醫生", "貓訓練"], publishedAt: "2026-04-06", readingMinutes: 5 },
+  { slug: "dog-leash-training", title: "牽繩散步訓練：3 週告別暴衝", description: "鬆繩散步 3 週訓練法、工具選擇、常見錯誤。", category: "behavior", keywords: ["狗拉繩", "狗暴衝", "鬆繩散步"], publishedAt: "2026-04-06", readingMinutes: 5 },
+  { slug: "pet-summer-care", title: "寵物夏季照護 8 大重點", description: "防中暑、防曬、飲水、防蚊蟲、柏油路測試。", category: "health", keywords: ["寵物夏天", "狗防曬", "寵物中暑"], publishedAt: "2026-04-06", readingMinutes: 5 },
+  { slug: "cat-sneezing-causes", title: "貓咪一直打噴嚏？6 個原因", description: "灰塵、上呼吸道感染、過敏、鼻腔異物。", category: "health", keywords: ["貓打噴嚏", "貓感冒", "貓鼻水"], publishedAt: "2026-04-06", readingMinutes: 4 },
+  { slug: "dog-socialization", title: "狗狗社會化完整指南：黃金期 3-14 週", description: "社會化清單、正確方式、錯過黃金期補救。", category: "behavior", keywords: ["狗社會化", "幼犬社會化", "狗害怕"], publishedAt: "2026-04-06", readingMinutes: 6 },
+  { slug: "pet-adoption-guide", title: "領養毛孩完整指南", description: "領養前自我評估、管道、流程、第一週。", category: "beginner", keywords: ["領養", "認養", "收容所"], publishedAt: "2026-04-06", readingMinutes: 5 },
 ];
 
 export const CATEGORY_LABELS: Record<ArticleCategory, string> = {
