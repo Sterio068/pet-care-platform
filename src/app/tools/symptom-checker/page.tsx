@@ -25,6 +25,7 @@ export default function SymptomCheckerPage() {
           path: PAGE_PATH,
         })}
       />
+      <JsonLd data={{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"狗狗嘔吐需要看醫生嗎？","acceptedAnswer":{"@type":"Answer","text":"24 小時內嘔吐超過 3 次、吐血、伴隨腹瀉或精神差，應立即就醫。"}},{"@type":"Question","name":"貓咪拉肚子怎麼辦？","acceptedAnswer":{"@type":"Answer","text":"先觀察 24 小時給清淡食物。持續 2 天以上或帶血請就醫。"}}]}} />
       <div className="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-yellow-100 text-3xl mb-4">

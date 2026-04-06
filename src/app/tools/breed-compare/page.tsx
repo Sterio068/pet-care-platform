@@ -1,4 +1,5 @@
 import { AdBanner } from "@/components/ads/AdBanner";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Card } from "@/components/ui/Card";
 import { BreedCompare } from "@/components/tools/BreedCompare";
@@ -42,6 +43,18 @@ export default function BreedComparePage() {
           <BreedCompare />
         </Card>
         <AdBanner slot="tool-result" format="horizontal" className="mt-6" />
+
+        <article className="mt-10 prose prose-lg max-w-none text-ink-700 leading-relaxed">
+          <h2 className="text-2xl font-bold text-ink-900 mb-4">品種比較怎麼看？</h2>
+          <p>比較品種時，重點不是找「最好的品種」，而是找「最適合你的品種」。以下是各項指標的解讀方式：</p>
+          <ul className="list-disc pl-5 space-y-2">
+            <li><strong>活動量</strong>：5 分需要每天 2 小時運動，1 分只要室內走動</li>
+            <li><strong>親人度</strong>：5 分極度黏人，1 分獨立不愛被抱</li>
+            <li><strong>訓練難易</strong>：5 分極好訓練，1 分很固執需要經驗</li>
+            <li><strong>掉毛量</strong>：5 分換毛如下雪，1 分幾乎不掉毛</li>
+          </ul>
+          <p>想找適合你的品種？試試<Link href="/tools/breed-match" className="text-brand-600">品種配對測驗</Link>，或瀏覽<Link href="/breeds" className="text-brand-600">品種百科</Link>。</p>
+        </article>
       </div>
     </>
   );

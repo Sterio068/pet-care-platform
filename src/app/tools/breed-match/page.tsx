@@ -1,4 +1,5 @@
 import { AdBanner } from "@/components/ads/AdBanner";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Card } from "@/components/ui/Card";
 import { BreedMatchQuiz } from "@/components/tools/BreedMatchQuiz";
@@ -42,6 +43,16 @@ export default function BreedMatchPage() {
           <BreedMatchQuiz />
         </Card>
         <AdBanner slot="tool-result" format="horizontal" className="mt-6" />
+
+        <article className="mt-10 prose prose-lg max-w-none text-ink-700 leading-relaxed">
+          <h2 className="text-2xl font-bold text-ink-900 mb-4">品種配對常見問題</h2>
+          <h3 className="text-xl font-semibold text-ink-900 mt-6 mb-3">Q: 測驗結果準確嗎？</h3>
+          <p>本測驗根據你的居住空間、陪伴時間、運動量、美容意願、養寵經驗 5 個面向，與 30 個品種的特性進行匹配。結果為參考建議，實際選擇仍需考慮個人偏好與實際接觸。</p>
+          <h3 className="text-xl font-semibold text-ink-900 mt-6 mb-3">Q: 應該選純種還是米克斯？</h3>
+          <p>米克斯通常基因病較少、適應力強。純種犬貓的特性較可預期。兩者都是好選擇，重要的是你的生活方式是否適合。推薦閱讀<Link href="/articles/pet-adoption-guide" className="text-brand-600">領養指南</Link>。</p>
+          <h3 className="text-xl font-semibold text-ink-900 mt-6 mb-3">Q: 養狗好還是養貓好？</h3>
+          <p>狗需要較多時間（每天散步、訓練），貓較獨立但需要垂直空間和互動。上班族可能更適合貓，有庭院的家庭適合狗。用本工具測試看看兩種的推薦結果。</p>
+        </article>
       </div>
     </>
   );

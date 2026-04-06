@@ -42,6 +42,19 @@ export default function NameGeneratorPage() {
           <PetNameGenerator />
         </Card>
         <AdBanner slot="tool-result" format="horizontal" className="mt-6" />
+
+        <article className="mt-10 prose prose-lg max-w-none text-ink-700 leading-relaxed">
+          <h2 className="text-2xl font-bold text-ink-900 mb-4">幫毛孩取名的技巧</h2>
+          <p>好的寵物名字應該簡短（1-2 個音節最佳）、好唸、獨特。避免跟家人名字太像，也避免跟常用口令（坐下、過來）同音。</p>
+          <h3 className="text-xl font-semibold text-ink-900 mt-6 mb-3">取名靈感來源</h3>
+          <ul className="list-disc pl-5 space-y-2">
+            <li><strong>外觀特徵</strong>：毛色（小黑、橘子）、體型（圓圓、肥肥）</li>
+            <li><strong>食物系</strong>：台灣飼主最愛的命名風格（麻糬、布丁、奶茶）</li>
+            <li><strong>個性</strong>：觀察幾天後依個性取名（乖乖、皮皮）</li>
+            <li><strong>日系</strong>：柴犬配日式名字很搭（太郎、小櫻、福福）</li>
+          </ul>
+          <p>本工具收錄超過 100 個精選名字，涵蓋可愛、食物系、自然系、日式、優雅、英文 6 種風格。</p>
+        </article>
       </div>
     </>
   );

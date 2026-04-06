@@ -25,6 +25,7 @@ export default function FoodCalculatorPage() {
           path: PAGE_PATH,
         })}
       />
+      <JsonLd data={{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"狗狗一天該吃多少飼料？","acceptedAnswer":{"@type":"Answer","text":"依體重計算 RER（70×體重^0.75），乘以生理係數。10kg 成犬約需 500-630 kcal/天。"}},{"@type":"Question","name":"貓咪一天吃多少？","acceptedAnswer":{"@type":"Answer","text":"4kg 絕育成貓約 240-280 kcal/天，約 65-75g 乾糧。"}}]}} />
       <div className="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-pink-100 text-3xl mb-4">

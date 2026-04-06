@@ -25,6 +25,7 @@ export default function PetAgePage() {
           path: PAGE_PATH,
         })}
       />
+      <JsonLd data={{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"狗狗一歲等於人類幾歲？","acceptedAnswer":{"@type":"Answer","text":"狗狗第一年約等於人類 15 歲，第二年約 24 歲，之後每年加 4-6 歲（依體型而異）。"}},{"@type":"Question","name":"貓咪一歲等於人類幾歲？","acceptedAnswer":{"@type":"Answer","text":"貓咪第一年約等於人類 15 歲，第二年約 24 歲，之後每年加 4 歲。"}}]}} />
       <div className="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-100 text-3xl mb-4">

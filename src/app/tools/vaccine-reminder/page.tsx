@@ -1,4 +1,5 @@
 import { AdBanner } from "@/components/ads/AdBanner";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Card } from "@/components/ui/Card";
 import { VaccineReminder } from "@/components/tools/VaccineReminder";
@@ -42,6 +43,16 @@ export default function VaccineReminderPage() {
           <VaccineReminder />
         </Card>
         <AdBanner slot="tool-result" format="horizontal" className="mt-6" />
+
+        <article className="mt-10 prose prose-lg max-w-none text-ink-700 leading-relaxed">
+          <h2 className="text-2xl font-bold text-ink-900 mb-4">疫苗提醒的重要性</h2>
+          <p>幼犬幼貓的免疫系統在 6-16 週間逐漸失去母抗體保護。如果疫苗施打時間延誤，毛孩可能在這段空窗期感染致命疾病（犬瘟熱、貓瘟、小病毒）。</p>
+          <h3 className="text-xl font-semibold text-ink-900 mt-6 mb-3">常見問題</h3>
+          <p><strong>Q: 疫苗可以提前打嗎？</strong> 不建議。太早打會被母抗體中和，等於白打。按照標準時程最安全。</p>
+          <p><strong>Q: 延遲一週有影響嗎？</strong> 延遲 1-2 週通常可以接受，但不應超過 2 週。如有延遲請告知獸醫師調整計畫。</p>
+          <p><strong>Q: 成犬還需要打疫苗嗎？</strong> 需要。每年至少補強一次核心疫苗，狂犬病是法定每年必打。</p>
+          <p>更多疫苗資訊請參考<Link href="/tools/vaccine-schedule" className="text-brand-600">疫苗時程表</Link>。</p>
+        </article>
       </div>
     </>
   );
