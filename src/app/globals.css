@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  /* 主題色 */
+  --color-brand-50: #FFF1EA;
+  --color-brand-100: #FFE0D0;
+  --color-brand-200: #FFC1A1;
+  --color-brand-300: #FFA272;
+  --color-brand-400: #FF8651;
+  --color-brand-500: #FF6B35;
+  --color-brand-600: #E6511D;
+  --color-brand-700: #C03F11;
+  --color-brand-800: #8F2E0C;
+  --color-brand-900: #5F1E08;
+
+  --color-accent-50: #E6F8F6;
+  --color-accent-100: #C6F0EB;
+  --color-accent-200: #8EE1D8;
+  --color-accent-300: #56D2C4;
+  --color-accent-400: #42CBBB;
+  --color-accent-500: #2EC4B6;
+  --color-accent-600: #249C92;
+  --color-accent-700: #1B756D;
+  --color-accent-800: #124E49;
+  --color-accent-900: #092724;
+
+  --color-cream-50: #FFFDFA;
+  --color-cream-100: #FFF8F0;
+  --color-cream-200: #FFF2E1;
+  --color-cream-300: #FFE8CC;
+
+  --color-ink-900: #2A1F1A;
+  --color-ink-700: #5A4A3F;
+  --color-ink-500: #8A7A6F;
+  --color-ink-300: #BAAA9F;
+
+  /* 字體 */
+  --font-sans: var(--font-noto-sans-tc), var(--font-nunito), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-nunito), var(--font-noto-sans-tc), system-ui, sans-serif;
+
+  /* 圓角 */
+  --radius-card: 20px;
+  --radius-button: 14px;
+  --radius-input: 12px;
+
+  /* 陰影 */
+  --shadow-card: 0 2px 12px rgba(42, 31, 26, 0.06);
+  --shadow-card-hover: 0 8px 24px rgba(42, 31, 26, 0.12);
+}
+
+:root {
+  --background: #FFF8F0;
+  --foreground: #2A1F1A;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #FFF8F0;
+    --foreground: #2A1F1A;
+  }
+}
+
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 自訂 utility classes */
+@utility container-page {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+}
+
+@utility card-base {
+  @apply bg-white rounded-[20px] shadow-[var(--shadow-card)] transition-shadow;
+}
+
+@utility card-hover {
+  @apply hover:shadow-[var(--shadow-card-hover)];
+}
