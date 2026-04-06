@@ -1,3 +1,4 @@
+import { AdBanner } from "@/components/ads/AdBanner";
 import type { Metadata } from "next";
 import { Card } from "@/components/ui/Card";
 import { BreedCompare } from "@/components/tools/BreedCompare";
@@ -40,6 +41,7 @@ export default function BreedComparePage() {
         <Card padding="lg">
           <BreedCompare />
         </Card>
+        <AdBanner slot="tool-result" format="horizontal" className="mt-6" />
       </div>
     </>
   );

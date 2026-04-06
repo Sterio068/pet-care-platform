@@ -1,3 +1,4 @@
+import { AdBanner } from "@/components/ads/AdBanner";
 import type { Metadata } from "next";
 import { Card } from "@/components/ui/Card";
 import { BreedMatchQuiz } from "@/components/tools/BreedMatchQuiz";
@@ -40,6 +41,7 @@ export default function BreedMatchPage() {
         <Card padding="lg">
           <BreedMatchQuiz />
         </Card>
+        <AdBanner slot="tool-result" format="horizontal" className="mt-6" />
       </div>
     </>
   );

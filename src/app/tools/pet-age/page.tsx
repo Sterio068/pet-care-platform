@@ -1,3 +1,4 @@
+import { AdBanner } from "@/components/ads/AdBanner";
 import type { Metadata } from "next";
 import { Card } from "@/components/ui/Card";
 import { AgeCalculator } from "@/components/tools/AgeCalculator";
@@ -40,6 +41,7 @@ export default function PetAgePage() {
         <Card padding="lg">
           <AgeCalculator />
         </Card>
+        <AdBanner slot="tool-result" format="horizontal" className="mt-6" />
 
         {/* SEO 知識內容 */}
         <article className="mt-10 prose prose-lg max-w-none text-ink-700 leading-relaxed">

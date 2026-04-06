@@ -8,6 +8,7 @@ import {
 } from "@/lib/articles";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
+import { ArticleNav } from "@/components/articles/ArticleNav";
 import { RelatedArticles } from "@/components/articles/RelatedArticles";
 import { ArticleCover } from "@/components/ui/CoverImage";
 import { AdBanner } from "@/components/ads/AdBanner";
@@ -124,6 +125,8 @@ export default async function ArticlePage({ params }: { params: Params }) {
               <Content />
             </div>
 
+            <AdBanner slot="article-mid" format="auto" className="my-6" />
+
             <AdBanner slot="article-bottom" format="horizontal" />
 
             <div className="mt-10 py-6 border-y border-cream-300">
@@ -136,11 +139,14 @@ export default async function ArticlePage({ params }: { params: Params }) {
               </p>
             </footer>
 
+            <ArticleNav currentSlug={article.slug} />
+
             <RelatedArticles slug={article.slug} />
           </article>
 
           <aside className="hidden lg:block pt-[4.5rem]">
             <TableOfContents />
+            <div className="mt-8"><AdBanner slot="sidebar" format="square" /></div>
           </aside>
         </div>
       </div>

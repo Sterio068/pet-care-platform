@@ -1,3 +1,4 @@
+import { AdBanner } from "@/components/ads/AdBanner";
 import type { Metadata } from "next";
 import { Card } from "@/components/ui/Card";
 import { WeightTracker } from "@/components/tools/WeightTracker";
@@ -38,6 +39,7 @@ export default function WeightTrackerPage() {
         <Card padding="lg">
           <WeightTracker />
         </Card>
+        <AdBanner slot="tool-result" format="horizontal" className="mt-6" />
 
         <article className="mt-10 prose prose-lg max-w-none text-ink-700 leading-relaxed">
           <h2 className="text-2xl font-bold text-ink-900 mb-4">
