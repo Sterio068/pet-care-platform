@@ -61,6 +61,9 @@ export const metadata: Metadata = {
     title: "毛孩照護站",
     description: "狗貓健康工具與飼養知識",
   },
+  verification: {
+    google: "4cQ2afZzsQF5yaoFPSw0hVOO4D5A1Mj71YV3JYTg7gQ",
+  },
   robots: {
     index: true,
     follow: true,
