@@ -71,7 +71,7 @@ export default function PrivacyPage() {
 
         <h2 className="text-xl font-bold text-ink-900">九、聯絡方式</h2>
         <p>
-          若您對隱私權政策有任何疑問，歡迎透過網站聯絡方式與我們聯繫。
+          若您對隱私權政策有任何疑問，歡迎來信 <a href="mailto:sterio068@gmail.com" className="text-brand-500 hover:underline">sterio068@gmail.com</a> 與我們聯繫。
         </p>
       </div>
     </div>

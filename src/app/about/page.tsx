@@ -90,8 +90,7 @@ export default function AboutPage() {
             發現文章錯誤、有內容建議、或想合作？歡迎透過以下方式聯絡：
           </p>
           <ul className="space-y-2 text-ink-700">
-            <li>📧 Email: <span className="text-ink-500">（待設定）</span></li>
-            <li>💬 意見回饋表單: <span className="text-ink-500">（待建立）</span></li>
+            <li>📧 Email: <a href="mailto:sterio068@gmail.com" className="text-brand-500 hover:underline">sterio068@gmail.com</a></li>
           </ul>
         </Card>
 
