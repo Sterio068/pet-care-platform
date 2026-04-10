@@ -8,7 +8,12 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { BreedCover } from "@/components/ui/CoverImage";
 import { ShareButtons } from "@/components/articles/ShareButtons";
-import { getAllBreeds, getBreedBySlug, getRelatedBreeds } from "@/data/breeds";
+import {
+  getAllBreeds,
+  getBreedBySlug,
+  getBreedNeighbors,
+  getRelatedBreeds,
+} from "@/data/breeds";
 import { getAllArticles } from "@/lib/articles";
 import { buildPageMetadata, SITE_URL, SITE_NAME } from "@/lib/seo";
 
@@ -37,6 +42,120 @@ export async function generateMetadata({
     imageAlt: `${breed.name} ${breed.nameEn}`,
     type: "article",
   });
+}
+
+// 根據品種資料自動產生 FAQ（同時供 FAQPage schema 與可見 UI 使用）
+function buildBreedFaqs(breed: {
+  name: string;
+  petType: "dog" | "cat";
+  size: "xs" | "s" | "m" | "l" | "xl";
+  coatLabel: string;
+  lifeSpan: string;
+  energyLevel: number;
+  friendliness: number;
+  trainability: number;
+  shedding: number;
+  commonDiseases: string[];
+  careNotes: string[];
+  suitableFor: string[];
+}) {
+  const petLabel = breed.petType === "dog" ? "狗狗" : "貓咪";
+  const trainWord =
+    breed.trainability >= 4
+      ? "容易訓練"
+      : breed.trainability === 3
+        ? "訓練難度中等"
+        : "需要耐心訓練";
+  const friendWord =
+    breed.friendliness >= 4
+      ? "個性親人"
+      : breed.friendliness === 3
+        ? "對熟人親近"
+        : "較為獨立";
+  const energyWord =
+    breed.energyLevel >= 4
+      ? "精力旺盛"
+      : breed.energyLevel === 3
+        ? "活動量中等"
+        : "較為安靜";
+  const sheddingWord =
+    breed.shedding >= 4
+      ? "掉毛量偏多"
+      : breed.shedding === 3
+        ? "掉毛量中等"
+        : "掉毛量較少";
+
+  const exerciseAdvice =
+    breed.petType === "dog"
+      ? breed.energyLevel >= 4
+        ? "建議每天安排 1-2 小時的運動或戶外散步，搭配嗅聞、拉繩等動腦遊戲，才能避免無聊或破壞行為。"
+        : breed.energyLevel === 3
+          ? "每天至少 30-60 分鐘的散步加上室內互動遊戲即可，避免長時間窩在家中不動。"
+          : "運動需求不高，但仍建議每天 20-30 分鐘的輕度散步與室內陪伴玩耍。"
+      : breed.energyLevel >= 4
+        ? "每天安排至少 20-30 分鐘的互動玩耍（逗貓棒、追跑玩具），並準備貓跳台與藏食玩具。"
+        : "每天 10-20 分鐘陪玩即可，準備抓板與高處觀景位，讓牠自主發洩精力。";
+
+  const apartmentVerdict = (() => {
+    const big = breed.size === "l" || breed.size === "xl";
+    if (breed.petType === "cat") {
+      return `貓咪普遍適合公寓，但要留意垂直空間，準備貓跳台與層板讓 ${breed.name} 有攀爬與觀察的位置。`;
+    }
+    if (big && breed.energyLevel >= 4) {
+      return `${breed.name} 體型較大、活動量高，若住公寓需要每天規律外出運動，並避免頻繁在室內跑跳以免干擾鄰居。`;
+    }
+    if (big) {
+      return `${breed.name} 體型較大，公寓飼養可行但需要足夠活動空間與每日散步。`;
+    }
+    return `${breed.name} 體型與活動量較適中，公寓飼養沒有太大問題，仍建議每天帶出門放風。`;
+  })();
+
+  const familyVerdict =
+    breed.friendliness >= 4
+      ? `${breed.name} ${friendWord}，普遍適合有小孩的家庭，但仍建議教導孩子尊重寵物、避免拉扯尾巴或打擾用餐時間。`
+      : `${breed.name} ${friendWord}，若家中有年紀較小的孩子，需要較長時間建立信任並全程監督互動。`;
+
+  const diseaseList = breed.commonDiseases.slice(0, 5).join("、");
+  const diseaseTail = breed.commonDiseases.length > 5 ? "等" : "";
+
+  const careHighlights = breed.careNotes.slice(0, 3).join("；");
+
+  return [
+    {
+      q: `${breed.name}好養嗎？新手飼主適合嗎？`,
+      a: `${breed.name} ${trainWord}，${friendWord}、${energyWord}。${
+        breed.trainability >= 4 && breed.friendliness >= 4
+          ? `對第一次養${petLabel}的飼主而言是相對友善的選擇`
+          : `建議飼主先做功課並有耐心陪伴`
+      }。照護重點包含：${careHighlights}。`,
+    },
+    {
+      q: `${breed.name}掉毛嚴重嗎？要怎麼打理？`,
+      a: `${breed.name} 屬於${breed.coatLabel}，${sheddingWord}。${
+        breed.shedding >= 4
+          ? "建議每天梳毛一次，換毛期（春秋兩季）要增加頻率；家中可使用吸塵器與黏毛滾輪保持清潔。"
+          : breed.shedding === 3
+            ? "建議每週梳毛 2-3 次並定期洗澡即可維持整潔。"
+            : "掉毛量相對好處理，每週梳毛 1-2 次就能保持被毛狀態。"
+      }`,
+    },
+    {
+      q: `${breed.name}每天需要運動多久？`,
+      a: exerciseAdvice,
+    },
+    {
+      q: `${breed.name}平均壽命多長？要注意哪些健康問題？`,
+      a: `${breed.name} 平均壽命約 ${breed.lifeSpan}。常見健康問題包含：${diseaseList}${diseaseTail}。建議每年進行健康檢查，飲食均衡並維持理想體重，能有效延長愛寵的健康歲月。`,
+    },
+    {
+      q: `${breed.name}適合公寓飼養嗎？`,
+      a: apartmentVerdict,
+    },
+    {
+      q: `${breed.name}適合有小孩的家庭嗎？`,
+      a: familyVerdict,
+    },
+  ];
 }
 
 // 根據品種關鍵字找出相關文章（petType + 常見疾病關鍵字）
@@ -108,6 +227,8 @@ export default async function BreedDetailPage({
     breed.commonDiseases,
   );
   const breedUrl = `${SITE_URL}/breeds/${breed.slug}`;
+  const faqs = buildBreedFaqs(breed);
+  const { prev: prevBreed, next: nextBreed } = getBreedNeighbors(breed.slug);
 
   return (
     <>
@@ -137,6 +258,20 @@ export default async function BreedDetailPage({
             "@type": "Thing",
             name: `${breed.name}（${breed.nameEn}）`,
           },
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: f.a,
+            },
+          })),
         }}
       />
       <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
@@ -319,6 +454,34 @@ export default async function BreedDetailPage({
           </section>
         )}
 
+        {/* 常見問題 */}
+        <section className="mb-10">
+          <h2 className="text-xl font-bold text-ink-900 mb-4">
+            關於{breed.name}的常見問題
+          </h2>
+          <div className="space-y-3">
+            {faqs.map((f, i) => (
+              <details
+                key={i}
+                className="group rounded-2xl border border-cream-300 bg-white open:shadow-sm transition-shadow"
+              >
+                <summary className="cursor-pointer list-none flex items-center justify-between gap-3 px-5 py-4 font-semibold text-ink-900 hover:text-brand-600">
+                  <span className="flex-1">{f.q}</span>
+                  <span
+                    aria-hidden="true"
+                    className="text-brand-500 text-xl leading-none transition-transform group-open:rotate-45"
+                  >
+                    +
+                  </span>
+                </summary>
+                <div className="px-5 pb-5 pt-0 text-ink-700 leading-relaxed">
+                  {f.a}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+
         {/* 相關文章 */}
         {relatedArticles.length > 0 && (
           <section className="mb-10">
@@ -344,6 +507,57 @@ export default async function BreedDetailPage({
               ))}
             </div>
           </section>
+        )}
+
+        {/* 上/下一個品種 */}
+        {(prevBreed || nextBreed) && (
+          <nav
+            aria-label="品種導覽"
+            className="mb-10 grid grid-cols-1 sm:grid-cols-2 gap-3"
+          >
+            {prevBreed ? (
+              <Link
+                href={`/breeds/${prevBreed.slug}`}
+                className="group flex items-center gap-3 p-4 rounded-2xl border border-cream-300 bg-white hover:border-brand-300 hover:bg-brand-50 transition-colors"
+              >
+                <span
+                  aria-hidden="true"
+                  className="text-brand-500 text-xl transition-transform group-hover:-translate-x-1"
+                >
+                  ←
+                </span>
+                <div className="min-w-0">
+                  <div className="text-xs text-ink-500">上一個品種</div>
+                  <div className="font-bold text-ink-900 truncate group-hover:text-brand-600">
+                    {prevBreed.name}
+                  </div>
+                </div>
+              </Link>
+            ) : (
+              <span />
+            )}
+            {nextBreed ? (
+              <Link
+                href={`/breeds/${nextBreed.slug}`}
+                className="group flex items-center gap-3 p-4 rounded-2xl border border-cream-300 bg-white hover:border-brand-300 hover:bg-brand-50 transition-colors sm:justify-end sm:text-right"
+              >
+                <div className="min-w-0 sm:order-1">
+                  <div className="text-xs text-ink-500">下一個品種</div>
+                  <div className="font-bold text-ink-900 truncate group-hover:text-brand-600">
+                    {nextBreed.name}
+                  </div>
+                </div>
+                <span
+                  aria-hidden="true"
+                  className="text-brand-500 text-xl transition-transform group-hover:translate-x-1 sm:order-2"
+                >
+                  →
+                </span>
+              </Link>
+            ) : (
+              <span />
+            )}
+          </nav>
         )}
 
         <footer className="mt-8 pt-6 border-t border-cream-300">

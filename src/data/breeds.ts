@@ -1830,6 +1830,21 @@ export function getBreedsByPetType(petType: "dog" | "cat"): BreedProfile[] {
   return getAllBreeds().filter((b) => b.petType === petType);
 }
 
+export function getBreedNeighbors(slug: string): {
+  prev: BreedProfile | null;
+  next: BreedProfile | null;
+} {
+  const current = getBreedBySlug(slug);
+  if (!current) return { prev: null, next: null };
+  // 同 petType 排序後找前後（環狀：最後一個的 next 回到第一個）
+  const list = getBreedsByPetType(current.petType);
+  const idx = list.findIndex((b) => b.slug === slug);
+  if (idx === -1 || list.length < 2) return { prev: null, next: null };
+  const prev = list[(idx - 1 + list.length) % list.length];
+  const next = list[(idx + 1) % list.length];
+  return { prev, next };
+}
+
 export function getRelatedBreeds(slug: string, limit = 4): BreedProfile[] {
   const current = getBreedBySlug(slug);
   if (!current) return [];

@@ -323,6 +323,100 @@ export function getArticlesByCategory(
   return getAllArticles().filter((a) => a.category === category);
 }
 
+// 標籤系統（curated）：以編輯精選的主題 tag 聚合文章，
+// 比單純從 keywords 計數更有 SEO 深度（每個 tag 頁都是豐富的主題集錦）。
+// slug 用英文以避免 URL 編碼；label 顯示中文。
+export interface TagDef {
+  slug: string;
+  label: string;
+  description: string;
+  // 命中條件：文章的 title/description/keywords 出現任一關鍵字即計入
+  match: string[];
+}
+
+export const TAGS: TagDef[] = [
+  {
+    slug: "new-owner",
+    label: "新手飼主",
+    description: "第一次養狗養貓要準備什麼？幼犬幼貓照護、用品清單、領養評估、寵物保險完整指南。",
+    match: ["幼犬", "幼貓", "小狗", "小貓", "新手養", "第一次養", "養貓準備", "養狗準備", "領養", "認養", "寵物保險"],
+  },
+  {
+    slug: "senior",
+    label: "老犬老貓",
+    description: "7-10 歲以上犬貓的健康檢查、飲食調整、關節照護、慢性疾病管理專區。",
+    match: ["老狗", "老犬", "高齡犬", "老貓", "高齡貓", "認知障礙"],
+  },
+  {
+    slug: "training",
+    label: "行為訓練",
+    description: "吠叫、咬人、分離焦慮、拉繩暴衝、亂尿尿等常見行為問題的正向訓練方法。",
+    match: ["訓練", "行為", "分離焦慮", "吠叫", "咬人", "暴衝", "社會化"],
+  },
+  {
+    slug: "food",
+    label: "飲食營養",
+    description: "飼料選擇、鮮食入門、水分補充、禁忌食物、各生命階段營養需求完整指南。",
+    match: ["飼料", "飲食", "食譜", "鮮食", "水果", "禁忌食物", "喝水", "中毒"],
+  },
+  {
+    slug: "health",
+    label: "疾病預防",
+    description: "腎病、皮膚病、中暑、跳蚤壁蝨、結紮、體重管理等疾病預防與早期警訊。",
+    match: ["腎病", "腎衰竭", "皮膚", "掉毛", "中暑", "跳蚤", "壁蝨", "結紮", "減重", "過胖", "BCS", "驅蟲"],
+  },
+  {
+    slug: "grooming",
+    label: "美容清潔",
+    description: "洗澡、剪指甲、刷牙、清耳朵、梳毛、貓砂選擇等美容與日常清潔教學。",
+    match: ["洗澡", "剪指甲", "刷牙", "牙齒", "耳朵", "梳毛", "貓砂", "美容", "洗毛精"],
+  },
+  {
+    slug: "communication",
+    label: "讀懂毛孩",
+    description: "貓叫聲、咕嚕聲、狗狗吃草、便便觀察等毛孩行為語言的解讀指南。",
+    match: ["叫聲", "咕嚕", "吃草", "便便", "溝通", "語言", "含意"],
+  },
+  {
+    slug: "travel",
+    label: "外出旅行",
+    description: "帶毛孩旅行、外出籠訓練、寵物友善住宿、夏季外出照護等實用技巧。",
+    match: ["旅行", "外出籠", "外出", "寵物友善", "夏天", "夏季"],
+  },
+  {
+    slug: "emergency",
+    label: "緊急急救",
+    description: "中暑、中毒、出血、嘔吐、誤食毒物等緊急狀況的急救步驟與就醫時機判斷。",
+    match: ["中暑", "急救", "中毒", "嘔吐", "血便", "誤食", "毒"],
+  },
+];
+
+export function getAllTags(): Array<TagDef & { count: number }> {
+  return TAGS.map((t) => ({
+    ...t,
+    count: getArticlesByTagSlug(t.slug).length,
+  })).filter((t) => t.count > 0);
+}
+
+export function getTagBySlug(slug: string): TagDef | undefined {
+  return TAGS.find((t) => t.slug === slug);
+}
+
+export function getArticlesByTagSlug(slug: string): ArticleMeta[] {
+  const tag = getTagBySlug(slug);
+  if (!tag) return [];
+  return getAllArticles().filter((a) => {
+    const haystack = `${a.title} ${a.description} ${a.keywords.join(" ")}`;
+    return tag.match.some((m) => haystack.includes(m));
+  });
+}
+
+// 找出一篇文章命中的所有 tag（供文章詳情頁顯示 tag chips）
+export function getTagsForArticle(article: ArticleMeta): TagDef[] {
+  const haystack = `${article.title} ${article.description} ${article.keywords.join(" ")}`;
+  return TAGS.filter((t) => t.match.some((m) => haystack.includes(m)));
+}
+
 export function getRelatedArticles(slug: string, limit = 3): ArticleMeta[] {
   const current = getArticleBySlug(slug);
   if (!current) return [];

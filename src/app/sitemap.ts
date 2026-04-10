@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo";
-import { getAllArticles } from "@/lib/articles";
+import { getAllArticles, TAGS } from "@/lib/articles";
 import { getAllBreeds } from "@/data/breeds";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -28,6 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/tools/vet-prep`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE_URL}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${SITE_URL}/sitemap`, lastModified: now, changeFrequency: "weekly", priority: 0.4 },
     { url: `${SITE_URL}/articles/category/health`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${SITE_URL}/articles/category/food`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${SITE_URL}/articles/category/behavior`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
@@ -49,5 +50,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...base, ...articles, ...breeds];
+  const tags: MetadataRoute.Sitemap = TAGS.map((t) => ({
+    url: `${SITE_URL}/articles/tag/${t.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 0.6,
+  }));
+
+  return [...base, ...articles, ...breeds, ...tags];
 }

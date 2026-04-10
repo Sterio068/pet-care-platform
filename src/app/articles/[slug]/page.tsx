@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import {
   getAllArticles,
   getArticleBySlug,
+  getTagsForArticle,
   CATEGORY_LABELS,
   CATEGORY_COLORS,
 } from "@/lib/articles";
@@ -57,6 +59,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
 
   const { default: Content } = await import(`@/content/articles/${slug}.mdx`);
 
+  const articleTags = getTagsForArticle(article);
   const articleUrl = `${SITE_URL}/articles/${article.slug}`;
   const articleImage = `${articleUrl}/opengraph-image`;
   const articleSchema = {
@@ -146,7 +149,22 @@ export default async function ArticlePage({ params }: { params: Params }) {
 
             <AdBanner slot="article-bottom" format="horizontal" />
 
-            <div className="mt-10 py-6 border-y border-cream-300">
+            {articleTags.length > 0 && (
+              <div className="mt-10 flex flex-wrap gap-2">
+                <span className="text-xs text-ink-500 self-center mr-1">相關主題：</span>
+                {articleTags.map((t) => (
+                  <Link
+                    key={t.slug}
+                    href={`/articles/tag/${t.slug}`}
+                    className="inline-flex items-center px-3 py-1.5 rounded-full bg-brand-50 text-brand-700 text-sm font-semibold hover:bg-brand-100 transition-colors"
+                  >
+                    #{t.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+
+            <div className="mt-6 py-6 border-y border-cream-300">
               <ShareButtons title={article.title} url={articleUrl} />
             </div>
 

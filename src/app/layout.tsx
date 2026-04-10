@@ -74,6 +74,13 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  alternates: {
+    types: {
+      "application/rss+xml": [
+        { url: "/feed.xml", title: "毛孩照護站 RSS 訂閱" },
+      ],
+    },
+  },
 };
 
 export default function RootLayout({

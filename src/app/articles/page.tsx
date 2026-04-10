@@ -5,6 +5,7 @@ import { ArticleCover } from "@/components/ui/CoverImage";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import {
   getAllArticles,
+  getAllTags,
   CATEGORY_LABELS,
   CATEGORY_COLORS,
 } from "@/lib/articles";
@@ -34,6 +35,7 @@ function formatDate(iso: string) {
 
 export default function ArticlesListPage() {
   const articles = getAllArticles();
+  const tags = getAllTags();
   return (
     <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 py-10 md:py-16">
       <Breadcrumb items={[{ label: "首頁", href: "/" }, { label: "文章" }]} />
@@ -47,7 +49,7 @@ export default function ArticlesListPage() {
       </div>
 
       {/* 分類篩選 */}
-      <div className="flex flex-wrap gap-2 justify-center mb-10">
+      <div className="flex flex-wrap gap-2 justify-center mb-6">
         <Link
           href="/articles"
           className="px-4 py-2 rounded-full text-sm font-semibold bg-ink-900 text-white"
@@ -64,6 +66,23 @@ export default function ArticlesListPage() {
           </Link>
         ))}
       </div>
+
+      {/* 主題標籤 */}
+      {tags.length > 0 && (
+        <div className="flex flex-wrap gap-2 justify-center mb-10">
+          <span className="text-xs text-ink-500 self-center mr-1">主題：</span>
+          {tags.map((t) => (
+            <Link
+              key={t.slug}
+              href={`/articles/tag/${t.slug}`}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-cream-300 text-ink-700 text-xs font-semibold hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600 transition-colors"
+            >
+              <span>#{t.label}</span>
+              <span className="text-ink-500">{t.count}</span>
+            </Link>
+          ))}
+        </div>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {articles.map((a) => (

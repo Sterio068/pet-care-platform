@@ -59,7 +59,9 @@ export function Footer() {
           <p>
             © {new Date().getFullYear()} 毛孩照護站 · 本站內容僅供參考，不能取代專業獸醫診療
           </p>
-          <div className="flex gap-4">
+          <div className="flex gap-4 flex-wrap justify-center">
+            <Link href="/sitemap" className="hover:text-cream-100">網站地圖</Link>
+            <Link href="/feed.xml" className="hover:text-cream-100">RSS</Link>
             <Link href="/privacy" className="hover:text-cream-100">隱私權政策</Link>
             <Link href="/terms" className="hover:text-cream-100">服務條款</Link>
           </div>
