@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/ui/Card";
 import { ToxicChecker } from "@/components/tools/ToxicChecker";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
 
 const PAGE_PATH = "/tools/toxic-checker";
@@ -59,6 +60,7 @@ export default function ToxicCheckerPage() {
           </ol>
           <p>記住：<strong>越早就醫，存活率越高</strong>。2 小時內催吐效果最好。</p>
         </article>
+        <ToolRelatedArticles toolSlug="toxic-checker" />
       </div>
     </>
   );

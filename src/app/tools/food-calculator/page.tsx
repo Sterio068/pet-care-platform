@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/ui/Card";
 import { FoodCalculator } from "@/components/tools/FoodCalculator";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
 
 const PAGE_PATH = "/tools/food-calculator";
@@ -132,6 +133,7 @@ export default function FoodCalculatorPage() {
             </p>
           </div>
         </article>
+        <ToolRelatedArticles toolSlug="food-calculator" />
       </div>
     </>
   );

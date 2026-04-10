@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/ui/Card";
 import { SymptomChecker } from "@/components/tools/SymptomChecker";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
 
 const PAGE_PATH = "/tools/symptom-checker";
@@ -114,6 +115,7 @@ export default function SymptomCheckerPage() {
             </p>
           </div>
         </article>
+        <ToolRelatedArticles toolSlug="symptom-checker" />
       </div>
     </>
   );

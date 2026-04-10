@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/ui/Card";
 import { PetNameGenerator } from "@/components/tools/PetNameGenerator";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
 
 const PAGE_PATH = "/tools/name-generator";
@@ -55,6 +56,7 @@ export default function NameGeneratorPage() {
           </ul>
           <p>本工具收錄超過 100 個精選名字，涵蓋可愛、食物系、自然系、日式、優雅、英文 6 種風格。</p>
         </article>
+        <ToolRelatedArticles toolSlug="name-generator" />
       </div>
     </>
   );

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/ui/Card";
 import { FoodComparator } from "@/components/tools/FoodComparator";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
 
 const PAGE_PATH = "/tools/food-compare";
@@ -32,6 +33,7 @@ export default function FoodComparePage() {
           <p>不同飼料的熱量密度差很多：一款 3.2 kcal/g 的飼料和 4.2 kcal/g 的飼料，每天需要的克數差 30%。單看「每公斤多少錢」會被誤導——看起來便宜的飼料可能因為吃更多反而更貴。</p>
           <p><strong>每千卡成本（$/kcal）</strong>才是真正的性價比指標。搭配<a href="/tools/food-calculator" className="text-brand-600">餵食計算機</a>算出毛孩每日所需熱量，就能精確計算每月花費。</p>
         </article>
+        <ToolRelatedArticles toolSlug="food-compare" />
       </div>
     </>
   );

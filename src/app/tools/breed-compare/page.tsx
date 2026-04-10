@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/ui/Card";
 import { BreedCompare } from "@/components/tools/BreedCompare";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
 
 const PAGE_PATH = "/tools/breed-compare";
@@ -55,6 +56,7 @@ export default function BreedComparePage() {
           </ul>
           <p>想找適合你的品種？試試<Link href="/tools/breed-match" className="text-brand-600">品種配對測驗</Link>，或瀏覽<Link href="/breeds" className="text-brand-600">品種百科</Link>。</p>
         </article>
+        <ToolRelatedArticles toolSlug="breed-compare" />
       </div>
     </>
   );

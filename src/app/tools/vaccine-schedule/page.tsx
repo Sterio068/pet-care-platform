@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/ui/Card";
 import { VaccineTimeline } from "@/components/tools/VaccineTimeline";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
 
 const PAGE_PATH = "/tools/vaccine-schedule";
@@ -108,6 +109,7 @@ export default function VaccineSchedulePage() {
             </p>
           </div>
         </article>
+        <ToolRelatedArticles toolSlug="vaccine-schedule" />
       </div>
     </>
   );

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/ui/Card";
 import { VetPrepChecklist } from "@/components/tools/VetPrepChecklist";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
 
 const PAGE_PATH = "/tools/vet-prep";
@@ -27,6 +28,7 @@ export default function VetPrepPage() {
         </div>
         <Card padding="lg"><VetPrepChecklist /></Card>
         <AdBanner slot="tool-result" format="horizontal" className="mt-6" />
+        <ToolRelatedArticles toolSlug="vet-prep" />
       </div>
     </>
   );

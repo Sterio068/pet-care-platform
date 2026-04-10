@@ -15,7 +15,7 @@ import {
   getRelatedBreeds,
 } from "@/data/breeds";
 import { getAllArticles } from "@/lib/articles";
-import { buildPageMetadata, SITE_URL, SITE_NAME } from "@/lib/seo";
+import { buildPageMetadata, breadcrumbListSchema, SITE_URL, SITE_NAME } from "@/lib/seo";
 
 export function generateStaticParams() {
   return getAllBreeds().map((b) => ({ slug: b.slug }));
@@ -229,6 +229,11 @@ export default async function BreedDetailPage({
   const breedUrl = `${SITE_URL}/breeds/${breed.slug}`;
   const faqs = buildBreedFaqs(breed);
   const { prev: prevBreed, next: nextBreed } = getBreedNeighbors(breed.slug);
+  const breadcrumbSchema = breadcrumbListSchema([
+    { label: "首頁", href: "/" },
+    { label: "品種百科", href: "/breeds" },
+    { label: breed.name },
+  ]);
 
   return (
     <>
@@ -260,6 +265,7 @@ export default async function BreedDetailPage({
           },
         }}
       />
+      <JsonLd data={breadcrumbSchema} />
       <JsonLd
         data={{
           "@context": "https://schema.org",

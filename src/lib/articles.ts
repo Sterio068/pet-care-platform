@@ -417,6 +417,19 @@ export function getTagsForArticle(article: ArticleMeta): TagDef[] {
   return TAGS.filter((t) => t.match.some((m) => haystack.includes(m)));
 }
 
+export function getArticleNeighbors(slug: string): {
+  prev: ArticleMeta | null;
+  next: ArticleMeta | null;
+} {
+  const list = getAllArticles(); // sorted newest first
+  const idx = list.findIndex((a) => a.slug === slug);
+  if (idx === -1 || list.length < 2) return { prev: null, next: null };
+  // "prev" = older article (higher index), "next" = newer article (lower index)
+  const prev = idx + 1 < list.length ? list[idx + 1] : null;
+  const next = idx - 1 >= 0 ? list[idx - 1] : null;
+  return { prev, next };
+}
+
 export function getRelatedArticles(slug: string, limit = 3): ArticleMeta[] {
   const current = getArticleBySlug(slug);
   if (!current) return [];

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/ui/Card";
 import { AgeCalculator } from "@/components/tools/AgeCalculator";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
 
 const PAGE_PATH = "/tools/pet-age";
@@ -118,6 +119,7 @@ export default function PetAgePage() {
             </p>
           </div>
         </article>
+        <ToolRelatedArticles toolSlug="pet-age" />
       </div>
     </>
   );

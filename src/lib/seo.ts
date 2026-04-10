@@ -104,3 +104,19 @@ export function websiteSchema() {
     inLanguage: "zh-TW",
   };
 }
+
+// items: array of { label, href? }. Last item has no href (current page).
+export function breadcrumbListSchema(
+  items: Array<{ label: string; href?: string }>,
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.label,
+      ...(item.href ? { item: `${SITE_URL}${item.href}` } : {}),
+    })),
+  };
+}

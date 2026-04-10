@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/ui/Card";
 import { VaccineReminder } from "@/components/tools/VaccineReminder";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
 
 const PAGE_PATH = "/tools/vaccine-reminder";
@@ -53,6 +54,7 @@ export default function VaccineReminderPage() {
           <p><strong>Q: 成犬還需要打疫苗嗎？</strong> 需要。每年至少補強一次核心疫苗，狂犬病是法定每年必打。</p>
           <p>更多疫苗資訊請參考<Link href="/tools/vaccine-schedule" className="text-brand-600">疫苗時程表</Link>。</p>
         </article>
+        <ToolRelatedArticles toolSlug="vaccine-reminder" />
       </div>
     </>
   );

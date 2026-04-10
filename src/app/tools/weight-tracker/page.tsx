@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/ui/Card";
 import { WeightTracker } from "@/components/tools/WeightTracker";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
 
 const PAGE_PATH = "/tools/weight-tracker";
@@ -119,6 +120,7 @@ export default function WeightTrackerPage() {
             </p>
           </div>
         </article>
+        <ToolRelatedArticles toolSlug="weight-tracker" />
       </div>
     </>
   );

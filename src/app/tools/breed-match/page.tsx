@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/ui/Card";
 import { BreedMatchQuiz } from "@/components/tools/BreedMatchQuiz";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
 
 const PAGE_PATH = "/tools/breed-match";
@@ -53,6 +54,7 @@ export default function BreedMatchPage() {
           <h3 className="text-xl font-semibold text-ink-900 mt-6 mb-3">Q: 養狗好還是養貓好？</h3>
           <p>狗需要較多時間（每天散步、訓練），貓較獨立但需要垂直空間和互動。上班族可能更適合貓，有庭院的家庭適合狗。用本工具測試看看兩種的推薦結果。</p>
         </article>
+        <ToolRelatedArticles toolSlug="breed-match" />
       </div>
     </>
   );

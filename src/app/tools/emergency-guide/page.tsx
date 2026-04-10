@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/ui/Card";
 import { EmergencyGuide } from "@/components/tools/EmergencyGuide";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
 
 const PAGE_PATH = "/tools/emergency-guide";
@@ -42,6 +43,7 @@ export default function EmergencyGuidePage() {
           <EmergencyGuide />
         </Card>
         <AdBanner slot="tool-result" format="horizontal" className="mt-6" />
+        <ToolRelatedArticles toolSlug="emergency-guide" />
       </div>
     </>
   );
