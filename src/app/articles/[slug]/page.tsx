@@ -38,6 +38,10 @@ export async function generateMetadata({
     description: article.description,
     keywords: article.keywords,
     path: `/articles/${article.slug}`,
+    type: "article",
+    publishedTime: article.publishedAt,
+    modifiedTime: article.publishedAt,
+    imageAlt: article.title,
   });
 }
 
@@ -53,6 +57,8 @@ export default async function ArticlePage({ params }: { params: Params }) {
 
   const { default: Content } = await import(`@/content/articles/${slug}.mdx`);
 
+  const articleUrl = `${SITE_URL}/articles/${article.slug}`;
+  const articleImage = `${articleUrl}/opengraph-image`;
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -61,19 +67,30 @@ export default async function ArticlePage({ params }: { params: Params }) {
     datePublished: article.publishedAt,
     dateModified: article.publishedAt,
     inLanguage: "zh-TW",
-    url: `${SITE_URL}/articles/${article.slug}`,
+    url: articleUrl,
+    image: [articleImage],
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": articleUrl,
+    },
+    articleSection: CATEGORY_LABELS[article.category],
+    keywords: article.keywords.join(", "),
+    wordCount: article.readingMinutes * 300,
     publisher: {
       "@type": "Organization",
       name: SITE_NAME,
       url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/icon`,
+      },
     },
     author: {
       "@type": "Organization",
       name: SITE_NAME,
+      url: SITE_URL,
     },
   };
-
-  const articleUrl = `${SITE_URL}/articles/${article.slug}`;
 
   return (
     <>

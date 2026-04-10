@@ -9,6 +9,11 @@ export interface PageMetaInput {
   description: string;
   keywords?: string[];
   path: string;
+  image?: string;
+  imageAlt?: string;
+  type?: "website" | "article";
+  publishedTime?: string;
+  modifiedTime?: string;
 }
 
 export function buildPageMetadata({
@@ -16,8 +21,23 @@ export function buildPageMetadata({
   description,
   keywords,
   path,
+  image,
+  imageAlt,
+  type = "website",
+  publishedTime,
+  modifiedTime,
 }: PageMetaInput): Metadata {
   const url = `${SITE_URL}${path}`;
+  const images = image
+    ? [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: imageAlt ?? title,
+        },
+      ]
+    : undefined;
   return {
     title,
     description,
@@ -29,12 +49,16 @@ export function buildPageMetadata({
       url,
       siteName: SITE_NAME,
       locale: "zh_TW",
-      type: "website",
+      type,
+      ...(images ? { images } : {}),
+      ...(publishedTime ? { publishedTime } : {}),
+      ...(modifiedTime ? { modifiedTime } : {}),
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      ...(image ? { images: [image] } : {}),
     },
   };
 }

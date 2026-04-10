@@ -1829,3 +1829,24 @@ export function getBreedBySlug(slug: string): BreedProfile | undefined {
 export function getBreedsByPetType(petType: "dog" | "cat"): BreedProfile[] {
   return getAllBreeds().filter((b) => b.petType === petType);
 }
+
+export function getRelatedBreeds(slug: string, limit = 4): BreedProfile[] {
+  const current = getBreedBySlug(slug);
+  if (!current) return [];
+  const sameTypeAndSize = BREEDS.filter(
+    (b) =>
+      b.slug !== slug &&
+      b.petType === current.petType &&
+      b.size === current.size,
+  );
+  if (sameTypeAndSize.length >= limit) {
+    return sameTypeAndSize.slice(0, limit);
+  }
+  const sameType = BREEDS.filter(
+    (b) =>
+      b.slug !== slug &&
+      b.petType === current.petType &&
+      !sameTypeAndSize.includes(b),
+  );
+  return [...sameTypeAndSize, ...sameType].slice(0, limit);
+}

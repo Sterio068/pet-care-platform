@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { getAllArticles, getArticleBySlug, CATEGORY_LABELS } from "@/lib/articles";
 
+export const alt = "毛孩照護站文章封面";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -59,11 +60,12 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           )}
           <div
             style={{
-              fontSize: "72px",
+              fontSize: title.length > 24 ? "56px" : "72px",
               fontWeight: 900,
               color: "#2A1F1A",
               lineHeight: 1.15,
               letterSpacing: "-0.02em",
+              maxWidth: "1080px",
             }}
           >
             {title}
@@ -71,11 +73,15 @@ export default async function Image({ params }: { params: Promise<{ slug: string
         </div>
         <div
           style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
             fontSize: "22px",
             color: "#8A7A6F",
           }}
         >
-          pet-care-platform.com
+          <span>maohai.org</span>
+          <span>台灣毛孩家長的照護平台</span>
         </div>
       </div>
     ),

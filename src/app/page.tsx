@@ -9,7 +9,7 @@ import {
 } from "@/lib/articles";
 import { getAllBreeds } from "@/data/breeds";
 
-const TOOLS = [
+const FEATURED_TOOLS = [
   {
     href: "/tools/pet-age",
     icon: "🎂",
@@ -40,6 +40,28 @@ const TOOLS = [
   },
 ];
 
+const MORE_TOOLS = [
+  { href: "/tools/toxic-checker", icon: "🔍", title: "毒物查詢" },
+  { href: "/tools/emergency-guide", icon: "🚨", title: "急救指南" },
+  { href: "/tools/weight-tracker", icon: "📊", title: "體重追蹤" },
+  { href: "/tools/cost-calculator", icon: "💰", title: "養寵花費" },
+  { href: "/tools/breed-match", icon: "🎯", title: "品種配對" },
+  { href: "/tools/breed-compare", icon: "⚖️", title: "品種比較" },
+  { href: "/tools/name-generator", icon: "✨", title: "寵物取名" },
+  { href: "/tools/vaccine-reminder", icon: "🔔", title: "疫苗提醒" },
+  { href: "/tools/food-compare", icon: "📦", title: "飼料比較" },
+  { href: "/tools/vet-prep", icon: "🏥", title: "就醫準備" },
+];
+
+const POPULAR_TOPICS = [
+  { label: "狗狗可以吃什麼水果", href: "/articles/dog-safe-fruits" },
+  { label: "貓咪嘔吐原因", href: "/articles/cat-vomiting-reasons" },
+  { label: "幼犬第一年照顧", href: "/articles/puppy-first-year" },
+  { label: "新手養貓", href: "/articles/new-cat-owner-first-month" },
+  { label: "狗飼料怎麼選", href: "/articles/dog-food-brand-comparison" },
+  { label: "狗狗中暑急救", href: "/articles/dog-heatstroke-prevention" },
+];
+
 function formatDate(iso: string) {
   const d = new Date(iso);
   return `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, "0")}/${String(d.getDate()).padStart(2, "0")}`;
@@ -63,13 +85,35 @@ export default function HomePage() {
           <p className="text-lg md:text-xl text-ink-700 max-w-2xl mx-auto leading-relaxed mb-8">
             實用的毛孩健康工具與照護知識，讓每位飼主都能安心照顧自己的寶貝。
           </p>
-          <Link
-            href="/tools"
-            className="inline-flex items-center gap-2 bg-brand-500 text-white font-semibold px-7 py-3.5 rounded-[14px] shadow-md hover:bg-brand-600 hover:shadow-lg transition-all"
-          >
-            開始使用工具
-            <span aria-hidden="true">→</span>
-          </Link>
+          <div className="flex items-center justify-center gap-3 flex-wrap">
+            <Link
+              href="/tools"
+              className="inline-flex items-center gap-2 bg-brand-500 text-white font-semibold px-7 py-3.5 rounded-[14px] shadow-md hover:bg-brand-600 hover:shadow-lg transition-all"
+            >
+              開始使用工具
+              <span aria-hidden="true">→</span>
+            </Link>
+            <Link
+              href="/breeds"
+              className="inline-flex items-center gap-2 bg-white text-ink-900 font-semibold px-7 py-3.5 rounded-[14px] shadow-sm hover:shadow-md transition-all border border-cream-300"
+            >
+              瀏覽品種百科
+            </Link>
+          </div>
+
+          {/* 熱門話題 */}
+          <div className="mt-8 flex items-center justify-center gap-2 flex-wrap">
+            <span className="text-sm text-ink-500 mr-1">熱門：</span>
+            {POPULAR_TOPICS.map((t) => (
+              <Link
+                key={t.href}
+                href={t.href}
+                className="inline-flex items-center text-sm px-3 py-1.5 rounded-full bg-white text-ink-700 hover:text-brand-600 hover:bg-brand-50 border border-cream-300 transition-colors"
+              >
+                {t.label}
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -83,7 +127,7 @@ export default function HomePage() {
             <p className="text-ink-500">每個工具都經過獸醫專業審核</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {TOOLS.map((tool) => (
+            {FEATURED_TOOLS.map((tool) => (
               <Link key={tool.href} href={tool.href} className="group">
                 <Card className={`bg-gradient-to-br ${tool.color} h-full group-hover:shadow-[0_8px_24px_rgba(42,31,26,0.12)] transition-shadow`}>
                   <div className="flex flex-col h-full">
@@ -103,6 +147,30 @@ export default function HomePage() {
                 </Card>
               </Link>
             ))}
+          </div>
+
+          {/* 更多工具 */}
+          <div className="mt-6">
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+              {MORE_TOOLS.map((tool) => (
+                <Link
+                  key={tool.href}
+                  href={tool.href}
+                  className="flex items-center gap-2 p-3 rounded-2xl bg-white border border-cream-300 hover:border-brand-300 hover:bg-brand-50 transition-colors"
+                >
+                  <span className="text-2xl" aria-hidden="true">{tool.icon}</span>
+                  <span className="font-semibold text-sm text-ink-900">{tool.title}</span>
+                </Link>
+              ))}
+            </div>
+            <div className="mt-5 text-center">
+              <Link
+                href="/tools"
+                className="inline-flex items-center gap-1 text-brand-600 font-semibold text-sm hover:gap-2 transition-all"
+              >
+                看全部 14 個工具 <span aria-hidden="true">→</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
