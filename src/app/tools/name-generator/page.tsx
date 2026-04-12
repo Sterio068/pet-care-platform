@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/Card";
 import { PetNameGenerator } from "@/components/tools/PetNameGenerator";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
-import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
+import { buildPageMetadata, breadcrumbListSchema, webApplicationSchema } from "@/lib/seo";
 
 const PAGE_PATH = "/tools/name-generator";
 
@@ -17,8 +17,14 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 export default function NameGeneratorPage() {
+  const breadcrumb = breadcrumbListSchema([
+    { label: '首頁', href: '/' },
+    { label: '工具', href: '/tools' },
+    { label: '寵物取名器' },
+  ]);
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <JsonLd
         data={webApplicationSchema({
           name: "寵物取名器",

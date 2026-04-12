@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/Card";
 import { WeightTracker } from "@/components/tools/WeightTracker";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
-import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
+import { buildPageMetadata, breadcrumbListSchema, webApplicationSchema } from "@/lib/seo";
 
 const PAGE_PATH = "/tools/weight-tracker";
 
@@ -17,8 +17,14 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 export default function WeightTrackerPage() {
+  const breadcrumb = breadcrumbListSchema([
+    { label: '首頁', href: '/' },
+    { label: '工具', href: '/tools' },
+    { label: '寵物體重追蹤器' },
+  ]);
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <JsonLd
         data={webApplicationSchema({
           name: "寵物體重追蹤器",

@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/Card";
 import { SymptomChecker } from "@/components/tools/SymptomChecker";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
-import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
+import { buildPageMetadata, breadcrumbListSchema, webApplicationSchema } from "@/lib/seo";
 
 const PAGE_PATH = "/tools/symptom-checker";
 
@@ -17,8 +17,14 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 export default function SymptomCheckerPage() {
+  const breadcrumb = breadcrumbListSchema([
+    { label: '首頁', href: '/' },
+    { label: '工具', href: '/tools' },
+    { label: '寵物症狀檢查器' },
+  ]);
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <JsonLd
         data={webApplicationSchema({
           name: "寵物症狀檢查器",

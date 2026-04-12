@@ -8,7 +8,8 @@ import {
   CATEGORY_COLORS,
 } from "@/lib/articles";
 import type { ArticleCategory } from "@/types";
-import { buildPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildPageMetadata, breadcrumbListSchema } from "@/lib/seo";
 
 const CATEGORIES: ArticleCategory[] = [
   "health",
@@ -83,8 +84,15 @@ export default async function CategoryPage({ params }: { params: Params }) {
   if (!CATEGORIES.includes(category as ArticleCategory)) notFound();
   const cat = category as ArticleCategory;
   const articles = getArticlesByCategory(cat);
+  const breadcrumb = breadcrumbListSchema([
+    { label: "首頁", href: "/" },
+    { label: "文章", href: "/articles" },
+    { label: CATEGORY_LABELS[cat] },
+  ]);
 
   return (
+    <>
+    <JsonLd data={breadcrumb} />
     <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 py-10 md:py-16">
       <nav className="mb-6 text-sm">
         <Link
@@ -146,5 +154,6 @@ export default async function CategoryPage({ params }: { params: Params }) {
         </div>
       </section>
     </div>
+    </>
   );
 }

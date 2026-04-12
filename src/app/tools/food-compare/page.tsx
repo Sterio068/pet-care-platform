@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/Card";
 import { FoodComparator } from "@/components/tools/FoodComparator";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
-import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
+import { buildPageMetadata, breadcrumbListSchema, webApplicationSchema } from "@/lib/seo";
 
 const PAGE_PATH = "/tools/food-compare";
 
@@ -17,8 +17,14 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 export default function FoodComparePage() {
+  const breadcrumb = breadcrumbListSchema([
+    { label: '首頁', href: '/' },
+    { label: '工具', href: '/tools' },
+    { label: '飼料比較計算器' },
+  ]);
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <JsonLd data={webApplicationSchema({ name: "飼料比較計算器", description: "比較飼料每千卡成本", path: PAGE_PATH })} />
       <div className="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <div className="text-center mb-8">

@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo";
 import { getAllArticles, TAGS } from "@/lib/articles";
 import { getAllBreeds } from "@/data/breeds";
+import { BREED_TRAITS } from "@/lib/breed-traits";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -57,5 +58,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...base, ...articles, ...breeds, ...tags];
+  const traits: MetadataRoute.Sitemap = BREED_TRAITS.map((t) => ({
+    url: `${SITE_URL}/breeds/trait/${t.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...base, ...articles, ...breeds, ...tags, ...traits];
 }

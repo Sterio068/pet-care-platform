@@ -8,6 +8,7 @@ import {
 } from "@/lib/articles";
 import type { ArticleCategory } from "@/types";
 import { getAllBreeds, getBreedsByPetType } from "@/data/breeds";
+import { BREED_TRAITS } from "@/lib/breed-traits";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -139,6 +140,26 @@ export default function HtmlSitemapPage() {
           </ul>
         </section>
       )}
+
+      {/* 品種場景 */}
+      <section className="mb-12">
+        <h2 className="text-xl font-bold text-ink-900 mb-4 flex items-center gap-2">
+          <span className="w-1 h-5 bg-brand-500 rounded-full" aria-hidden="true" />
+          依需求找品種（{BREED_TRAITS.length}）
+        </h2>
+        <ul className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
+          {BREED_TRAITS.map((t) => (
+            <li key={t.slug}>
+              <Link
+                href={`/breeds/trait/${t.slug}`}
+                className="text-ink-700 hover:text-brand-600"
+              >
+                {t.emoji} {t.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       {/* 全部文章 */}
       <section className="mb-12">

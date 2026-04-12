@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/Card";
 import { BreedCover } from "@/components/ui/CoverImage";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { getBreedsByPetType } from "@/data/breeds";
+import { BREED_TRAITS } from "@/lib/breed-traits";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -39,6 +40,21 @@ export default function BreedsIndexPage() {
         <p className="text-ink-500 max-w-xl mx-auto mb-6">
           了解不同品種的個性、體型、壽命與照護要點
         </p>
+        {/* 場景快速導覽 */}
+        <div className="flex flex-wrap gap-2 justify-center mb-4">
+          <span className="text-xs text-ink-500 self-center mr-1">依需求找品種：</span>
+          {BREED_TRAITS.map((t) => (
+            <Link
+              key={t.slug}
+              href={`/breeds/trait/${t.slug}`}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-cream-300 text-ink-700 text-xs font-semibold hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600 transition-colors"
+            >
+              <span>{t.emoji}</span>
+              <span>{t.label}</span>
+            </Link>
+          ))}
+        </div>
+
         <div className="inline-flex items-center gap-3 flex-wrap justify-center">
           <a
             href="#dog"

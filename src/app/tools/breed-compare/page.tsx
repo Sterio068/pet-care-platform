@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/Card";
 import { BreedCompare } from "@/components/tools/BreedCompare";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
-import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
+import { buildPageMetadata, breadcrumbListSchema, webApplicationSchema } from "@/lib/seo";
 
 const PAGE_PATH = "/tools/breed-compare";
 
@@ -18,8 +18,14 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 export default function BreedComparePage() {
+  const breadcrumb = breadcrumbListSchema([
+    { label: '首頁', href: '/' },
+    { label: '工具', href: '/tools' },
+    { label: '品種比較' },
+  ]);
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <JsonLd
         data={webApplicationSchema({
           name: "品種比較工具",

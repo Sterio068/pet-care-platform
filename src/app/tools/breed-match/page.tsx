@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/Card";
 import { BreedMatchQuiz } from "@/components/tools/BreedMatchQuiz";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
-import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
+import { buildPageMetadata, breadcrumbListSchema, webApplicationSchema } from "@/lib/seo";
 
 const PAGE_PATH = "/tools/breed-match";
 
@@ -18,8 +18,14 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 export default function BreedMatchPage() {
+  const breadcrumb = breadcrumbListSchema([
+    { label: '首頁', href: '/' },
+    { label: '工具', href: '/tools' },
+    { label: '品種配對測驗' },
+  ]);
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <JsonLd
         data={webApplicationSchema({
           name: "品種配對測驗",

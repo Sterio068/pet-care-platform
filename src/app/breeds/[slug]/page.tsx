@@ -16,6 +16,7 @@ import {
 } from "@/data/breeds";
 import { getAllArticles } from "@/lib/articles";
 import { buildPageMetadata, breadcrumbListSchema, SITE_URL, SITE_NAME } from "@/lib/seo";
+import { getTraitsForBreed } from "@/lib/breed-traits";
 
 export function generateStaticParams() {
   return getAllBreeds().map((b) => ({ slug: b.slug }));
@@ -210,6 +211,12 @@ const BREED_TOOLS = [
     title: "症狀檢查",
     desc: "快速評估身體狀況",
   },
+  {
+    href: "/tools/breed-compare",
+    icon: "⚖️",
+    title: "品種比較",
+    desc: "與其他品種並排比較",
+  },
 ];
 
 export default async function BreedDetailPage({
@@ -229,6 +236,7 @@ export default async function BreedDetailPage({
   const breedUrl = `${SITE_URL}/breeds/${breed.slug}`;
   const faqs = buildBreedFaqs(breed);
   const { prev: prevBreed, next: nextBreed } = getBreedNeighbors(breed.slug);
+  const breedTraits = getTraitsForBreed(breed);
   const breadcrumbSchema = breadcrumbListSchema([
     { label: "首頁", href: "/" },
     { label: "品種百科", href: "/breeds" },
@@ -396,6 +404,23 @@ export default async function BreedDetailPage({
               </span>
             ))}
           </div>
+          {breedTraits.length > 0 && (
+            <div className="mt-4 pt-4 border-t border-cream-200">
+              <p className="text-xs text-ink-500 mb-2">查看同類場景的其他品種：</p>
+              <div className="flex flex-wrap gap-2">
+                {breedTraits.map((t) => (
+                  <Link
+                    key={t.slug}
+                    href={`/breeds/trait/${t.slug}`}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-cream-300 text-ink-700 text-xs font-semibold hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600 transition-colors"
+                  >
+                    <span>{t.emoji}</span>
+                    <span>{t.label}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </Card>
 
         {/* 實用工具 */}

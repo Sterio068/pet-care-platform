@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/Card";
 import { VetPrepChecklist } from "@/components/tools/VetPrepChecklist";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
-import { buildPageMetadata, webApplicationSchema } from "@/lib/seo";
+import { buildPageMetadata, breadcrumbListSchema, webApplicationSchema } from "@/lib/seo";
 
 const PAGE_PATH = "/tools/vet-prep";
 
@@ -17,8 +17,14 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 export default function VetPrepPage() {
+  const breadcrumb = breadcrumbListSchema([
+    { label: '首頁', href: '/' },
+    { label: '工具', href: '/tools' },
+    { label: '就醫準備清單' },
+  ]);
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <JsonLd data={webApplicationSchema({ name: "就醫準備清單", description: "看獸醫前的準備工具", path: PAGE_PATH })} />
       <div className="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <div className="text-center mb-8">

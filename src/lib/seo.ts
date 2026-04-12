@@ -92,6 +92,16 @@ export function organizationSchema() {
     name: SITE_NAME,
     url: SITE_URL,
     description: "台灣毛孩家長的實用工具與照護知識網站",
+    sameAs: [
+      "https://maohai.org",
+      "https://www.facebook.com/maohaiorg",
+      "https://www.instagram.com/maohaiorg",
+      "https://twitter.com/maohaiorg",
+    ],
+    logo: {
+      "@type": "ImageObject",
+      url: `${SITE_URL}/icon`,
+    },
   };
 }
 
@@ -102,6 +112,14 @@ export function websiteSchema() {
     name: SITE_NAME,
     url: SITE_URL,
     inLanguage: "zh-TW",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   };
 }
 
