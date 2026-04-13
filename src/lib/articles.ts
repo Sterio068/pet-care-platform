@@ -288,6 +288,24 @@ export const ARTICLES: ArticleMeta[] = [
     publishedAt: "2026-04-13",
     readingMinutes: 8,
   },
+  {
+    slug: "multi-cat-household",
+    title: "多貓家庭完整指南：迎接第二隻貓的 8 個關鍵步驟",
+    description: "貓咪是領土性動物，貿然引進新成員容易引發衝突。從隔離期、氣味交換、到正式見面，8 個步驟讓兩隻貓和平共處。",
+    category: "beginner",
+    keywords: ["多貓家庭", "第二隻貓", "養兩隻貓", "貓咪引入", "貓貓共處"],
+    publishedAt: "2026-04-13",
+    readingMinutes: 8,
+  },
+  {
+    slug: "dog-skin-allergy",
+    title: "狗狗皮膚過敏完整指南：常見原因、症狀辨別與改善方法",
+    description: "狗狗不停抓癢、皮膚發紅、反覆耳朵發炎？可能是過敏！食物過敏 vs 環境過敏的差異、診斷流程、居家管理方法一次說清楚。",
+    category: "health",
+    keywords: ["狗皮膚過敏", "狗過敏症狀", "犬異位性皮膚炎", "狗食物過敏", "狗搔癢"],
+    publishedAt: "2026-04-13",
+    readingMinutes: 9,
+  },
 ];
 
 export const CATEGORY_LABELS: Record<ArticleCategory, string> = {
