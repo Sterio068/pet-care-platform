@@ -306,6 +306,24 @@ export const ARTICLES: ArticleMeta[] = [
     publishedAt: "2026-04-13",
     readingMinutes: 9,
   },
+  {
+    slug: "kitten-first-year",
+    title: "幼貓第一年完整照護指南：從接回家到滿週歲",
+    description: "幼貓的第一年決定一生健康！疫苗時程、驅蟲、換牙、社會化、絕育時機、飲食轉換——按月齡排列的完整指南，新手飼主必讀。",
+    category: "beginner",
+    keywords: ["幼貓照顧", "小貓怎麼養", "幼貓飼養", "新手養貓", "幼貓疫苗", "幼貓飼料"],
+    publishedAt: "2026-04-20",
+    readingMinutes: 10,
+  },
+  {
+    slug: "cat-vaccination-guide",
+    title: "貓咪疫苗完整指南：時程、費用與注意事項",
+    description: "三合一、狂犬病、FeLV⋯⋯哪些是必打？費用多少？室內貓也需要嗎？台灣貓咪疫苗完整解析，含施打時程表與副作用觀察重點。",
+    category: "health",
+    keywords: ["貓咪疫苗", "貓疫苗時程", "三合一疫苗", "狂犬病疫苗", "幼貓疫苗費用"],
+    publishedAt: "2026-04-20",
+    readingMinutes: 9,
+  },
 ];
 
 export const CATEGORY_LABELS: Record<ArticleCategory, string> = {
