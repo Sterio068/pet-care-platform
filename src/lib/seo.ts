@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://maohai.org";
 export const SITE_NAME = "毛孩照護站";
 
 export interface PageMetaInput {
@@ -93,7 +93,6 @@ export function organizationSchema() {
     url: SITE_URL,
     description: "台灣毛孩家長的實用工具與照護知識網站",
     sameAs: [
-      "https://maohai.org",
       "https://www.facebook.com/maohaiorg",
       "https://www.instagram.com/maohaiorg",
       "https://twitter.com/maohaiorg",

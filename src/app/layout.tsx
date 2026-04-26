@@ -25,7 +25,7 @@ const notoSansTC = Noto_Sans_TC({
   display: "swap",
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://maohai.org";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
