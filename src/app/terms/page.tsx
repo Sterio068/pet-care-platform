@@ -17,7 +17,7 @@ export default function TermsPage() {
         服務條款
       </h1>
       <div className="prose prose-lg max-w-none text-ink-700 leading-relaxed space-y-6">
-        <p>最後更新日期：2026 年 4 月 6 日</p>
+        <p>最後更新日期：2026 年 5 月 25 日</p>
 
         <h2 className="text-xl font-bold text-ink-900">一、服務說明</h2>
         <p>
@@ -27,6 +27,9 @@ export default function TermsPage() {
         <h2 className="text-xl font-bold text-ink-900">二、內容免責聲明</h2>
         <p>
           本站所有工具計算結果與文章內容<strong>僅供參考</strong>，不構成任何醫療診斷、治療建議或專業獸醫意見。寵物健康問題請務必諮詢合格的獸醫師。
+        </p>
+        <p>
+          工具結果通常依公開公式、一般照護原則或使用者輸入估算，不能涵蓋品種、病史、藥物、檢驗結果、年齡、體況與急症變化。若結果和獸醫師建議不同，請以獸醫師實際診療判斷為準。
         </p>
         <p>本站不對以下情況負責：</p>
         <ul className="list-disc pl-5 space-y-1">
@@ -54,18 +57,26 @@ export default function TermsPage() {
         <p>
           本站透過 Google AdSense 顯示廣告以維持營運。廣告內容由 Google 自動投放，不代表本站立場或推薦。如果您發現不當廣告，歡迎向我們舉報。
         </p>
+        <p>
+          使用本站不需要點擊廣告，也不會因是否點擊廣告而影響工具功能、文章內容或本站回覆順序。本站不允許任何鼓勵、誘導或交換廣告點擊的行為。
+        </p>
 
         <h2 className="text-xl font-bold text-ink-900">六、外部連結</h2>
         <p>
           本站可能包含外部網站的連結。這些連結僅供便利使用，本站不對外部網站的內容、隱私政策或安全性負責。
         </p>
 
-        <h2 className="text-xl font-bold text-ink-900">七、條款修改</h2>
+        <h2 className="text-xl font-bold text-ink-900">七、資料來源與修正</h2>
+        <p>
+          本站會盡量標示文章主要資料來源，並在發現來源失效、內容過時或讀者回報錯誤時進行修正。來源連結不代表本站與該機構存在合作、背書或授權關係；讀者仍應以官方最新公告、產品條款與獸醫師建議為準。
+        </p>
+
+        <h2 className="text-xl font-bold text-ink-900">八、條款修改</h2>
         <p>
           本站保留隨時修改服務條款的權利。修改後的條款將在本頁面公布，繼續使用本站即視為同意修改後的條款。
         </p>
 
-        <h2 className="text-xl font-bold text-ink-900">八、準據法</h2>
+        <h2 className="text-xl font-bold text-ink-900">九、準據法</h2>
         <p>
           本條款受中華民國法律管轄。如有爭議，雙方同意以台灣台北地方法院為第一審管轄法院。
         </p>

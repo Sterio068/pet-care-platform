@@ -76,6 +76,9 @@ export default function HtmlSitemapPage() {
           <li><Link href="/articles" className="text-ink-700 hover:text-brand-600">文章首頁</Link></li>
           <li><Link href="/breeds" className="text-ink-700 hover:text-brand-600">品種百科</Link></li>
           <li><Link href="/about" className="text-ink-700 hover:text-brand-600">關於我們</Link></li>
+          <li><Link href="/editorial-policy" className="text-ink-700 hover:text-brand-600">編輯政策</Link></li>
+          <li><Link href="/sources" className="text-ink-700 hover:text-brand-600">資料來源</Link></li>
+          <li><Link href="/contact" className="text-ink-700 hover:text-brand-600">聯絡我們</Link></li>
           <li><Link href="/faq" className="text-ink-700 hover:text-brand-600">常見問題</Link></li>
           <li><Link href="/privacy" className="text-ink-700 hover:text-brand-600">隱私權政策</Link></li>
           <li><Link href="/terms" className="text-ink-700 hover:text-brand-600">使用條款</Link></li>

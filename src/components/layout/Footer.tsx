@@ -52,6 +52,21 @@ export function Footer() {
                   常見問題
                 </Link>
               </li>
+              <li>
+                <Link href="/editorial-policy" className="hover:text-cream-100">
+                  編輯政策
+                </Link>
+              </li>
+              <li>
+                <Link href="/sources" className="hover:text-cream-100">
+                  資料來源
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-cream-100">
+                  聯絡我們
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -62,6 +77,9 @@ export function Footer() {
           <div className="flex gap-4 flex-wrap justify-center">
             <Link href="/sitemap" className="hover:text-cream-100">網站地圖</Link>
             <Link href="/feed.xml" className="hover:text-cream-100">RSS</Link>
+            <Link href="/editorial-policy" className="hover:text-cream-100">編輯政策</Link>
+            <Link href="/sources" className="hover:text-cream-100">資料來源</Link>
+            <Link href="/contact" className="hover:text-cream-100">聯絡我們</Link>
             <Link href="/privacy" className="hover:text-cream-100">隱私權政策</Link>
             <Link href="/terms" className="hover:text-cream-100">服務條款</Link>
           </div>

@@ -17,7 +17,7 @@ export default function PrivacyPage() {
         隱私權政策
       </h1>
       <div className="prose prose-lg max-w-none text-ink-700 leading-relaxed space-y-6">
-        <p>最後更新日期：2026 年 4 月 6 日</p>
+        <p>最後更新日期：2026 年 5 月 25 日</p>
 
         <h2 className="text-xl font-bold text-ink-900">一、收集的資訊</h2>
         <p>
@@ -40,6 +40,9 @@ export default function PrivacyPage() {
         <p>
           本站使用 Google AdSense 顯示廣告。Google 及其合作夥伴可能會使用 Cookie 根據您的瀏覽記錄提供個人化廣告。您可以前往 Google 的廣告設定頁面，管理或停用個人化廣告。
         </p>
+        <p>
+          在廣告審查或測試期間，本站可能只保留 AdSense 帳戶驗證、ads.txt 或必要的技術標記，而暫時不顯示廣告版位。正式顯示廣告時，廣告會與文章和工具內容保持區隔。
+        </p>
 
         <h2 className="text-xl font-bold text-ink-900">四、本地儲存（localStorage）</h2>
         <p>
@@ -59,17 +62,25 @@ export default function PrivacyPage() {
           本站文章可能包含外部網站的連結（例如獸醫院、產品頁面）。本站對這些外部網站的隱私政策概不負責，建議您在造訪外部網站前查閱其隱私權政策。
         </p>
 
-        <h2 className="text-xl font-bold text-ink-900">七、兒童隱私</h2>
+        <h2 className="text-xl font-bold text-ink-900">七、資料保存與安全</h2>
+        <p>
+          本站不要求會員註冊，也不會主動建立個人病歷或寵物健康檔案。若您透過 Email 主動聯絡，我們只會將來信用於回覆、查證內容與改善網站；除法律要求或保護網站安全外，不會出售或出租您的個人資料。
+        </p>
+        <p>
+          第三方分析與廣告服務可能依其政策保存匿名或彙整資料。您可透過瀏覽器設定、Cookie 管理工具或 Google 相關設定頁面調整追蹤與個人化廣告偏好。
+        </p>
+
+        <h2 className="text-xl font-bold text-ink-900">八、兒童隱私</h2>
         <p>
           本站不會刻意收集 13 歲以下兒童的個人資訊。如果我們發現無意間收集了兒童資訊，將立即刪除。
         </p>
 
-        <h2 className="text-xl font-bold text-ink-900">八、政策變更</h2>
+        <h2 className="text-xl font-bold text-ink-900">九、政策變更</h2>
         <p>
           本站保留隨時修改隱私權政策的權利。修改後將更新本頁的「最後更新日期」。建議您定期查閱本頁面。
         </p>
 
-        <h2 className="text-xl font-bold text-ink-900">九、聯絡方式</h2>
+        <h2 className="text-xl font-bold text-ink-900">十、聯絡方式</h2>
         <p>
           若您對隱私權政策有任何疑問，歡迎來信 <a href="mailto:sterio068@gmail.com" className="text-brand-500 hover:underline">sterio068@gmail.com</a> 與我們聯繫。
         </p>
