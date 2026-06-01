@@ -1,8 +1,7 @@
-import { AdBanner } from "@/components/ads/AdBanner";
 import type { Metadata } from "next";
-import { Card } from "@/components/ui/Card";
 import { WeightTracker } from "@/components/tools/WeightTracker";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolSurface } from "@/components/tools/ToolSurface";
 import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, breadcrumbListSchema, webApplicationSchema } from "@/lib/seo";
 
@@ -43,10 +42,9 @@ export default function WeightTrackerPage() {
           <p className="text-ink-500">每月記錄體重，掌握毛孩健康變化</p>
         </div>
 
-        <Card padding="lg">
+        <ToolSurface toolSlug="weight-tracker" toolName="寵物體重追蹤器">
           <WeightTracker />
-        </Card>
-        <AdBanner slot="tool-result" format="horizontal" className="mt-6" />
+        </ToolSurface>
 
         <article className="mt-10 prose prose-lg max-w-none text-ink-700 leading-relaxed">
           <h2 className="text-2xl font-bold text-ink-900 mb-4">
@@ -119,7 +117,7 @@ export default function WeightTrackerPage() {
             <li>快速肥胖（每月 +5%） → 檢視飲食與內分泌</li>
           </ul>
 
-          <div className="mt-8 p-5 bg-accent-50 border-l-4 border-accent-400 rounded-r-[12px]">
+          <div className="mt-8 rounded-[14px] border border-accent-200 bg-accent-50 p-5">
             <p className="text-sm text-ink-700 leading-relaxed m-0">
               <strong>💡 隱私說明：</strong>
               所有體重記錄只儲存在您的瀏覽器本機（localStorage），不會上傳到任何伺服器。這代表資料完全私密，但也意味著換瀏覽器或清除瀏覽資料會遺失記錄。

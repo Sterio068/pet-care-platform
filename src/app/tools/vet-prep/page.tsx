@@ -1,8 +1,7 @@
-import { AdBanner } from "@/components/ads/AdBanner";
 import type { Metadata } from "next";
-import { Card } from "@/components/ui/Card";
 import { VetPrepChecklist } from "@/components/tools/VetPrepChecklist";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolSurface } from "@/components/tools/ToolSurface";
 import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, breadcrumbListSchema, webApplicationSchema } from "@/lib/seo";
 
@@ -32,8 +31,9 @@ export default function VetPrepPage() {
           <h1 className="text-3xl md:text-4xl font-extrabold text-ink-900 mb-3">就醫準備清單</h1>
           <p className="text-ink-500">選就診原因，自動產生需要準備的清單</p>
         </div>
-        <Card padding="lg"><VetPrepChecklist /></Card>
-        <AdBanner slot="tool-result" format="horizontal" className="mt-6" />
+        <ToolSurface toolSlug="vet-prep" toolName="就醫準備清單">
+          <VetPrepChecklist />
+        </ToolSurface>
         <ToolRelatedArticles toolSlug="vet-prep" />
       </div>
     </>

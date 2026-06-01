@@ -1,8 +1,7 @@
-import { AdBanner } from "@/components/ads/AdBanner";
 import type { Metadata } from "next";
-import { Card } from "@/components/ui/Card";
 import { AgeCalculator } from "@/components/tools/AgeCalculator";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolSurface } from "@/components/tools/ToolSurface";
 import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, breadcrumbListSchema, webApplicationSchema } from "@/lib/seo";
 
@@ -32,7 +31,6 @@ export default function PetAgePage() {
           path: PAGE_PATH,
         })}
       />
-      <JsonLd data={{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"狗狗一歲等於人類幾歲？","acceptedAnswer":{"@type":"Answer","text":"狗狗第一年約等於人類 15 歲，第二年約 24 歲，之後每年加 4-6 歲（依體型而異）。"}},{"@type":"Question","name":"貓咪一歲等於人類幾歲？","acceptedAnswer":{"@type":"Answer","text":"貓咪第一年約等於人類 15 歲，第二年約 24 歲，之後每年加 4 歲。"}}]}} />
       <div className="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-100 text-3xl mb-4">
@@ -46,10 +44,9 @@ export default function PetAgePage() {
           </p>
         </div>
 
-        <Card padding="lg">
+        <ToolSurface toolSlug="pet-age" toolName="寵物年齡換算">
           <AgeCalculator />
-        </Card>
-        <AdBanner slot="tool-result" format="horizontal" className="mt-6" />
+        </ToolSurface>
 
         {/* SEO 知識內容 */}
         <article className="mt-10 prose prose-lg max-w-none text-ink-700 leading-relaxed">
@@ -117,7 +114,7 @@ export default function PetAgePage() {
             </li>
           </ul>
 
-          <div className="mt-8 p-5 bg-brand-50 border-l-4 border-brand-400 rounded-r-[12px]">
+          <div className="mt-8 rounded-[14px] border border-brand-200 bg-brand-50 p-5">
             <p className="text-sm text-ink-700 leading-relaxed m-0">
               <strong>💡 飼主提醒：</strong>
               狗貓的老化速度比人類快 5-7 倍，因此建議中年以後（狗 5 歲、貓 7 歲起）

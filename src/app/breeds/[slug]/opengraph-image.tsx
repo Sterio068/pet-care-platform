@@ -9,9 +9,6 @@ export async function generateStaticParams() {
   return getAllBreeds().map((b) => ({ slug: b.slug }));
 }
 
-const ENERGY_BAR = (level: number) =>
-  Array.from({ length: 5 }, (_, i) => (i < level ? "●" : "○")).join(" ");
-
 export default async function Image({
   params,
 }: {

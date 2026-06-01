@@ -286,7 +286,7 @@ export function WeightTracker() {
         </>
       )}
 
-      <p className="text-xs text-ink-500 border-l-4 border-ink-300 pl-3">
+      <p className="rounded-[12px] border border-cream-300 bg-cream-50 px-3 py-2 text-xs text-ink-500">
         記錄儲存在您的瀏覽器本機（localStorage），不會上傳到任何伺服器。換瀏覽器或清除瀏覽資料會遺失記錄。
       </p>
     </div>

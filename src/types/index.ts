@@ -66,6 +66,7 @@ export interface ArticleMeta {
   category: ArticleCategory;
   keywords: string[];
   publishedAt: string;
+  updatedAt?: string;
   readingMinutes: number;
   cover?: string;
 }

@@ -1,8 +1,7 @@
-import { AdBanner } from "@/components/ads/AdBanner";
 import type { Metadata } from "next";
-import { Card } from "@/components/ui/Card";
 import { SymptomChecker } from "@/components/tools/SymptomChecker";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolSurface } from "@/components/tools/ToolSurface";
 import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, breadcrumbListSchema, webApplicationSchema } from "@/lib/seo";
 
@@ -32,7 +31,6 @@ export default function SymptomCheckerPage() {
           path: PAGE_PATH,
         })}
       />
-      <JsonLd data={{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"狗狗嘔吐需要看醫生嗎？","acceptedAnswer":{"@type":"Answer","text":"24 小時內嘔吐超過 3 次、吐血、伴隨腹瀉或精神差，應立即就醫。"}},{"@type":"Question","name":"貓咪拉肚子怎麼辦？","acceptedAnswer":{"@type":"Answer","text":"先觀察 24 小時給清淡食物。持續 2 天以上或帶血請就醫。"}}]}} />
       <div className="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-yellow-100 text-3xl mb-4">
@@ -46,10 +44,9 @@ export default function SymptomCheckerPage() {
           </p>
         </div>
 
-        <Card padding="lg">
+        <ToolSurface toolSlug="symptom-checker" toolName="寵物症狀檢查器">
           <SymptomChecker />
-        </Card>
-        <AdBanner slot="tool-result" format="horizontal" className="mt-6" />
+        </ToolSurface>
 
         <article className="mt-10 prose prose-lg max-w-none text-ink-700 leading-relaxed">
           <h2 className="text-2xl font-bold text-ink-900 mb-4">
@@ -114,7 +111,7 @@ export default function SymptomCheckerPage() {
             </li>
           </ol>
 
-          <div className="mt-8 p-5 bg-yellow-50 border-l-4 border-yellow-400 rounded-r-[12px]">
+          <div className="mt-8 rounded-[14px] border border-yellow-200 bg-yellow-50 p-5">
             <p className="text-sm text-ink-700 leading-relaxed m-0">
               <strong>⚠️ 免責聲明：</strong>
               本症狀檢查器僅提供初步參考，不能取代獸醫師的專業診斷。每隻毛孩的身體狀況與病史都不同，實際診斷需要透過臨床檢查、血檢、影像等專業設備。若有任何疑慮，請直接諮詢信任的獸醫師。

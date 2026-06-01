@@ -5,6 +5,30 @@ export interface ArticleSource {
 }
 
 export const ARTICLE_SOURCES: Record<string, ArticleSource[]> = {
+  "rainy-season-pet-care": [
+    {
+      title: "Malassezia Dermatitis in Dogs and Cats",
+      publisher: "Merck Veterinary Manual",
+      url: "https://www.merckvetmanual.com/integumentary-system/malassezia-dermatitis/malassezia-dermatitis-in-dogs-and-cats",
+    },
+    {
+      title: "Ear Infections in Dogs (Otitis Externa)",
+      publisher: "VCA Animal Hospitals",
+      url: "https://vcahospitals.com/know-your-pet/ear-infections-in-dogs-otitis-externa",
+    },
+  ],
+  "cat-water-intake": [
+    {
+      title: "Feline Nutrition: Promoting Water Consumption",
+      publisher: "Cornell Feline Health Center",
+      url: "https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/nutrition-cats",
+    },
+    {
+      title: "Chronic Kidney Disease in Cats",
+      publisher: "International Cat Care",
+      url: "https://icatcare.org/articles/chronic-kidney-disease",
+    },
+  ],
   "cat-purring-meaning": [
     {
       title: "Why and how do cats purr?",

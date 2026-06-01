@@ -1,5 +1,7 @@
 "use client";
 
+import { trackEvent } from "@/lib/analytics";
+
 interface ShareButtonsProps {
   title: string;
   url: string;
@@ -32,7 +34,7 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
     },
     {
       name: "Twitter",
-      color: "bg-black hover:bg-ink-700",
+      color: "bg-ink-900 hover:bg-ink-700",
       href: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
       icon: (
         <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -45,6 +47,11 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
   const handleCopyLink = async () => {
     try {
       await navigator.clipboard.writeText(url);
+      trackEvent("share", {
+        method: "copy_link",
+        content_type: "article",
+        item_id: url,
+      });
       alert("連結已複製");
     } catch {
       alert("複製失敗");
@@ -60,7 +67,14 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
           href={s.href}
           target="_blank"
           rel="noopener noreferrer"
-          className={`inline-flex items-center justify-center w-9 h-9 rounded-full ${s.color} text-white transition-colors`}
+          onClick={() =>
+            trackEvent("share", {
+              method: s.name,
+              content_type: "article",
+              item_id: url,
+            })
+          }
+          className={`inline-flex items-center justify-center w-9 h-9 rounded-full ${s.color} text-cream-50 transition-colors`}
           aria-label={`分享到 ${s.name}`}
         >
           {s.icon}

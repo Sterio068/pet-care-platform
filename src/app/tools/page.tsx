@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Card } from "@/components/ui/Card";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { ToolCard } from "@/components/tools/ToolCard";
 import { buildPageMetadata } from "@/lib/seo";
+import { getToolsByGroup, TOOL_GROUPS, TOOLS } from "@/lib/tool-catalog";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "毛孩工具總覽 — 寵物健康實用工具合集",
@@ -11,148 +13,107 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/tools",
 });
 
-const TOOLS = [
-  {
-    href: "/tools/pet-age",
-    icon: "🎂",
-    title: "寵物年齡換算",
-    desc: "輸入毛孩年齡，看看相當於人類幾歲，並了解目前生命階段。",
-    bg: "from-brand-50 to-cream-50",
-  },
-  {
-    href: "/tools/vaccine-schedule",
-    icon: "💉",
-    title: "疫苗時程表",
-    desc: "完整的幼犬幼貓預防針時間表，包含五合一、八合一、三合一等。",
-    bg: "from-accent-50 to-cream-50",
-  },
-  {
-    href: "/tools/symptom-checker",
-    icon: "🩺",
-    title: "症狀檢查器",
-    desc: "勾選毛孩症狀，初步評估可能原因與緊急程度。",
-    bg: "from-yellow-50 to-cream-50",
-  },
-  {
-    href: "/tools/food-calculator",
-    icon: "🥣",
-    title: "餵食計算機",
-    desc: "依體重、年齡、活動量計算每日熱量與飼料克數。",
-    bg: "from-pink-50 to-cream-50",
-  },
-  {
-    href: "/tools/weight-tracker",
-    icon: "📊",
-    title: "體重追蹤器",
-    desc: "記錄每次體重變化，自動生成趨勢圖（資料存於本機）。",
-    bg: "from-blue-50 to-cream-50",
-  },
-  {
-    href: "/tools/cost-calculator",
-    icon: "💰",
-    title: "花費計算",
-    desc: "試算養狗養貓月開銷與 10 年總花費，幫助財務規劃。",
-    bg: "from-green-50 to-cream-50",
-  },
-  {
-    href: "/tools/breed-match",
-    icon: "🎯",
-    title: "品種配對",
-    desc: "回答 5 題，推薦最適合你的犬貓品種。",
-    bg: "from-purple-50 to-cream-50",
-  },
-  {
-    href: "/tools/name-generator",
-    icon: "✨",
-    title: "寵物取名",
-    desc: "100+ 精選名字，依風格隨機產生。",
-    bg: "from-violet-50 to-cream-50",
-  },
-  {
-    href: "/tools/vaccine-reminder",
-    icon: "🔔",
-    title: "疫苗提醒",
-    desc: "輸入出生日期，自動算出每次疫苗施打時間。",
-    bg: "from-red-50 to-cream-50",
-  },
-  {
-    href: "/tools/breed-compare",
-    icon: "⚖️",
-    title: "品種比較",
-    desc: "選 2-3 個品種並排比較所有特性。",
-    bg: "from-indigo-50 to-cream-50",
-  },
-  {
-    href: "/tools/toxic-checker",
-    icon: "🔍",
-    title: "毒物查詢",
-    desc: "查詢食物或植物對狗貓是否安全。",
-    bg: "from-red-50 to-cream-50",
-  },
-  {
-    href: "/tools/emergency-guide",
-    icon: "🚨",
-    title: "急救指南",
-    desc: "6 種緊急情況的步驟式急救流程。",
-    bg: "from-rose-50 to-cream-50",
-  },
-  {
-    href: "/tools/food-compare",
-    icon: "📦",
-    title: "飼料比較",
-    desc: "比較飼料每千卡成本，找出最划算。",
-    bg: "from-amber-50 to-cream-50",
-  },
-  {
-    href: "/tools/vet-prep",
-    icon: "🏥",
-    title: "就醫準備",
-    desc: "看醫生前的準備清單自動產生。",
-    bg: "from-sky-50 to-cream-50",
-  },
-];
-
 export default function ToolsIndexPage() {
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-10 md:py-16">
-      <div className="text-center mb-10">
-        <h1 className="text-3xl md:text-4xl font-extrabold text-ink-900 mb-3">
-          毛孩實用工具
-        </h1>
-        <p className="text-ink-500 max-w-xl mx-auto">
-          免費 · 無需註冊 · 手機也好用
-        </p>
-      </div>
+    <div className="bg-cream-100">
+      <section className="border-b border-cream-300 bg-cream-50">
+        <div className="container-page grid gap-8 py-10 md:grid-cols-[1fr_360px] md:items-end md:py-14">
+          <div>
+            <p className="mb-3 text-xs font-bold text-brand-600">
+              CARE TOOLS
+            </p>
+            <h1 className="max-w-3xl text-4xl font-black leading-tight text-ink-900 md:text-5xl">
+              不確定下一步時，先用工具把問題變清楚。
+            </h1>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-600 md:text-lg">
+              {TOOLS.length} 個工具依照照護情境分組：急症判斷、日常計算、長期準備與快速查詢。所有工具免費使用，不需註冊。
+            </p>
+          </div>
+          <div className="rounded-[20px] border border-brand-200 bg-brand-50 p-5">
+            <p className="text-sm font-bold text-brand-700">
+              如果現在狀況急
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-ink-700">
+              優先使用症狀檢查、毒物查詢或急救指南。若出現呼吸困難、抽搐、大量出血或無法排尿，請直接就醫。
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <Link
+                href="/tools/symptom-checker"
+                className="rounded-full bg-brand-500 px-3 py-1.5 text-sm font-bold text-cream-50 hover:bg-brand-600"
+              >
+                症狀檢查
+              </Link>
+              <Link
+                href="/tools/toxic-checker"
+                className="rounded-full border border-brand-200 bg-cream-50 px-3 py-1.5 text-sm font-bold text-brand-700 hover:bg-brand-100"
+              >
+                毒物查詢
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        {TOOLS.map((tool) => (
-          <Link key={tool.href} href={tool.href} className="group">
-            <Card
-              className={`bg-gradient-to-br ${tool.bg} h-full group-hover:shadow-[0_8px_24px_rgba(42,31,26,0.12)] transition-shadow`}
-            >
-              <div className="flex items-start gap-4">
-                <div
-                  className="flex-shrink-0 text-4xl w-14 h-14 flex items-center justify-center bg-white rounded-[14px] shadow-sm"
-                  aria-hidden="true"
-                >
-                  {tool.icon}
-                </div>
-                <div className="flex-1">
-                  <h2 className="font-bold text-xl text-ink-900 mb-1.5">
-                    {tool.title}
-                  </h2>
-                  <p className="text-sm text-ink-700 leading-relaxed mb-3">
-                    {tool.desc}
-                  </p>
-                  <span className="text-brand-600 font-semibold text-sm group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                    立即使用 <span aria-hidden="true">→</span>
-                  </span>
-                </div>
-              </div>
-            </Card>
+      <section className="py-10 md:py-14">
+        <div className="container-page">
+          <div className="mb-8 flex flex-wrap gap-2">
+            {TOOL_GROUPS.map((group) => (
+              <a
+                key={group.id}
+                href={`#${group.id}`}
+                className="rounded-full border border-cream-300 bg-cream-50 px-4 py-2 text-sm font-bold text-ink-700 transition-colors hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700"
+              >
+                {group.title}
+              </a>
+            ))}
+          </div>
+
+          <div className="space-y-12">
+            {TOOL_GROUPS.map((group) => {
+              const tools = getToolsByGroup(group.id);
+
+              return (
+                <section key={group.id} id={group.id} className="scroll-mt-24">
+                  <SectionHeader
+                    eyebrow={`${tools.length} TOOLS`}
+                    title={group.title}
+                    description={group.desc}
+                  />
+                  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                    {tools.map((tool, index) => (
+                      <ToolCard
+                        key={tool.href}
+                        tool={tool}
+                        variant={index === 0 ? "feature" : "compact"}
+                      />
+                    ))}
+                  </div>
+                </section>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-cream-300 bg-cream-50 py-10">
+        <div className="container-page grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
+          <div>
+            <h2 className="text-2xl font-extrabold text-ink-900">
+              想從文章慢慢理解？
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-ink-500">
+              每個工具都會連到相關文章。你也可以直接從主題中心開始，依照健康、飲食、新手照護或高齡照護查資料。
+            </p>
+          </div>
+          <Link
+            href="/articles"
+            className="inline-flex w-fit items-center gap-2 rounded-[14px] bg-brand-500 px-5 py-3 font-bold text-cream-50 transition-colors hover:bg-brand-600"
+          >
+            前往照護文章
+            <span aria-hidden="true">→</span>
           </Link>
-        ))}
-      </div>
+        </div>
+      </section>
     </div>
   );
 }

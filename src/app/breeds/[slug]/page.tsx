@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { AdBanner } from "@/components/ads/AdBanner";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Card } from "@/components/ui/Card";
@@ -45,7 +44,7 @@ export async function generateMetadata({
   });
 }
 
-// 根據品種資料自動產生 FAQ（同時供 FAQPage schema 與可見 UI 使用）
+// 根據品種資料自動產生可見 FAQ 區塊。
 function buildBreedFaqs(breed: {
   name: string;
   petType: "dog" | "cat";
@@ -251,13 +250,15 @@ export default async function BreedDetailPage({
           "@type": "Article",
           headline: `${breed.name}（${breed.nameEn}）品種介紹：個性、照護與常見疾病`,
           description: breed.summary,
-          url: `${SITE_URL}/breeds/${breed.slug}`,
-          image: [breed.coverUrl],
-          inLanguage: "zh-TW",
-          mainEntityOfPage: {
-            "@type": "WebPage",
-            "@id": `${SITE_URL}/breeds/${breed.slug}`,
-          },
+	          url: `${SITE_URL}/breeds/${breed.slug}`,
+	          image: [breed.coverUrl],
+	          inLanguage: "zh-TW",
+	          isAccessibleForFree: true,
+	          dateModified: "2026-05-27",
+	          mainEntityOfPage: {
+	            "@type": "WebPage",
+	            "@id": `${SITE_URL}/breeds/${breed.slug}`,
+	          },
           publisher: {
             "@type": "Organization",
             name: SITE_NAME,
@@ -267,27 +268,19 @@ export default async function BreedDetailPage({
             "@type": "Organization",
             name: SITE_NAME,
           },
-          about: {
-            "@type": "Thing",
-            name: `${breed.name}（${breed.nameEn}）`,
-          },
-        }}
-      />
+	          about: {
+	            "@type": "Thing",
+	            name: `${breed.name}（${breed.nameEn}）`,
+	          },
+	          citation: [`${SITE_URL}/sources`],
+	          isBasedOn: {
+	            "@type": "CreativeWork",
+	            name: "毛孩照護站資料來源與校對說明",
+	            url: `${SITE_URL}/sources`,
+	          },
+	        }}
+	      />
       <JsonLd data={breadcrumbSchema} />
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: faqs.map((f) => ({
-            "@type": "Question",
-            name: f.q,
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: f.a,
-            },
-          })),
-        }}
-      />
       <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <Breadcrumb
           items={[
@@ -592,7 +585,6 @@ export default async function BreedDetailPage({
         )}
 
         <footer className="mt-8 pt-6 border-t border-cream-300">
-        <AdBanner slot="breed-bottom" format="horizontal" className="mt-6" />
           <p className="text-xs text-ink-500 italic leading-relaxed">
             ※ 以上資訊為品種常見特性整理，實際個體會因血統、成長環境、訓練而異。領養前建議實際接觸並與獸醫諮詢。
           </p>

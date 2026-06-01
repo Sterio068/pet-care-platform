@@ -18,7 +18,11 @@ function formatRfc822(iso: string): string {
 
 export async function GET() {
   const articles = getAllArticles();
-  const latestDate = articles[0]?.publishedAt ?? new Date().toISOString();
+  const latestDate =
+    articles
+      .map((a) => a.updatedAt ?? a.publishedAt)
+      .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())[0] ??
+    new Date().toISOString();
 
   const items = articles
     .map((a) => {

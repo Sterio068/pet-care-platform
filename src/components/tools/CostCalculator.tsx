@@ -217,7 +217,7 @@ export function CostCalculator() {
         </div>
       </ResultCard>
 
-      <p className="text-xs text-ink-500 border-l-4 border-ink-300 pl-3">
+      <p className="rounded-[12px] border border-cream-300 bg-cream-50 px-3 py-2 text-xs text-ink-500">
         本估算為台灣市場平均參考值，不含突發醫療支出、高端品牌飼料、寄宿旅行費等。實際花費因個別需求、品牌選擇而異。
       </p>
     </div>

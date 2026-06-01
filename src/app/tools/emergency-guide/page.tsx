@@ -1,8 +1,7 @@
-import { AdBanner } from "@/components/ads/AdBanner";
 import type { Metadata } from "next";
-import { Card } from "@/components/ui/Card";
 import { EmergencyGuide } from "@/components/tools/EmergencyGuide";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolSurface } from "@/components/tools/ToolSurface";
 import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, breadcrumbListSchema, webApplicationSchema } from "@/lib/seo";
 
@@ -45,10 +44,9 @@ export default function EmergencyGuidePage() {
           </p>
         </div>
 
-        <Card padding="lg">
+        <ToolSurface toolSlug="emergency-guide" toolName="寵物急救指南">
           <EmergencyGuide />
-        </Card>
-        <AdBanner slot="tool-result" format="horizontal" className="mt-6" />
+        </ToolSurface>
         <ToolRelatedArticles toolSlug="emergency-guide" />
       </div>
     </>

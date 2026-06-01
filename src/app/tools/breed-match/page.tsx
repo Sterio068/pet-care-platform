@@ -1,9 +1,8 @@
-import { AdBanner } from "@/components/ads/AdBanner";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Card } from "@/components/ui/Card";
 import { BreedMatchQuiz } from "@/components/tools/BreedMatchQuiz";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolSurface } from "@/components/tools/ToolSurface";
 import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, breadcrumbListSchema, webApplicationSchema } from "@/lib/seo";
 
@@ -46,10 +45,9 @@ export default function BreedMatchPage() {
           </p>
         </div>
 
-        <Card padding="lg">
+        <ToolSurface toolSlug="breed-match" toolName="品種配對測驗">
           <BreedMatchQuiz />
-        </Card>
-        <AdBanner slot="tool-result" format="horizontal" className="mt-6" />
+        </ToolSurface>
 
         <article className="mt-10 prose prose-lg max-w-none text-ink-700 leading-relaxed">
           <h2 className="text-2xl font-bold text-ink-900 mb-4">品種配對常見問題</h2>

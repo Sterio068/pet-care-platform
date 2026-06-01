@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { trackEvent } from "@/lib/analytics";
 import { getSearchIndex, searchItems, type SearchItem } from "@/lib/search-index";
 
 export function SearchDialog() {
@@ -17,11 +18,16 @@ export function SearchDialog() {
     setQuery("");
   };
 
+  const openDialog = useCallback((method: "button" | "keyboard") => {
+    setOpen(true);
+    trackEvent("search_open", { method });
+  }, []);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
-        setOpen(true);
+        openDialog("keyboard");
       }
       if (e.key === "Escape") {
         setOpen(false);
@@ -30,7 +36,7 @@ export function SearchDialog() {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [openDialog]);
 
   useEffect(() => {
     if (open) {
@@ -50,7 +56,7 @@ export function SearchDialog() {
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => openDialog("button")}
         className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[10px] text-ink-500 hover:text-brand-600 hover:bg-brand-50 transition-colors text-sm"
         aria-label="搜尋"
       >
@@ -67,9 +73,9 @@ export function SearchDialog() {
           className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4"
           onClick={closeDialog}
         >
-          <div className="fixed inset-0 bg-ink-900/40 backdrop-blur-sm" />
+          <div className="fixed inset-0 bg-ink-900/45" />
           <div
-            className="relative w-full max-w-xl bg-white rounded-[20px] shadow-2xl overflow-hidden"
+            className="relative w-full max-w-xl bg-cream-50 rounded-[20px] shadow-[0_16px_48px_rgba(42,31,26,0.18)] overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-3 px-4 py-3 border-b border-cream-300">
@@ -110,7 +116,21 @@ export function SearchDialog() {
                     <li key={i}>
                       <Link
                         href={r.href}
-                        onClick={closeDialog}
+                        onClick={() => {
+                          const searchTerm = query.trim();
+                          trackEvent("search", {
+                            search_term: searchTerm,
+                            method: "search_dialog",
+                            results_count: results.length,
+                          });
+                          trackEvent("search_result_click", {
+                            search_term: searchTerm,
+                            result_type: r.type,
+                            result_position: i + 1,
+                            destination: r.href,
+                          });
+                          closeDialog();
+                        }}
                         className="flex items-start gap-3 px-4 py-3 hover:bg-cream-100 transition-colors"
                       >
                         <span

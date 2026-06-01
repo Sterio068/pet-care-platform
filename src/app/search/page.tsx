@@ -51,7 +51,7 @@ export default async function SearchPage({ searchParams }: Props) {
   return (
     <>
       <JsonLd data={breadcrumb} />
-      <main className="container mx-auto max-w-2xl px-4 py-10">
+      <main className="mx-auto w-full max-w-2xl px-4 py-10">
         {/* Search form */}
         <form action="/search" method="GET" className="mb-8">
           <label htmlFor="search-input" className="sr-only">
@@ -63,13 +63,13 @@ export default async function SearchPage({ searchParams }: Props) {
               name="q"
               type="search"
               defaultValue={q}
-              placeholder="搜尋品種、文章..."
-              className="flex-1 rounded-xl border border-brand-border bg-white px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-brand-primary"
+              placeholder="搜尋品種、文章或工具"
+              className="flex-1 rounded-xl border border-cream-300 bg-cream-50 px-4 py-3 text-base text-ink-900 placeholder:text-ink-300 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
               autoFocus={!q}
             />
             <button
               type="submit"
-              className="rounded-xl bg-brand-primary px-5 py-3 text-white font-semibold hover:bg-brand-primary/90 transition-colors"
+              className="rounded-xl bg-brand-500 px-5 py-3 text-cream-50 font-semibold hover:bg-brand-600 transition-colors"
             >
               搜尋
             </button>
@@ -77,8 +77,8 @@ export default async function SearchPage({ searchParams }: Props) {
         </form>
 
         {query && (
-          <p className="mb-6 text-sm text-gray-500">
-            「<span className="font-medium text-gray-800">{q}</span>
+          <p className="mb-6 text-sm text-ink-500">
+            「<span className="font-medium text-ink-900">{q}</span>
             」共找到 {total} 筆結果
           </p>
         )}
@@ -88,7 +88,7 @@ export default async function SearchPage({ searchParams }: Props) {
           <section className="mb-8" aria-labelledby="breed-results-heading">
             <h2
               id="breed-results-heading"
-              className="mb-3 text-base font-bold text-gray-700"
+              className="mb-3 text-base font-bold text-ink-700"
             >
               🐾 品種（{breeds.length}）
             </h2>
@@ -97,14 +97,14 @@ export default async function SearchPage({ searchParams }: Props) {
                 <li key={b.slug}>
                   <Link
                     href={`/breeds/${b.slug}`}
-                    className="flex items-center gap-3 rounded-xl border border-brand-border bg-white px-4 py-3 hover:bg-brand-surface transition-colors"
+                    className="flex items-center gap-3 rounded-xl border border-cream-300 bg-cream-50 px-4 py-3 hover:border-brand-300 hover:bg-brand-50 transition-colors"
                   >
                     <span className="text-xl">
                       {b.petType === "dog" ? "🐕" : "🐈"}
                     </span>
                     <span>
-                      <span className="font-semibold">{b.name}</span>
-                      <span className="ml-2 text-sm text-gray-500">
+                      <span className="font-semibold text-ink-900">{b.name}</span>
+                      <span className="ml-2 text-sm text-ink-500">
                         {b.nameEn}
                       </span>
                     </span>
@@ -120,7 +120,7 @@ export default async function SearchPage({ searchParams }: Props) {
           <section aria-labelledby="article-results-heading">
             <h2
               id="article-results-heading"
-              className="mb-3 text-base font-bold text-gray-700"
+              className="mb-3 text-base font-bold text-ink-700"
             >
               📖 文章（{articles.length}）
             </h2>
@@ -129,10 +129,10 @@ export default async function SearchPage({ searchParams }: Props) {
                 <li key={a.slug}>
                   <Link
                     href={`/articles/${a.slug}`}
-                    className="block rounded-xl border border-brand-border bg-white px-4 py-3 hover:bg-brand-surface transition-colors"
+                    className="block rounded-xl border border-cream-300 bg-cream-50 px-4 py-3 hover:border-brand-300 hover:bg-brand-50 transition-colors"
                   >
-                    <p className="font-semibold leading-snug">{a.title}</p>
-                    <p className="mt-1 text-sm text-gray-500 line-clamp-2">
+                    <p className="font-semibold leading-snug text-ink-900">{a.title}</p>
+                    <p className="mt-1 text-sm text-ink-500 line-clamp-2">
                       {a.description}
                     </p>
                   </Link>
@@ -144,26 +144,26 @@ export default async function SearchPage({ searchParams }: Props) {
 
         {/* No results */}
         {query && total === 0 && (
-          <div className="text-center py-16 text-gray-500">
+          <div className="text-center py-16 text-ink-500">
             <p className="text-4xl mb-4">🔍</p>
             <p className="font-medium">找不到「{q}」的相關內容</p>
             <p className="mt-2 text-sm">試試其他關鍵字，或瀏覽下方分類</p>
             <div className="mt-6 flex flex-wrap gap-2 justify-center">
               <Link
                 href="/breeds"
-                className="rounded-full bg-brand-surface px-4 py-2 text-sm font-medium hover:bg-brand-surface/80"
+                className="rounded-full bg-brand-50 px-4 py-2 text-sm font-medium text-brand-700 hover:bg-brand-100"
               >
                 品種百科
               </Link>
               <Link
                 href="/articles"
-                className="rounded-full bg-brand-surface px-4 py-2 text-sm font-medium hover:bg-brand-surface/80"
+                className="rounded-full bg-brand-50 px-4 py-2 text-sm font-medium text-brand-700 hover:bg-brand-100"
               >
                 照護文章
               </Link>
               <Link
                 href="/tools"
-                className="rounded-full bg-brand-surface px-4 py-2 text-sm font-medium hover:bg-brand-surface/80"
+                className="rounded-full bg-brand-50 px-4 py-2 text-sm font-medium text-brand-700 hover:bg-brand-100"
               >
                 免費工具
               </Link>
@@ -173,7 +173,7 @@ export default async function SearchPage({ searchParams }: Props) {
 
         {/* Empty state (no query) */}
         {!query && (
-          <div className="text-center py-12 text-gray-500">
+          <div className="text-center py-12 text-ink-500">
             <p className="text-4xl mb-4">🐾</p>
             <p className="font-medium">輸入品種名稱或照護主題開始搜尋</p>
           </div>

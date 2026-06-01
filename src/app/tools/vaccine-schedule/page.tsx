@@ -1,8 +1,7 @@
-import { AdBanner } from "@/components/ads/AdBanner";
 import type { Metadata } from "next";
-import { Card } from "@/components/ui/Card";
 import { VaccineTimeline } from "@/components/tools/VaccineTimeline";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolSurface } from "@/components/tools/ToolSurface";
 import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, breadcrumbListSchema, webApplicationSchema } from "@/lib/seo";
 
@@ -43,10 +42,9 @@ export default function VaccineSchedulePage() {
           <p className="text-ink-500">幫毛孩建立完整免疫保護，從幼年期就要開始</p>
         </div>
 
-        <Card padding="lg">
+        <ToolSurface toolSlug="vaccine-schedule" toolName="狗貓疫苗時程表">
           <VaccineTimeline />
-        </Card>
-        <AdBanner slot="tool-result" format="horizontal" className="mt-6" />
+        </ToolSurface>
 
         <article className="mt-10 prose prose-lg max-w-none text-ink-700 leading-relaxed">
           <h2 className="text-2xl font-bold text-ink-900 mb-4">
@@ -108,7 +106,7 @@ export default function VaccineSchedulePage() {
             <li>懷孕、哺乳中的母犬貓一般不建議施打</li>
           </ol>
 
-          <div className="mt-8 p-5 bg-accent-50 border-l-4 border-accent-400 rounded-r-[12px]">
+          <div className="mt-8 rounded-[14px] border border-accent-200 bg-accent-50 p-5">
             <p className="text-sm text-ink-700 leading-relaxed m-0">
               <strong>⚠️ 重要提醒：</strong>
               以上時程為一般建議，實際施打時程應由獸醫師依照毛孩健康狀態、母抗體水平、地區疾病流行狀況等因素綜合評估。請務必與信任的獸醫師討論最適合的疫苗計畫。

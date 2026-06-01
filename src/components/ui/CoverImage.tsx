@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { PetType, ArticleCategory } from "@/types";
 
 interface ArticleCoverProps {
@@ -23,8 +22,8 @@ const CATEGORY_VISUAL: Record<
   },
   behavior: {
     emoji: "🐾",
-    gradient: "from-purple-100 via-violet-100 to-indigo-100",
-    pattern: "bg-[radial-gradient(circle_at_50%_80%,rgba(139,92,246,0.15),transparent_40%)]",
+    gradient: "from-accent-100 via-brand-50 to-cream-100",
+    pattern: "bg-[radial-gradient(circle_at_50%_80%,rgba(46,196,182,0.14),transparent_42%)]",
   },
   grooming: {
     emoji: "✂️",

@@ -134,6 +134,22 @@ const PAGES: SearchItem[] = [
     href: "/about",
     keywords: ["關於", "about"],
   },
+  {
+    type: "page",
+    typeLabel: "頁面",
+    title: "編輯政策",
+    description: "內容來源、資料校對與更新方式",
+    href: "/editorial-policy",
+    keywords: ["編輯政策", "內容來源", "校對", "editorial policy"],
+  },
+  {
+    type: "page",
+    typeLabel: "頁面",
+    title: "聯絡我們",
+    description: "內容建議、錯誤回報與合作洽詢",
+    href: "/contact",
+    keywords: ["聯絡", "contact", "錯誤回報", "合作"],
+  },
 ];
 
 export function getSearchIndex(): SearchItem[] {

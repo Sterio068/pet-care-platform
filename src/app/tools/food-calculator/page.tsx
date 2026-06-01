@@ -1,8 +1,7 @@
-import { AdBanner } from "@/components/ads/AdBanner";
 import type { Metadata } from "next";
-import { Card } from "@/components/ui/Card";
 import { FoodCalculator } from "@/components/tools/FoodCalculator";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolSurface } from "@/components/tools/ToolSurface";
 import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, breadcrumbListSchema, webApplicationSchema } from "@/lib/seo";
 
@@ -32,7 +31,6 @@ export default function FoodCalculatorPage() {
           path: PAGE_PATH,
         })}
       />
-      <JsonLd data={{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"狗狗一天該吃多少飼料？","acceptedAnswer":{"@type":"Answer","text":"依體重計算 RER（70×體重^0.75），乘以生理係數。10kg 成犬約需 500-630 kcal/天。"}},{"@type":"Question","name":"貓咪一天吃多少？","acceptedAnswer":{"@type":"Answer","text":"4kg 絕育成貓約 240-280 kcal/天，約 65-75g 乾糧。"}}]}} />
       <div className="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-pink-100 text-3xl mb-4">
@@ -46,10 +44,9 @@ export default function FoodCalculatorPage() {
           </p>
         </div>
 
-        <Card padding="lg">
+        <ToolSurface toolSlug="food-calculator" toolName="寵物餵食計算機">
           <FoodCalculator />
-        </Card>
-        <AdBanner slot="tool-result" format="horizontal" className="mt-6" />
+        </ToolSurface>
 
         <article className="mt-10 prose prose-lg max-w-none text-ink-700 leading-relaxed">
           <h2 className="text-2xl font-bold text-ink-900 mb-4">
@@ -132,7 +129,7 @@ export default function FoodCalculatorPage() {
             <li>肥胖（8-9 分）：脂肪層厚，腹部下垂</li>
           </ul>
 
-          <div className="mt-8 p-5 bg-accent-50 border-l-4 border-accent-400 rounded-r-[12px]">
+          <div className="mt-8 rounded-[14px] border border-accent-200 bg-accent-50 p-5">
             <p className="text-sm text-ink-700 leading-relaxed m-0">
               <strong>💡 飼主提醒：</strong>
               本計算結果為參考範圍，實際份量應依毛孩體態、健康狀況微調。有慢性疾病（腎病、糖尿病、胰臟炎）或特殊體質的毛孩，請諮詢獸醫師調整處方飲食。

@@ -16,9 +16,10 @@
 7. [Phase 4：變現準備](#7-phase-4變現準備)
 8. [Phase 5：部署上線](#8-phase-5部署上線)
 9. [Phase 6：持續擴充](#9-phase-6持續擴充)
-10. [關鍵數字與成果](#10-關鍵數字與成果)
-11. [踩過的坑](#11-踩過的坑)
-12. [複製到新專案的 Checklist](#12-複製到新專案的-checklist)
+10. [Phase 7：審核後監控與品質 Gate](#10-phase-7審核後監控與品質-gate)
+11. [關鍵數字與成果](#11-關鍵數字與成果)
+12. [踩過的坑](#12-踩過的坑)
+13. [複製到新專案的 Checklist](#13-複製到新專案的-checklist)
 
 ---
 
@@ -209,7 +210,6 @@ export default function PetAgePage() {
     <>
       <JsonLd data={webApplicationSchema({...})} />
       <Card><AgeCalculator /></Card>   {/* Client Component */}
-      <AdBanner slot="tool-result" />
       <article>SEO 長文 500-800 字</article>
     </>
   );
@@ -381,6 +381,8 @@ export function buildPageMetadata({ title, description, keywords, path }): Metad
 
 ### 7.1 廣告位佈局
 
+審核中採「少量、可預期、遠離互動結果」原則。現階段不要在工具輸入區、工具結果區、CTA 附近、搜尋結果附近放廣告，避免被判定為誤導式版位或誘導點擊。
+
 ```
 文章頁：
 ┌─────────────────────────────────────┐
@@ -403,22 +405,28 @@ export function buildPageMetadata({ title, description, keywords, path }): Metad
 工具頁：
 ┌───────────────────┐
 │ 工具互動區         │
-│ ┌───────────────┐ │
-│ │ [Ad: result]  │ │
-│ └───────────────┘ │
-│ SEO 長文           │
+│ 結果與建議         │
+│ 補充說明與文章連結  │
 └───────────────────┘
 
-品種頁：底部 1 個廣告
+品種頁：審核中不放廣告，優先強化照片、照護資料、相關文章與工具入口。
 ```
+
+目前允許的 AdSense slot 僅限：
+
+| Slot | 使用位置 | 審核策略 |
+|------|----------|----------|
+| `article-mid` | 文章正文中段 | 內容已建立上下文後才出現 |
+| `article-bottom` | 文章結尾前後 | 遠離分享與導航操作 |
+| `sidebar` | 桌機文章側欄 | 不干擾閱讀主線 |
 
 ### 7.2 AdBanner 元件設計
 
 ```typescript
-// Phase 1: 顯示佔位框（dev 環境）
-// Phase 3: NEXT_PUBLIC_ADSENSE_ID 環境變數啟用後顯示真實廣告
+// 審核中預設 NEXT_PUBLIC_ADS_ENABLED=false
+// 正式啟用需同時符合：ADS_ENABLED、ADSENSE_ID、slot 在 allowlist
 export function AdBanner({ slot, format, className }) {
-  if (!ADSENSE_ID || !slot) {
+  if (!shouldRenderAds(slot)) {
     if (process.env.NODE_ENV === "development") {
       return <div>[Ad Placeholder · {format}]</div>;
     }
@@ -430,11 +438,16 @@ export function AdBanner({ slot, format, className }) {
 
 ### 7.3 AdSense 申請前必備
 
-- [ ] 隱私權政策頁面 `/privacy`
-- [ ] 服務條款頁面 `/terms`
-- [ ] 至少 20+ 頁原創內容
-- [ ] 網站已上線且可訪問
-- [ ] 自訂網域（非 .vercel.app）
+- [x] 隱私權政策頁面 `/privacy`
+- [x] 服務條款頁面 `/terms`
+- [x] 至少 20+ 頁原創內容，且每篇有來源、審稿、作者可信度訊號
+- [x] 網站已上線且可訪問
+- [x] 自訂網域（非 `.vercel.app`）
+- [x] `ads.txt` 由 `/ads.txt` route 輸出授權 publisher ID
+- [x] `robots.txt` 不阻擋主要內容與 sitemap
+- [x] `sitemap.xml` 收錄首頁、工具、文章、品種、FAQ、政策頁
+- [x] `review:check` 可在部署網址上檢查 sitemap、robots、ads.txt、核心頁面狀態
+- [x] 廣告預設關閉，通過審核前不展示真實廣告
 
 ### 7.4 GA4 + AdSense Script 整合
 
@@ -448,7 +461,7 @@ export function AdBanner({ slot, format, className }) {
     </Script>
   </>
 )}
-{ADSENSE_ID && (
+{shouldRenderAds() && (
   <Script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`} crossOrigin="anonymous" strategy="afterInteractive" />
 )}
 ```
@@ -470,7 +483,9 @@ gh repo create my-project --public --source=. --remote=origin --push
 # 3. 環境變數設定
 vercel env add NEXT_PUBLIC_SITE_URL production   # https://你的網域.com
 vercel env add NEXT_PUBLIC_GA_ID production       # G-XXXXXXXXXX
+vercel env add NEXT_PUBLIC_ADS_ENABLED production # false（審核期預設）
 vercel env add NEXT_PUBLIC_ADSENSE_ID production  # ca-pub-XXXXXXX
+# repo 內保留 .env.local.example；真實 .env / .env.* 由 .vercelignore 排除部署
 
 # 4. 自訂網域
 vercel domains add 你的網域.com my-project
@@ -507,7 +522,7 @@ git add -A && git commit -m "描述改了什麼" && git push
 2. 檢查不重複
 3. 撰寫 2 篇 MDX 文章
 4. 註冊到 articles.ts
-5. npm run build && npm run lint
+5. npm test && npm run build
 6. git push（Vercel 自動部署）
 ```
 
@@ -522,26 +537,92 @@ git add -A && git commit -m "描述改了什麼" && git push
 
 ### 9.3 收益優化
 
-- **增加廣告位**：文章中間、側邊欄、工具結果下方
+- **審核前不追求廣告密度**：先保留文章中段、文章底部、桌機側欄三類保守版位
+- **工具頁先不放廣告**：工具結果區、搜尋結果、CTA 附近都不放，避免誤導點擊疑慮
 - **寫高 CPC 文章**：保險、用品評測、獸醫選擇
-- **買自訂網域**：`.vercel.app` → 自有網域（SEO +30-50%）
-- **提升停留時間**：TOC、相關文章、上下篇導航
+- **提升自然點擊率**：改善 title、description、topic cluster 內部連結與首屏可讀性
+- **提升停留時間**：TOC、相關文章、上下篇導航、工具導流與清楚的下一步建議
 
 ---
 
-## 10. 關鍵數字與成果
+## 10. Phase 7：審核後監控與品質 Gate
+
+這一階段的目標不是「讓更多人誤點廣告」，而是讓搜尋使用者願意停留、閱讀、使用工具，讓合規廣告自然獲得可持續曝光。任何文案或版位都不得暗示、鼓勵、要求使用者點擊廣告。
+
+### 10.1 每次部署前必跑
+
+```bash
+npm test
+npm run design:audit
+npm run build
+SITE_URL=https://maohai.org npm run review:check
+```
+
+`npm test` 目前包含以下本地 gate：
+
+| Script | 檢查目的 |
+|--------|----------|
+| `content:audit` | 文章深度、來源、審稿、作者可信度、內部連結 |
+| `snippet:audit` | Title / description 長度、重複度、搜尋摘要可讀性 |
+| `schema:audit` | 結構化資料只出現在合適頁面，避免濫用 FAQ/HowTo |
+| `observability:audit` | GA4、GSC 驗證、AdSense 保守配置、審核腳本完整性 |
+
+### 10.2 GA4 事件追蹤
+
+| Event | 用途 |
+|-------|------|
+| `article_view` | 判斷哪些文章能帶來長尾流量與閱讀需求 |
+| `tool_view` | 判斷工具入口是否被搜尋使用者看見 |
+| `tool_start` | 判斷工具是否真的被操作，而不是只有曝光 |
+| `tool_result_view` | 判斷工具是否成功提供結果 |
+| `search` | 找出站內搜尋需求，補文章與工具缺口 |
+| `select_content` | 追蹤文章、工具、品種卡片點擊 |
+| `topic_cluster_click` | 追蹤主題群內部連結是否有效 |
+| `click` | 追蹤 outbound click，分辨推薦連結與外部資源需求 |
+
+上線後第一週每天確認 GA4 即時報表：首頁、文章頁、工具頁至少都要能看到 view event；操作工具時要能看到 `tool_start` 與 `tool_result_view`。
+
+### 10.3 Google Search Console 監控
+
+- Sitemap：確認 `https://maohai.org/sitemap.xml` 已提交且可讀。
+- 索引：優先看首頁、核心工具、topic cluster hub、已擴寫文章是否被編入索引。
+- 查詢：挑出「有曝光但 CTR 低」的頁面，優先調整 title / description。
+- 頁面體驗：若有行動版可用性或 Core Web Vitals 問題，先修 UI 與效能，再擴廣告。
+- 結構化資料：只保留真實符合頁面意圖的 schema；FAQPage 僅用在 FAQ 頁。
+
+### 10.4 AdSense 審核守則
+
+- `NEXT_PUBLIC_ADS_ENABLED=false` 是審核期預設值。
+- 真實 `.env` 檔不得隨 CLI 部署上傳；以 Vercel Production env 為準。
+- 通過審核前不要新增廣告版位，不要把廣告放進工具結果、搜尋結果、導覽按鈕、下載/分享區附近。
+- 通過審核後也只先啟用 `article-mid`、`article-bottom`、`sidebar`，觀察 7 天再決定是否調整。
+- 若收到「缺乏價值的內容」，不要先加廣告；先補內容深度、來源、作者/審稿訊號、內部連結，再重新送審。
+- 若 ads.txt 顯示「找不到」，先確認部署網域 `/ads.txt` 回傳 200 且內容為授權 publisher ID，再回 AdSense 重新檢查。
+
+### 10.5 審核後營運節奏
+
+| 頻率 | 動作 |
+|------|------|
+| 每日（前 7 天） | 看 AdSense 狀態、ads.txt、GSC sitemap、GA4 即時事件 |
+| 每週 | 跑完整 gate、整理 GSC 低 CTR 頁面、補 1-2 篇 cluster 內容 |
+| 每月 | 檢查最高曝光 query、最高工具完成率、最低 engagement 頁面 |
+| 每次改版 | 先跑 `npm test`、`design:audit`、`build`、`review:check` |
+
+---
+
+## 11. 關鍵數字與成果
 
 ### 本專案最終規模
 
 | 項目 | 數量 |
 |------|------|
-| 靜態頁面 | 152 |
+| 靜態/SSG 路由 | 297 |
 | 互動工具 | 14 |
-| MDX 文章 | 44 |
-| 品種百科（含真實照片） | 30 |
-| 廣告位 | 120+ |
+| MDX 文章 | 50 |
+| 品種百科（含真實照片） | 70 |
+| 審核期廣告 slot | 3 |
 | FAQ 問題 | 20 |
-| 搜尋索引項目 | 90+ |
+| 搜尋索引項目 | 130+ |
 
 ### 技術成就
 
@@ -558,7 +639,7 @@ git add -A && git commit -m "描述改了什麼" && git push
 
 ---
 
-## 11. 踩過的坑
+## 12. 踩過的坑
 
 ### Next.js 16 的變化
 
@@ -593,7 +674,7 @@ git add -A && git commit -m "描述改了什麼" && git push
 
 ---
 
-## 12. 複製到新專案的 Checklist
+## 13. 複製到新專案的 Checklist
 
 ### 換主題時需要改的東西
 
@@ -619,7 +700,9 @@ git add -A && git commit -m "描述改了什麼" && git push
 ### 上線前 Checklist
 
 - [ ] `npm run build` 零錯誤
-- [ ] `npm run lint` 零錯誤
+- [ ] `npm test` 全部通過（lint、typecheck、content、snippet、schema、observability）
+- [ ] `npm run design:audit` 通過
+- [ ] `SITE_URL=https://你的網域.com npm run review:check` 通過
 - [ ] 每個頁面都有獨立 title + description
 - [ ] sitemap.ts 包含所有頁面
 - [ ] robots.ts 設定正確
@@ -640,8 +723,10 @@ git add -A && git commit -m "描述改了什麼" && git push
 |------|------|------|
 | `NEXT_PUBLIC_SITE_URL` | 網站 URL（sitemap、OG、canonical） | `https://maohai.org` |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics 4 | `G-CDLKGECF9Y` |
+| `NEXT_PUBLIC_ANALYTICS_DEBUG` | 本機/測試環境輸出 GA4 event log | `false` |
+| `NEXT_PUBLIC_ADS_ENABLED` | 是否載入 AdSense script 與顯示允許版位 | `false` |
 | `NEXT_PUBLIC_ADSENSE_ID` | Google AdSense | `ca-pub-2306490072598524` |
 
 ---
 
-*本文件由毛孩照護站開發過程自動產生，最後更新：2026-04-07*
+*本文件由毛孩照護站開發過程自動產生，最後更新：2026-05-09*

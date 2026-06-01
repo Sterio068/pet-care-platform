@@ -10,7 +10,7 @@ const NAV_LINKS = [
 
 export function Header() {
   return (
-    <header className="hidden md:block sticky top-0 z-40 bg-cream-100/90 backdrop-blur-sm border-b border-cream-300">
+    <header className="hidden md:block sticky top-0 z-40 bg-cream-100/95 border-b border-cream-300">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
         <nav className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2 font-bold text-xl">

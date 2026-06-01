@@ -117,7 +117,7 @@ export function SymptomChecker() {
           </div>
         </ResultCard>
         <div className="flex gap-3 justify-center"><Button variant="primary" onClick={reset}>重新檢查</Button></div>
-        <p className="text-xs text-ink-500 border-l-4 border-ink-300 pl-3 italic">本工具僅供參考，不能取代專業獸醫診斷。出現嚴重症狀請立即就醫。</p>
+        <p className="rounded-[12px] border border-cream-300 bg-cream-50 px-3 py-2 text-xs text-ink-500 italic">本工具僅供參考，不能取代專業獸醫診斷。出現嚴重症狀請立即就醫。</p>
       </div>
     );
   }

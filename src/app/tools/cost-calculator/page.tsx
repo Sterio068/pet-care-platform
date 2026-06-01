@@ -1,8 +1,7 @@
-import { AdBanner } from "@/components/ads/AdBanner";
 import type { Metadata } from "next";
-import { Card } from "@/components/ui/Card";
 import { CostCalculator } from "@/components/tools/CostCalculator";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ToolSurface } from "@/components/tools/ToolSurface";
 import { ToolRelatedArticles } from "@/components/tools/ToolRelatedArticles";
 import { buildPageMetadata, breadcrumbListSchema, webApplicationSchema } from "@/lib/seo";
 
@@ -45,17 +44,16 @@ export default function CostCalculatorPage() {
           </p>
         </div>
 
-        <Card padding="lg">
+        <ToolSurface toolSlug="cost-calculator" toolName="養寵物花費計算">
           <CostCalculator />
-        </Card>
-        <AdBanner slot="tool-result" format="horizontal" className="mt-6" />
+        </ToolSurface>
 
         <article className="mt-10 prose prose-lg max-w-none text-ink-700 leading-relaxed">
           <h2 className="text-2xl font-bold text-ink-900 mb-4">
             為什麼要先算清楚養寵物的花費？
           </h2>
           <p>
-            根據台灣動保處統計，每年有上萬隻寵物被棄養，最大原因之一就是「飼主沒有評估清楚長期經濟負擔」。養一隻毛孩是 10-15 年的承諾，從第一年到老年，花費金額會隨著健康狀況變化。
+            養一隻毛孩是 10-15 年以上的承諾，花費會隨年齡、健康狀況、生活型態和醫療需求變化。先把固定支出與突發醫療風險算清楚，比事後才發現負擔過重更負責任。
           </p>
 
           <h3 className="text-xl font-semibold text-ink-900 mt-6 mb-3">
@@ -90,7 +88,7 @@ export default function CostCalculatorPage() {
               <strong>健康檢查：</strong>成犬貓一次 1,000-2,000，老年建議半年一次
             </li>
             <li>
-              <strong>保險（選擇性）：</strong>月繳約 400-600 元，年繳 5,000-6,000
+              <strong>保險（選擇性）：</strong>費用依年齡、品種、保障範圍與自負額不同，需以最新條款試算
             </li>
           </ul>
 
@@ -114,7 +112,7 @@ export default function CostCalculatorPage() {
           </h3>
           <ul className="list-disc pl-5 space-y-2">
             <li>
-              <strong>突發醫療：</strong>一次住院手術可能 3-10 萬元
+              <strong>突發醫療：</strong>急診、住院、影像檢查或手術可能一次就是數萬元以上
             </li>
             <li>
               <strong>慢性病治療：</strong>腎病、糖尿病每月 2,000-5,000 長期支出
@@ -151,7 +149,7 @@ export default function CostCalculatorPage() {
             </li>
           </ol>
 
-          <div className="mt-8 p-5 bg-green-50 border-l-4 border-green-400 rounded-r-[12px]">
+          <div className="mt-8 rounded-[14px] border border-green-200 bg-green-50 p-5">
             <p className="text-sm text-ink-700 leading-relaxed m-0">
               <strong>💡 建議：</strong>
               養毛孩前，先存一筆 3-5 萬元的「緊急醫療基金」，以應對突發狀況。有能力負擔預期花費，才是對毛孩真正的愛。

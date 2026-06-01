@@ -111,7 +111,7 @@ export function FoodComparator() {
         </ResultCard>
       )}
 
-      <p className="text-xs text-ink-500 border-l-4 border-ink-300 pl-3">
+      <p className="rounded-[12px] border border-cream-300 bg-cream-50 px-3 py-2 text-xs text-ink-500">
         熱量密度通常印在飼料包裝背面（kcal/g 或 kcal/kg）。若標示 kcal/kg 則除以 1000。
       </p>
     </div>

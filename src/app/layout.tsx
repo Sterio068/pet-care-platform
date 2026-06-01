@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Script from "next/script";
 import { Nunito, Noto_Sans_TC } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SiteAnalytics } from "@/components/analytics/SiteAnalytics";
 import { organizationSchema, websiteSchema } from "@/lib/seo";
+import { ADSENSE_ACCOUNT_ID, ADSENSE_ID, shouldRenderAds } from "@/lib/ads";
 import "./globals.css";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
-const ADSENSE_ID = process.env.NEXT_PUBLIC_ADSENSE_ID;
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -64,6 +66,9 @@ export const metadata: Metadata = {
   verification: {
     google: "4cQ2afZzsQF5yaoFPSw0hVOO4D5A1Mj71YV3JYTg7gQ",
   },
+  other: {
+    "google-adsense-account": ADSENSE_ACCOUNT_ID,
+  },
   robots: {
     index: true,
     follow: true,
@@ -107,7 +112,7 @@ export default function RootLayout({
             </Script>
           </>
         )}
-        {ADSENSE_ID && (
+        {shouldRenderAds() && (
           <Script
             async
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`}
@@ -115,6 +120,9 @@ export default function RootLayout({
             strategy="afterInteractive"
           />
         )}
+        <Suspense fallback={null}>
+          <SiteAnalytics />
+        </Suspense>
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

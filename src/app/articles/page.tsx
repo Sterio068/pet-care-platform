@@ -11,6 +11,7 @@ import {
 } from "@/lib/articles";
 import type { ArticleCategory } from "@/types";
 import { buildPageMetadata } from "@/lib/seo";
+import { getAllTopicClusters } from "@/lib/topic-clusters";
 
 const CATEGORIES: ArticleCategory[] = [
   "beginner",
@@ -36,6 +37,7 @@ function formatDate(iso: string) {
 export default function ArticlesListPage() {
   const articles = getAllArticles();
   const tags = getAllTags();
+  const clusters = getAllTopicClusters();
   return (
     <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 py-10 md:py-16">
       <Breadcrumb items={[{ label: "首頁", href: "/" }, { label: "文章" }]} />
@@ -82,6 +84,50 @@ export default function ArticlesListPage() {
             </Link>
           ))}
         </div>
+      )}
+
+      {clusters.length > 0 && (
+        <section className="mb-10">
+          <div className="mb-4 flex items-end justify-between gap-4">
+            <div>
+              <h2 className="text-xl font-bold text-ink-900">
+                主題學習路線
+              </h2>
+              <p className="mt-1 text-sm text-ink-500">
+                依照照護情境整理文章、工具與常見問題，讓 Google 和讀者都能看懂本站的主題深度。
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {clusters.slice(0, 6).map((cluster) => (
+              <Link
+                key={cluster.slug}
+                href={`/articles/tag/${cluster.slug}`}
+                className="group"
+              >
+                <Card className="h-full border border-cream-300 bg-white hover:border-brand-300 hover:bg-brand-50 transition-colors">
+                  <div className="flex items-center justify-between gap-3 mb-3">
+                    <span className="text-sm font-bold text-brand-700">
+                      #{cluster.label}
+                    </span>
+                    <span className="text-xs text-ink-500">
+                      {cluster.count} 篇
+                    </span>
+                  </div>
+                  <h3 className="text-base font-bold text-ink-900 group-hover:text-brand-600 transition-colors">
+                    {cluster.hubTitle}
+                  </h3>
+                  <p className="mt-2 text-sm text-ink-600 leading-relaxed line-clamp-3">
+                    {cluster.intent}
+                  </p>
+                  <div className="mt-4 text-sm font-semibold text-brand-600">
+                    查看主題中心 <span aria-hidden="true">→</span>
+                  </div>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </section>
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">

@@ -8,7 +8,7 @@ import {
   getTraitBySlug,
   getBreedsByTrait,
 } from "@/lib/breed-traits";
-import { buildPageMetadata, breadcrumbListSchema, SITE_URL, SITE_NAME } from "@/lib/seo";
+import { buildPageMetadata, breadcrumbListSchema, SITE_URL } from "@/lib/seo";
 
 export function generateStaticParams() {
   return BREED_TRAITS.map((t) => ({ trait: t.slug }));
@@ -30,8 +30,6 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     path: `/breeds/trait/${def.slug}`,
   });
 }
-
-const ENERGY_STARS = (level: number) => "★".repeat(level) + "☆".repeat(5 - level);
 
 export default async function BreedTraitPage({ params }: { params: Params }) {
   const { trait } = await params;

@@ -1,57 +1,16 @@
 import Link from "next/link";
-import { Card } from "@/components/ui/Card";
 import { ArticleCover, BreedCover } from "@/components/ui/CoverImage";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import { SubscribeForm } from "@/components/newsletter/SubscribeForm";
+import { ToolCard } from "@/components/tools/ToolCard";
 import {
   getAllArticles,
   CATEGORY_LABELS,
   CATEGORY_COLORS,
 } from "@/lib/articles";
 import { getAllBreeds } from "@/data/breeds";
-
-const FEATURED_TOOLS = [
-  {
-    href: "/tools/pet-age",
-    icon: "🎂",
-    title: "寵物年齡換算",
-    desc: "看看毛孩相當於人類幾歲",
-    color: "from-brand-50 to-cream-50",
-  },
-  {
-    href: "/tools/vaccine-schedule",
-    icon: "💉",
-    title: "疫苗時程表",
-    desc: "完整幼犬幼貓預防針時間表",
-    color: "from-accent-50 to-cream-50",
-  },
-  {
-    href: "/tools/symptom-checker",
-    icon: "🩺",
-    title: "症狀檢查器",
-    desc: "快速評估毛孩身體狀況",
-    color: "from-yellow-50 to-cream-50",
-  },
-  {
-    href: "/tools/food-calculator",
-    icon: "🥣",
-    title: "餵食計算機",
-    desc: "科學計算每日飲食份量",
-    color: "from-pink-50 to-cream-50",
-  },
-];
-
-const MORE_TOOLS = [
-  { href: "/tools/toxic-checker", icon: "🔍", title: "毒物查詢" },
-  { href: "/tools/emergency-guide", icon: "🚨", title: "急救指南" },
-  { href: "/tools/weight-tracker", icon: "📊", title: "體重追蹤" },
-  { href: "/tools/cost-calculator", icon: "💰", title: "養寵花費" },
-  { href: "/tools/breed-match", icon: "🎯", title: "品種配對" },
-  { href: "/tools/breed-compare", icon: "⚖️", title: "品種比較" },
-  { href: "/tools/name-generator", icon: "✨", title: "寵物取名" },
-  { href: "/tools/vaccine-reminder", icon: "🔔", title: "疫苗提醒" },
-  { href: "/tools/food-compare", icon: "📦", title: "飼料比較" },
-  { href: "/tools/vet-prep", icon: "🏥", title: "就醫準備" },
-];
+import { getFeaturedTools, getIntentTools, TOOLS } from "@/lib/tool-catalog";
+import { getAllTopicClusters } from "@/lib/topic-clusters";
 
 const POPULAR_TOPICS = [
   { label: "狗狗可以吃什麼水果", href: "/articles/dog-safe-fruits" },
@@ -62,244 +21,343 @@ const POPULAR_TOPICS = [
   { label: "狗狗中暑急救", href: "/articles/dog-heatstroke-prevention" },
 ];
 
+const CARE_STEPS = [
+  {
+    label: "先判斷",
+    title: "急不急，需不需要就醫",
+    href: "/tools/symptom-checker",
+  },
+  {
+    label: "再計算",
+    title: "年齡、熱量、體重與疫苗",
+    href: "/tools/food-calculator",
+  },
+  {
+    label: "慢慢查",
+    title: "文章、品種、主題中心",
+    href: "/articles",
+  },
+];
+
 function formatDate(iso: string) {
   const d = new Date(iso);
   return `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, "0")}/${String(d.getDate()).padStart(2, "0")}`;
 }
 
 export default function HomePage() {
-  const latestArticles = getAllArticles().slice(0, 3);
-  const popularBreeds = getAllBreeds().slice(0, 8);
+  const latestArticles = getAllArticles().slice(0, 4);
+  const [leadArticle, ...secondaryArticles] = latestArticles;
+  const popularBreeds = getAllBreeds().slice(0, 6);
+  const featuredTools = getFeaturedTools();
+  const intentTools = getIntentTools();
+  const clusters = getAllTopicClusters().slice(0, 4);
+
   return (
     <>
-      {/* Hero */}
-      <section className="bg-gradient-to-b from-brand-50 via-cream-100 to-cream-100 pt-12 pb-16 md:pt-20 md:pb-24">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white text-brand-600 text-sm font-semibold shadow-sm mb-6">
-            <span aria-hidden="true">🐾</span>
-            <span>免費 · 無需註冊 · 手機也好用</span>
-          </div>
-          <h1 className="text-4xl md:text-6xl font-extrabold text-ink-900 leading-tight mb-5">
-            陪你一起<span className="text-brand-500">科學養寵</span>
-          </h1>
-          <p className="text-lg md:text-xl text-ink-700 max-w-2xl mx-auto leading-relaxed mb-8">
-            實用的毛孩健康工具與照護知識，讓每位飼主都能安心照顧自己的寶貝。
-          </p>
-          <div className="flex items-center justify-center gap-3 flex-wrap">
-            <Link
-              href="/tools"
-              className="inline-flex items-center gap-2 bg-brand-500 text-white font-semibold px-7 py-3.5 rounded-[14px] shadow-md hover:bg-brand-600 hover:shadow-lg transition-all"
-            >
-              開始使用工具
-              <span aria-hidden="true">→</span>
-            </Link>
-            <Link
-              href="/breeds"
-              className="inline-flex items-center gap-2 bg-white text-ink-900 font-semibold px-7 py-3.5 rounded-[14px] shadow-sm hover:shadow-md transition-all border border-cream-300"
-            >
-              瀏覽品種百科
-            </Link>
-          </div>
-
-          {/* 熱門話題 */}
-          <div className="mt-8 flex items-center justify-center gap-2 flex-wrap">
-            <span className="text-sm text-ink-500 mr-1">熱門：</span>
-            {POPULAR_TOPICS.map((t) => (
+      <section className="relative overflow-hidden bg-cream-100">
+        <div className="container-page grid gap-10 py-12 md:py-18 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:py-20">
+          <div>
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-2 text-sm font-bold text-brand-700">
+              <span aria-hidden="true">🐾</span>
+              <span>台灣飼主的照護筆記與免費工具</span>
+            </div>
+            <h1 className="max-w-3xl text-4xl font-black leading-[1.08] text-ink-900 md:text-6xl">
+              先判斷，再照護。讓毛孩問題有清楚下一步。
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-700">
+              把狗貓健康工具、照護文章、品種百科整理成可以直接使用的路線。從症狀判斷到日常餵食，先知道該做什麼，再決定要查多深。
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
               <Link
-                key={t.href}
-                href={t.href}
-                className="inline-flex items-center text-sm px-3 py-1.5 rounded-full bg-white text-ink-700 hover:text-brand-600 hover:bg-brand-50 border border-cream-300 transition-colors"
+                href="/tools/symptom-checker"
+                className="inline-flex items-center gap-2 rounded-[14px] bg-brand-500 px-6 py-3.5 font-bold text-cream-50 shadow-[0_8px_24px_rgba(230,81,29,0.18)] transition-colors hover:bg-brand-600"
               >
-                {t.label}
+                先做症狀檢查
+                <span aria-hidden="true">→</span>
               </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Tools Grid */}
-      <section className="py-12 md:py-16">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-ink-900 mb-2">
-              實用工具
-            </h2>
-            <p className="text-ink-500">每個工具都經過獸醫專業審核</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {FEATURED_TOOLS.map((tool) => (
-              <Link key={tool.href} href={tool.href} className="group">
-                <Card className={`bg-gradient-to-br ${tool.color} h-full group-hover:shadow-[0_8px_24px_rgba(42,31,26,0.12)] transition-shadow`}>
-                  <div className="flex flex-col h-full">
-                    <div className="text-4xl mb-3" aria-hidden="true">
-                      {tool.icon}
-                    </div>
-                    <h3 className="font-bold text-lg text-ink-900 mb-1">
-                      {tool.title}
-                    </h3>
-                    <p className="text-sm text-ink-500 mb-4 flex-1">
-                      {tool.desc}
-                    </p>
-                    <span className="text-brand-600 font-semibold text-sm group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                      立即使用 <span aria-hidden="true">→</span>
-                    </span>
-                  </div>
-                </Card>
+              <Link
+                href="/articles"
+                className="inline-flex items-center gap-2 rounded-[14px] border border-cream-300 bg-cream-50 px-6 py-3.5 font-bold text-ink-900 transition-colors hover:border-brand-300 hover:bg-brand-50"
+              >
+                看照護文章
               </Link>
-            ))}
+            </div>
           </div>
 
-          {/* 更多工具 */}
-          <div className="mt-6">
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
-              {MORE_TOOLS.map((tool) => (
+          <div className="rounded-[24px] border border-cream-300 bg-cream-50 p-5 shadow-[0_16px_48px_rgba(42,31,26,0.08)]">
+            <div className="mb-5 flex items-center justify-between gap-4">
+              <div>
+                <p className="text-xs font-bold text-brand-600">現在可以先做</p>
+                <h2 className="mt-1 text-xl font-extrabold text-ink-900">
+                  依狀況選入口
+                </h2>
+              </div>
+              <span className="rounded-full bg-accent-50 px-3 py-1 text-xs font-bold text-accent-700">
+                14 個工具
+              </span>
+            </div>
+            <div className="space-y-3">
+              {intentTools.slice(0, 5).map((tool) => (
                 <Link
                   key={tool.href}
                   href={tool.href}
-                  className="flex items-center gap-2 p-3 rounded-2xl bg-white border border-cream-300 hover:border-brand-300 hover:bg-brand-50 transition-colors"
+                  className="group flex items-center gap-4 rounded-[16px] border border-cream-300 bg-cream-100 p-3 transition-colors hover:border-brand-300 hover:bg-brand-50"
                 >
-                  <span className="text-2xl" aria-hidden="true">{tool.icon}</span>
-                  <span className="font-semibold text-sm text-ink-900">{tool.title}</span>
+                  <span
+                    aria-hidden="true"
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-cream-50 text-xl"
+                  >
+                    {tool.icon}
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-xs font-bold text-ink-500">
+                      {tool.intent}
+                    </span>
+                    <span className="block truncate font-bold text-ink-900 group-hover:text-brand-700">
+                      {tool.title}
+                    </span>
+                  </span>
+                  <span className="text-brand-500" aria-hidden="true">
+                    →
+                  </span>
                 </Link>
               ))}
             </div>
-            <div className="mt-5 text-center">
-              <Link
-                href="/tools"
-                className="inline-flex items-center gap-1 text-brand-600 font-semibold text-sm hover:gap-2 transition-all"
-              >
-                看全部 14 個工具 <span aria-hidden="true">→</span>
-              </Link>
-            </div>
           </div>
         </div>
-      </section>
 
-      {/* Latest Articles */}
-      <section className="py-12 md:py-16 bg-white">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-8">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-ink-900 mb-2">
-                最新文章
-              </h2>
-              <p className="text-ink-500">實用的狗貓照護知識</p>
-            </div>
-            <Link
-              href="/articles"
-              className="hidden sm:inline-flex items-center gap-1 text-brand-600 font-semibold text-sm hover:gap-2 transition-all"
-            >
-              看全部文章 <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {latestArticles.map((a) => (
+        <div className="border-y border-cream-300 bg-cream-50">
+          <div className="container-page flex flex-wrap items-center gap-2 py-4">
+            <span className="mr-1 text-sm font-bold text-ink-500">
+              熱門搜尋
+            </span>
+            {POPULAR_TOPICS.map((topic) => (
               <Link
-                key={a.slug}
-                href={`/articles/${a.slug}`}
-                className="group"
+                key={topic.href}
+                href={topic.href}
+                className="rounded-full border border-cream-300 bg-cream-100 px-3 py-1.5 text-sm font-semibold text-ink-700 transition-colors hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700"
               >
-                <Card padding="sm" className="h-full group-hover:shadow-[0_8px_24px_rgba(42,31,26,0.12)] transition-shadow overflow-hidden p-0">
-                  <ArticleCover title={a.title} category={a.category} />
-                  <div className="p-5 flex flex-col h-full">
-                    <div className="flex items-center gap-2 mb-3">
-                      <span
-                        className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${CATEGORY_COLORS[a.category]}`}
-                      >
-                        {CATEGORY_LABELS[a.category]}
-                      </span>
-                      <span className="text-xs text-ink-500">
-                        {formatDate(a.publishedAt)}
-                      </span>
-                    </div>
-                    <h3 className="font-bold text-lg text-ink-900 mb-2 group-hover:text-brand-600 transition-colors leading-snug">
-                      {a.title}
-                    </h3>
-                    <p className="text-sm text-ink-700 leading-relaxed flex-1 line-clamp-3">
-                      {a.description}
-                    </p>
-                  </div>
-                </Card>
+                {topic.label}
               </Link>
             ))}
           </div>
-          <div className="sm:hidden mt-6 text-center">
-            <Link
-              href="/articles"
-              className="inline-flex items-center gap-1 text-brand-600 font-semibold text-sm"
-            >
-              看全部文章 <span aria-hidden="true">→</span>
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Breeds Preview */}
       <section className="py-12 md:py-16">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-8">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-ink-900 mb-2">
-                熱門品種
-              </h2>
-              <p className="text-ink-500">了解不同犬貓的性格與照護重點</p>
-            </div>
-            <Link
-              href="/breeds"
-              className="hidden sm:inline-flex items-center gap-1 text-brand-600 font-semibold text-sm hover:gap-2 transition-all"
-            >
-              全部品種 <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {popularBreeds.map((b) => (
-              <Link key={b.slug} href={`/breeds/${b.slug}`} className="group">
-                <Card padding="sm" className="h-full group-hover:shadow-[0_8px_24px_rgba(42,31,26,0.12)] transition-shadow overflow-hidden p-0">
-                  <BreedCover petType={b.petType} name={b.name} coverUrl={b.coverUrl} />
-                  <div className="p-3">
-                    <h3 className="font-bold text-sm text-ink-900 group-hover:text-brand-600 transition-colors leading-snug">
-                      {b.name}
-                    </h3>
-                    <p className="text-xs text-ink-500 mt-0.5">{b.sizeLabel}</p>
-                  </div>
-                </Card>
+        <div className="container-page">
+          <SectionHeader
+            eyebrow="CARE ROUTE"
+            title="把照護拆成三個可靠步驟"
+            description="多數問題不需要一開始就讀十篇文章。先判斷風險，再用工具計算，最後沿著主題中心補齊背景知識。"
+          />
+          <div className="grid gap-4 md:grid-cols-3">
+            {CARE_STEPS.map((step, index) => (
+              <Link
+                key={step.href}
+                href={step.href}
+                className="group rounded-[20px] border border-cream-300 bg-cream-50 p-5 transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-[0_8px_24px_rgba(42,31,26,0.10)]"
+              >
+                <div className="mb-5 flex items-center justify-between">
+                  <span className="text-xs font-bold text-brand-600">
+                    {step.label}
+                  </span>
+                  <span className="text-3xl font-black text-brand-100">
+                    0{index + 1}
+                  </span>
+                </div>
+                <h3 className="text-xl font-extrabold text-ink-900">
+                  {step.title}
+                </h3>
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-brand-600">
+                  前往 <span aria-hidden="true">→</span>
+                </span>
               </Link>
             ))}
-          </div>
-          <div className="sm:hidden mt-6 text-center">
-            <Link
-              href="/breeds"
-              className="inline-flex items-center gap-1 text-brand-600 font-semibold text-sm"
-            >
-              全部品種 <span aria-hidden="true">→</span>
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* Newsletter */}
+      <section className="bg-cream-50 py-12 md:py-16">
+        <div className="container-page">
+          <SectionHeader
+            eyebrow="TOOLS"
+            title="最常用的照護工具"
+            description="工具頁用產品式介面處理輸入和結果，適合手機上快速完成判斷。"
+            actionHref="/tools"
+            actionLabel={`看全部 ${TOOLS.length} 個工具`}
+          />
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {featuredTools.map((tool) => (
+              <ToolCard key={tool.href} tool={tool} variant="feature" />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {clusters.length > 0 && (
+        <section className="py-12 md:py-16">
+          <div className="container-page">
+            <SectionHeader
+              eyebrow="TOPIC CLUSTERS"
+              title="依情境整理的主題中心"
+              description="文章、工具、常見問題彼此串起來，讓新手可以循序查，也讓搜尋引擎看懂本站深度。"
+              actionHref="/articles"
+              actionLabel="全部文章"
+            />
+            <div className="grid gap-4 md:grid-cols-2">
+              {clusters.map((cluster) => (
+                <Link
+                  key={cluster.slug}
+                  href={`/articles/tag/${cluster.slug}`}
+                  className="group rounded-[20px] border border-cream-300 bg-cream-50 p-5 transition-colors hover:border-brand-300 hover:bg-brand-50"
+                >
+                  <div className="mb-3 flex items-center justify-between gap-3">
+                    <span className="text-sm font-bold text-brand-700">
+                      #{cluster.label}
+                    </span>
+                    <span className="rounded-full bg-cream-100 px-2.5 py-1 text-xs font-bold text-ink-500">
+                      {cluster.count} 篇
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-extrabold text-ink-900 group-hover:text-brand-700">
+                    {cluster.hubTitle}
+                  </h3>
+                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-ink-600">
+                    {cluster.intent}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section className="bg-cream-50 py-12 md:py-16">
+        <div className="container-page">
+          <SectionHeader
+            eyebrow="READ"
+            title="最新照護文章"
+            description="以公開獸醫、官方與學術資料整理成台灣飼主看得懂的版本。"
+            actionHref="/articles"
+            actionLabel="看全部文章"
+          />
+          <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
+            {leadArticle && (
+              <Link
+                href={`/articles/${leadArticle.slug}`}
+                className="group overflow-hidden rounded-[24px] border border-cream-300 bg-cream-100 transition-all hover:border-brand-300 hover:shadow-[0_8px_24px_rgba(42,31,26,0.10)]"
+              >
+                <ArticleCover
+                  title={leadArticle.title}
+                  category={leadArticle.category}
+                  variant="hero"
+                />
+                <div className="p-5 md:p-6">
+                  <div className="mb-3 flex flex-wrap items-center gap-2">
+                    <span
+                      className={`rounded-full px-2.5 py-0.5 text-xs font-bold ${CATEGORY_COLORS[leadArticle.category]}`}
+                    >
+                      {CATEGORY_LABELS[leadArticle.category]}
+                    </span>
+                    <span className="text-xs font-semibold text-ink-500">
+                      {formatDate(leadArticle.publishedAt)}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-extrabold leading-tight text-ink-900 group-hover:text-brand-700">
+                    {leadArticle.title}
+                  </h3>
+                  <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-ink-700">
+                    {leadArticle.description}
+                  </p>
+                </div>
+              </Link>
+            )}
+            <div className="grid gap-3">
+              {secondaryArticles.map((article) => (
+                <Link
+                  key={article.slug}
+                  href={`/articles/${article.slug}`}
+                  className="group rounded-[18px] border border-cream-300 bg-cream-100 p-4 transition-colors hover:border-brand-300 hover:bg-brand-50"
+                >
+                  <div className="mb-2 flex flex-wrap items-center gap-2">
+                    <span
+                      className={`rounded-full px-2.5 py-0.5 text-xs font-bold ${CATEGORY_COLORS[article.category]}`}
+                    >
+                      {CATEGORY_LABELS[article.category]}
+                    </span>
+                    <span className="text-xs text-ink-500">
+                      {formatDate(article.publishedAt)}
+                    </span>
+                  </div>
+                  <h3 className="font-extrabold leading-snug text-ink-900 group-hover:text-brand-700">
+                    {article.title}
+                  </h3>
+                  <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-ink-600">
+                    {article.description}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 md:py-16">
+        <div className="container-page">
+          <SectionHeader
+            eyebrow="BREEDS"
+            title="從品種個性開始做準備"
+            description="比較體型、個性、照護重點與常見疾病，降低衝動認養或錯配生活型態的風險。"
+            actionHref="/breeds"
+            actionLabel="全部品種"
+          />
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
+            {popularBreeds.map((breed) => (
+              <Link
+                key={breed.slug}
+                href={`/breeds/${breed.slug}`}
+                className="group overflow-hidden rounded-[18px] border border-cream-300 bg-cream-50 transition-colors hover:border-brand-300 hover:bg-brand-50"
+              >
+                <BreedCover
+                  petType={breed.petType}
+                  name={breed.name}
+                  coverUrl={breed.coverUrl}
+                />
+                <div className="p-3">
+                  <h3 className="text-sm font-extrabold leading-snug text-ink-900 group-hover:text-brand-700">
+                    {breed.name}
+                  </h3>
+                  <p className="mt-0.5 text-xs text-ink-500">
+                    {breed.sizeLabel}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="py-8 md:py-12">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="container-page">
           <SubscribeForm />
         </div>
       </section>
 
-      {/* About */}
-      <section className="py-12 md:py-16 bg-white">
-        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-ink-900 mb-6 text-center">
-            為台灣毛孩家長打造
-          </h2>
-          <div className="prose prose-lg max-w-none text-ink-700 leading-relaxed space-y-4">
+      <section className="bg-ink-900 py-12 text-cream-100 md:py-16">
+        <div className="container-page grid gap-6 md:grid-cols-[0.9fr_1.1fr] md:items-center">
+          <div>
+            <p className="text-xs font-bold text-brand-300">TRUST FIRST</p>
+            <h2 className="mt-2 text-2xl font-extrabold md:text-3xl">
+              內容可以賺廣告，但信任不能拿來換點擊。
+            </h2>
+          </div>
+          <div className="space-y-4 text-sm leading-relaxed text-cream-200">
             <p>
-              <strong>毛孩照護站</strong>
-              是專為台灣飼主設計的寵物照護資訊平台。我們相信，每一位飼主都值得擁有清楚、正確、實用的照護知識。
+              毛孩照護站把工具、文章、來源、編輯政策與免責提醒放在同一套體驗裡。讀者先得到答案，再選擇要不要深入閱讀。
             </p>
-            <p>
-              從幼犬幼貓第一次打預防針、到選擇適合的飼料份量，再到判斷愛寵是否需要就醫——我們希望透過簡單易用的工具和深入淺出的文章，讓養寵不再需要盲目摸索。
-            </p>
-            <p className="text-sm text-ink-500 border-l-4 border-brand-300 pl-4 italic">
-              ※ 本站所有工具與內容僅供參考，不能取代專業獸醫師的診斷與建議。毛孩身體出現異常時，請優先諮詢您信任的動物醫院。
+            <p className="rounded-[14px] border border-ink-700 bg-ink-800/60 p-4 text-cream-200">
+              本站內容僅供參考，不能取代專業獸醫師診斷。毛孩身體出現異常時，請優先諮詢您信任的動物醫院。
             </p>
           </div>
         </div>
