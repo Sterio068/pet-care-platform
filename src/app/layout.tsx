@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Script from "next/script";
-import { Nunito, Noto_Sans_TC } from "next/font/google";
+import { Nunito } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { BottomNav } from "@/components/layout/BottomNav";
@@ -17,13 +17,6 @@ const nunito = Nunito({
   variable: "--font-nunito",
   subsets: ["latin"],
   weight: ["400", "600", "700", "800"],
-  display: "swap",
-});
-
-const notoSansTC = Noto_Sans_TC({
-  variable: "--font-noto-sans-tc",
-  subsets: ["latin"],
-  weight: ["400", "500", "700", "900"],
   display: "swap",
 });
 
@@ -97,7 +90,7 @@ export default function RootLayout({
   return (
     <html
       lang="zh-TW"
-      className={`${nunito.variable} ${notoSansTC.variable} h-full antialiased`}
+      className={`${nunito.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-cream-100 text-ink-900">
         <JsonLd data={organizationSchema()} />

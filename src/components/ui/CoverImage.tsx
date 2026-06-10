@@ -58,6 +58,7 @@ interface BreedCoverProps {
   coverUrl?: string;
   variant?: "card" | "hero";
   priority?: boolean;
+  preferFallback?: boolean;
 }
 
 export function BreedCover({
@@ -66,10 +67,11 @@ export function BreedCover({
   coverUrl,
   variant = "card",
   priority = false,
+  preferFallback = false,
 }: BreedCoverProps) {
   const height = variant === "hero" ? "h-48 md:h-64" : "h-40";
 
-  if (coverUrl) {
+  if (coverUrl && !preferFallback) {
     return (
       <div className={`relative overflow-hidden rounded-t-[20px] ${height}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -27,11 +27,6 @@ const SIZE_LABELS: Record<"xs" | "s" | "m" | "l" | "xl", string> = {
 export default function BreedsIndexPage() {
   const dogs = getBreedsByPetType("dog");
   const cats = getBreedsByPetType("cat");
-  const dogDisplayOrder = SIZE_ORDER.flatMap((size) =>
-    dogs.filter((breed) => breed.size === size),
-  );
-  const priorityDogSlugs = new Set(dogDisplayOrder.slice(0, 8).map((breed) => breed.slug));
-
   return (
     <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-10 md:py-16">
       <Breadcrumb
@@ -51,6 +46,7 @@ export default function BreedsIndexPage() {
             <Link
               key={t.slug}
               href={`/breeds/trait/${t.slug}`}
+              prefetch={false}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-cream-300 text-ink-700 text-xs font-semibold hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600 transition-colors"
             >
               <span>{t.emoji}</span>
@@ -100,6 +96,7 @@ export default function BreedsIndexPage() {
                   <Link
                     key={b.slug}
                     href={`/breeds/${b.slug}`}
+                    prefetch={false}
                     className="group"
                   >
                     <Card padding="sm" className="h-full group-hover:shadow-[0_8px_24px_rgba(42,31,26,0.12)] transition-shadow overflow-hidden p-0">
@@ -107,7 +104,7 @@ export default function BreedsIndexPage() {
                         petType={b.petType}
                         name={b.name}
                         coverUrl={b.coverUrl}
-                        priority={priorityDogSlugs.has(b.slug)}
+                        preferFallback
                       />
                       <div className="p-4">
                         <h4 className="font-bold text-lg text-ink-900 mb-1 group-hover:text-brand-600 transition-colors">
@@ -148,10 +145,11 @@ export default function BreedsIndexPage() {
             <Link
               key={b.slug}
               href={`/breeds/${b.slug}`}
+              prefetch={false}
               className="group"
             >
               <Card padding="sm" className="h-full group-hover:shadow-[0_8px_24px_rgba(42,31,26,0.12)] transition-shadow overflow-hidden p-0">
-                <BreedCover petType={b.petType} name={b.name} coverUrl={b.coverUrl} />
+                <BreedCover petType={b.petType} name={b.name} coverUrl={b.coverUrl} preferFallback />
                 <div className="p-4">
                 <h3 className="font-bold text-lg text-ink-900 mb-1 group-hover:text-brand-600 transition-colors">
                   {b.name}
