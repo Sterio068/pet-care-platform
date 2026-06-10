@@ -57,9 +57,16 @@ interface BreedCoverProps {
   name: string;
   coverUrl?: string;
   variant?: "card" | "hero";
+  priority?: boolean;
 }
 
-export function BreedCover({ petType, name, coverUrl, variant = "card" }: BreedCoverProps) {
+export function BreedCover({
+  petType,
+  name,
+  coverUrl,
+  variant = "card",
+  priority = false,
+}: BreedCoverProps) {
   const height = variant === "hero" ? "h-48 md:h-64" : "h-40";
 
   if (coverUrl) {
@@ -70,7 +77,9 @@ export function BreedCover({ petType, name, coverUrl, variant = "card" }: BreedC
           src={coverUrl}
           alt={name}
           className="absolute inset-0 w-full h-full object-cover"
-          loading="lazy"
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : "auto"}
+          decoding="async"
         />
       </div>
     );
