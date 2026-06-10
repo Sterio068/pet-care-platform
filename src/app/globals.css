@@ -49,15 +49,12 @@
 }
 
 :root {
+  /* 全站僅有淺色設計：強制 light 避免深色系統將表單控制項、
+     捲軸或瀏覽器自動深色化渲染成不可讀畫面。
+     完整深色 tokens 另行規劃（P1）。 */
+  color-scheme: light;
   --background: #FFF8F0;
   --foreground: #2A1F1A;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #FFF8F0;
-    --foreground: #2A1F1A;
-  }
 }
 
 html,
