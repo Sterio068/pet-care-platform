@@ -27,6 +27,15 @@ export function AdBanner({
     auto: "min-h-[100px]",
   };
 
+  /* 骨架容器固定 min-height 預留版位空間，
+     避免 AdSense 載入後改寫 ins 高度造成 CLS */
+  const skeletonHeights = {
+    horizontal: "min-h-24 md:min-h-[90px]",
+    square: "min-h-[250px]",
+    vertical: "min-h-[600px]",
+    auto: "min-h-[100px]",
+  };
+
   return (
     <aside
       className={`my-8 ${className}`}
@@ -36,14 +45,16 @@ export function AdBanner({
       <div className="mb-2 text-center text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-400">
         廣告
       </div>
-      <ins
-        className={`adsbygoogle block ${heights[format]}`}
-        style={{ display: "block" }}
-        data-ad-client={ADSENSE_ID}
-        data-ad-slot={slot}
-        data-ad-format={format === "auto" ? "auto" : undefined}
-        data-full-width-responsive="true"
-      />
+      <div className={`rounded-[12px] bg-cream-200/60 ${skeletonHeights[format]}`}>
+        <ins
+          className={`adsbygoogle block ${heights[format]}`}
+          style={{ display: "block" }}
+          data-ad-client={ADSENSE_ID}
+          data-ad-slot={slot}
+          data-ad-format={format === "auto" ? "auto" : undefined}
+          data-full-width-responsive="true"
+        />
+      </div>
     </aside>
   );
 }
