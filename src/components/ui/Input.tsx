@@ -28,7 +28,7 @@ export function Input({
       <div className="relative">
         <input
           id={inputId}
-          className={`w-full rounded-[12px] border border-cream-300 bg-cream-50 px-4 py-2.5 text-base text-ink-900 placeholder:text-ink-300 focus:border-brand-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-200 transition-all ${suffix ? "pr-14" : ""} ${className}`}
+          className={`w-full rounded-[12px] border border-cream-300 bg-cream-50 px-4 py-2.5 text-base text-ink-900 placeholder:text-ink-300 focus:border-brand-500 focus:bg-[var(--surface-elevated)] focus:outline-none focus:ring-2 focus:ring-brand-200 transition-all ${suffix ? "pr-14" : ""} ${className}`}
           {...rest}
         />
         {suffix && (

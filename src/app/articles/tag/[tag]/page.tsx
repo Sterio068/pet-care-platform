@@ -141,7 +141,7 @@ export default async function TagPage({ params }: { params: Params }) {
 
       {cluster && (
         <section className="mb-10 grid grid-cols-1 lg:grid-cols-[1.35fr_0.85fr] gap-5">
-          <Card className="bg-white border border-cream-300">
+          <Card className="bg-[var(--surface-card)] border border-cream-300">
             <p className="text-xs font-bold uppercase tracking-[0.08em] text-brand-600 mb-2">
               Topic Cluster
             </p>
@@ -176,7 +176,7 @@ export default async function TagPage({ params }: { params: Params }) {
               {cluster.questions.map((question) => (
                 <li
                   key={question}
-                  className="rounded-xl bg-white px-3 py-2 text-sm text-ink-700"
+                  className="rounded-xl bg-[var(--surface-card)] px-3 py-2 text-sm text-ink-700"
                 >
                   {question}
                 </li>
@@ -187,7 +187,7 @@ export default async function TagPage({ params }: { params: Params }) {
       )}
 
       {cluster && learningSteps.length > 0 && (
-        <section className="mb-10 rounded-lg border border-cream-300 bg-white p-5">
+        <section className="mb-10 rounded-lg border border-cream-300 bg-[var(--surface-card)] p-5">
           <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.08em] text-brand-600">
@@ -238,7 +238,7 @@ export default async function TagPage({ params }: { params: Params }) {
                 href={`/articles/${article.slug}`}
                 className="group"
               >
-                <Card className="h-full bg-white border border-cream-300 hover:border-brand-300 hover:bg-brand-50 transition-colors">
+                <Card className="h-full bg-[var(--surface-card)] border border-cream-300 hover:border-brand-300 hover:bg-brand-50 transition-colors">
                   <span
                     className={`inline-flex px-2.5 py-0.5 rounded-full text-xs font-semibold ${CATEGORY_COLORS[article.category]}`}
                   >
@@ -258,7 +258,7 @@ export default async function TagPage({ params }: { params: Params }) {
       )}
 
       {cluster && cluster.toolLinks.length > 0 && (
-        <section className="mb-10 rounded-2xl border border-cream-300 bg-white p-5">
+        <section className="mb-10 rounded-2xl border border-cream-300 bg-[var(--surface-card)] p-5">
           <h2 className="text-lg font-bold text-ink-900 mb-3">
             搭配工具
           </h2>
@@ -322,7 +322,7 @@ export default async function TagPage({ params }: { params: Params }) {
               <Link
                 key={t.slug}
                 href={`/articles/tag/${t.slug}`}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border border-cream-300 text-ink-700 text-sm font-semibold hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600 transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[var(--surface-card)] border border-cream-300 text-ink-700 text-sm font-semibold hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600 transition-colors"
               >
                 <span>#{t.label}</span>
                 <span className="text-xs text-ink-500">{t.count}</span>

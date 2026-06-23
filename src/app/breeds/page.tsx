@@ -47,7 +47,7 @@ export default function BreedsIndexPage() {
               key={t.slug}
               href={`/breeds/trait/${t.slug}`}
               prefetch={false}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-cream-300 text-ink-700 text-xs font-semibold hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600 transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[var(--surface-card)] border border-cream-300 text-ink-700 text-xs font-semibold hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600 transition-colors"
             >
               <span>{t.emoji}</span>
               <span>{t.label}</span>

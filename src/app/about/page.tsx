@@ -142,7 +142,7 @@ export default function AboutPage() {
             </Link>
             <Link
               href="/articles"
-              className="inline-flex items-center gap-2 bg-white text-brand-600 font-semibold px-6 py-3 rounded-[14px] shadow-sm border border-brand-200 hover:bg-brand-50 transition-all"
+              className="inline-flex items-center gap-2 bg-[var(--surface-card)] text-brand-600 font-semibold px-6 py-3 rounded-[14px] shadow-sm border border-brand-200 hover:bg-brand-50 transition-all"
             >
               閱讀文章
               <span aria-hidden="true">→</span>

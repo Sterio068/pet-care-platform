@@ -22,13 +22,13 @@ export default function NotFound() {
         </Link>
         <Link
           href="/tools"
-          className="px-5 py-3 rounded-[14px] bg-white border border-brand-200 text-brand-600 font-semibold hover:bg-brand-50 transition-colors"
+          className="px-5 py-3 rounded-[14px] bg-[var(--surface-card)] border border-brand-200 text-brand-600 font-semibold hover:bg-brand-50 transition-colors"
         >
           瀏覽工具
         </Link>
         <Link
           href="/articles"
-          className="px-5 py-3 rounded-[14px] bg-white border border-brand-200 text-brand-600 font-semibold hover:bg-brand-50 transition-colors"
+          className="px-5 py-3 rounded-[14px] bg-[var(--surface-card)] border border-brand-200 text-brand-600 font-semibold hover:bg-brand-50 transition-colors"
         >
           閱讀文章
         </Link>

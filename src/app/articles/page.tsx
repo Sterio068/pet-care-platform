@@ -77,7 +77,7 @@ export default function ArticlesListPage() {
             <Link
               key={t.slug}
               href={`/articles/tag/${t.slug}`}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-cream-300 text-ink-700 text-xs font-semibold hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600 transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[var(--surface-card)] border border-cream-300 text-ink-700 text-xs font-semibold hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600 transition-colors"
             >
               <span>#{t.label}</span>
               <span className="text-ink-500">{t.count}</span>
@@ -105,7 +105,7 @@ export default function ArticlesListPage() {
                 href={`/articles/tag/${cluster.slug}`}
                 className="group"
               >
-                <Card className="h-full border border-cream-300 bg-white hover:border-brand-300 hover:bg-brand-50 transition-colors">
+                <Card className="h-full border border-cream-300 bg-[var(--surface-card)] hover:border-brand-300 hover:bg-brand-50 transition-colors">
                   <div className="flex items-center justify-between gap-3 mb-3">
                     <span className="text-sm font-bold text-brand-700">
                       #{cluster.label}

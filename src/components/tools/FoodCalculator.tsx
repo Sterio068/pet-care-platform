@@ -86,7 +86,7 @@ export function FoodCalculator() {
             onClick={() => setNeutered(true)}
             className={`px-5 py-2 rounded-[10px] text-sm font-semibold transition-all ${
               neutered
-                ? "bg-white text-brand-600 shadow-sm"
+                ? "bg-[var(--surface-card)] text-brand-600 shadow-sm"
                 : "text-ink-500"
             }`}
           >
@@ -97,7 +97,7 @@ export function FoodCalculator() {
             onClick={() => setNeutered(false)}
             className={`px-5 py-2 rounded-[10px] text-sm font-semibold transition-all ${
               !neutered
-                ? "bg-white text-brand-600 shadow-sm"
+                ? "bg-[var(--surface-card)] text-brand-600 shadow-sm"
                 : "text-ink-500"
             }`}
           >

@@ -48,19 +48,103 @@
   --shadow-card-hover: 0 8px 24px rgba(42, 31, 26, 0.12);
 }
 
+/* ---------------------------------------------------------------------------
+   語意 token 層
+   ---------------------------------------------------------------------------
+   元件應優先使用這些語意變數（透過 bg-[var(--surface-card)] 等任意值或
+   下方的語意 utility），而非直接綁定 cream/ink/white 調色盤。
+
+   深色模式採兩段策略：
+   1. 重新定義語意 token（surface/text/border/shadow）。
+   2. 重新映射既有調色盤 --color-cream-* 與 --color-ink-* 的「值」，讓尚未遷移、
+      仍直接使用 bg-cream-50 / text-ink-900 等硬編色的元件（含跨站雜湊鎖定的
+      site-kit 共用 primitive：AdSlot / EmptyState / ErrorCard / Breadcrumb，
+      以及大量頁面）自動跟著切換，毋須逐一修改 className 或破壞鎖定雜湊。
+   --color-white / --color-brand-* / --color-accent-* 刻意保留原值：
+      白色供按鈕白字、半透明覆層與漸層高光使用；品牌橘是識別色，深淺色一致。
+   --------------------------------------------------------------------------- */
 :root {
-  /* 全站僅有淺色設計：強制 light 避免深色系統將表單控制項、
-     捲軸或瀏覽器自動深色化渲染成不可讀畫面。
-     完整深色 tokens 另行規劃（P1）。 */
   color-scheme: light;
-  --background: #FFF8F0;
-  --foreground: #2A1F1A;
+
+  /* 表面層（由深到淺的背景階梯） */
+  --surface: #FFF8F0;          /* 頁面底色 */
+  --surface-card: #FFFFFF;     /* 卡片/面板 */
+  --surface-elevated: #FFFDFA; /* 浮起/聚焦態表面 */
+  --surface-subtle: #FFF2E1;   /* 次要區塊底色 */
+
+  /* 文字 */
+  --text-primary: #2A1F1A;
+  --text-secondary: #5A4A3F;
+  --text-muted: #8A7A6F;
+  --text-faint: #BAAA9F;
+  --text-on-brand: #FFFFFF;
+
+  /* 邊框 */
+  --border: #FFE8CC;
+  --border-strong: #F2D6B5;
+
+  /* 相容舊變數 */
+  --background: var(--surface);
+  --foreground: var(--text-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    /* 深色語意 token：暖黑背景 + 高對比米白文字，保留品牌橘 */
+    --surface: #1A1410;          /* 頁面底色 */
+    --surface-card: #251E18;     /* 卡片/面板 */
+    --surface-elevated: #2E251D; /* 浮起/聚焦態表面 */
+    --surface-subtle: #221B15;   /* 次要區塊底色 */
+
+    --text-primary: #F5EDE3;     /* 對 #251E18 對比 ≈ 13.5:1 */
+    --text-secondary: #D8C9BA;   /* 對 #251E18 對比 ≈ 9.3:1 */
+    --text-muted: #B4A595;       /* 對 #251E18 對比 ≈ 6.3:1 */
+    --text-faint: #8C7D6E;       /* 對 #251E18 對比 ≈ 4.0:1（裝飾用） */
+    --text-on-brand: #FFFFFF;
+
+    --border: #3A2F26;
+    --border-strong: #4A3D32;
+
+    /* ── 調色盤重映射：讓未遷移的硬編色 class 自動深色化 ── */
+
+    /* cream-* 在淺色為背景/邊框，深色翻轉為深背景階梯 */
+    --color-cream-50: #251E18;   /* 常見卡片底 bg-cream-50 → 深卡片 */
+    --color-cream-100: #1A1410;  /* body bg-cream-100 → 頁面底 */
+    --color-cream-200: #2E251D;  /* 次要區塊 bg-cream-200 */
+    --color-cream-300: #3A2F26;  /* border-cream-300（高頻邊框）→ 深邊框 */
+
+    /* ink-* 在淺色為深文字/深底，深色翻轉為亮文字
+       注意 Footer 以 bg-ink-900 為底、text-cream-* 為字，整組翻轉後
+       底色變亮米白、文字變深，仍維持高對比，視覺與淺色一致。 */
+    --color-ink-900: #F5EDE3;    /* 主文字 text-ink-900 → 亮米白 */
+    --color-ink-700: #D8C9BA;    /* 次文字 text-ink-700 */
+    --color-ink-500: #B4A595;    /* 輔助文字 text-ink-500 */
+    --color-ink-300: #8C7D6E;    /* 淡文字/placeholder text-ink-300 */
+
+    /* slate-*（site-kit AdSlot / EmptyState / Breadcrumb 中性色） */
+    --color-slate-50: #221B15;   /* AdSlot 底 */
+    --color-slate-200: #3A2F26;  /* 邊框 */
+    --color-slate-300: #4A3D32;  /* 虛線邊框 */
+    --color-slate-400: #9C8E80;  /* placeholder 文字（對 #221B15 ≈ 4.8:1） */
+    --color-slate-500: #B4A595;
+    --color-slate-600: #C9BAAB;  /* EmptyState 說明文字（對 #221B15 ≈ 8:1） */
+    --color-slate-800: #E4D8CB;
+    --color-slate-950: #F5EDE3;  /* EmptyState 標題（高對比） */
+
+    /* red-*（ErrorCard 錯誤態，深色維持可讀對比） */
+    --color-red-50: #3A1A16;     /* 錯誤卡底 */
+    --color-red-200: #6B2C24;    /* 邊框 */
+    --color-red-800: #F0A89E;    /* 說明文字（對 #3A1A16 ≈ 7:1） */
+    --color-red-950: #FBD9D3;    /* 標題（高對比） */
+  }
 }
 
 html,
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--surface);
+  color: var(--text-primary);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -71,10 +155,40 @@ body {
   @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
 }
 
+/* 語意 surface utility — 卡片以語意 token 著色，深淺色自動切換 */
 @utility card-base {
-  @apply bg-white rounded-[20px] shadow-[var(--shadow-card)] transition-shadow;
+  background-color: var(--surface-card);
+  border-radius: 20px;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 150ms;
 }
 
 @utility card-hover {
   @apply hover:shadow-[var(--shadow-card-hover)];
+}
+
+/* 語意文字/表面 utility，供元件遷移使用 */
+@utility surface {
+  background-color: var(--surface);
+}
+@utility surface-card {
+  background-color: var(--surface-card);
+}
+@utility surface-elevated {
+  background-color: var(--surface-elevated);
+}
+@utility surface-subtle {
+  background-color: var(--surface-subtle);
+}
+@utility text-primary {
+  color: var(--text-primary);
+}
+@utility text-secondary {
+  color: var(--text-secondary);
+}
+@utility text-muted {
+  color: var(--text-muted);
+}
+@utility border-default {
+  border-color: var(--border);
 }

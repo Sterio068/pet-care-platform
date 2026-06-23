@@ -138,7 +138,7 @@ export default async function BreedTraitPage({ params }: { params: Params }) {
               <Link
                 key={t.slug}
                 href={`/breeds/trait/${t.slug}`}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border border-cream-300 text-ink-700 text-sm font-semibold hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600 transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[var(--surface-card)] border border-cream-300 text-ink-700 text-sm font-semibold hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600 transition-colors"
               >
                 <span>{t.emoji}</span>
                 <span>{t.label}</span>
@@ -168,7 +168,7 @@ function BreedCard({
   return (
     <Link
       href={`/breeds/${breed.slug}`}
-      className="group block p-5 rounded-2xl bg-white border border-cream-300 hover:border-brand-300 hover:shadow-[0_4px_16px_rgba(42,31,26,0.09)] transition-all"
+      className="group block p-5 rounded-2xl bg-[var(--surface-card)] border border-cream-300 hover:border-brand-300 hover:shadow-[0_4px_16px_rgba(42,31,26,0.09)] transition-all"
     >
       <div className="flex items-start justify-between gap-2 mb-3">
         <div>

@@ -13,7 +13,7 @@ export function PetTypeToggle({ value, onChange }: PetTypeToggleProps) {
         onClick={() => onChange("dog")}
         className={`flex items-center gap-2 px-5 py-2 rounded-[10px] text-sm font-semibold transition-all ${
           value === "dog"
-            ? "bg-white text-brand-600 shadow-sm"
+            ? "bg-[var(--surface-card)] text-brand-600 shadow-sm"
             : "text-ink-500 hover:text-ink-700"
         }`}
       >
@@ -25,7 +25,7 @@ export function PetTypeToggle({ value, onChange }: PetTypeToggleProps) {
         onClick={() => onChange("cat")}
         className={`flex items-center gap-2 px-5 py-2 rounded-[10px] text-sm font-semibold transition-all ${
           value === "cat"
-            ? "bg-white text-brand-600 shadow-sm"
+            ? "bg-[var(--surface-card)] text-brand-600 shadow-sm"
             : "text-ink-500 hover:text-ink-700"
         }`}
       >

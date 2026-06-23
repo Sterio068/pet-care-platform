@@ -43,7 +43,7 @@ export function SubscribeForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="你的 Email"
-                className="flex-1 rounded-[12px] border border-cream-300 bg-white px-4 py-2.5 text-sm text-ink-900 placeholder:text-ink-300 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+                className="flex-1 rounded-[12px] border border-cream-300 bg-[var(--surface-card)] px-4 py-2.5 text-sm text-ink-900 placeholder:text-ink-300 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
                 required
               />
               <Button type="submit" size="md">

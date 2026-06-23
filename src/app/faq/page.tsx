@@ -123,7 +123,7 @@ export default function FAQPage() {
           {FAQS.map((f, i) => (
             <details
               key={i}
-              className="group border border-cream-300 bg-white rounded-[14px] overflow-hidden"
+              className="group border border-cream-300 bg-[var(--surface-card)] rounded-[14px] overflow-hidden"
             >
               <summary className="cursor-pointer px-5 py-4 font-semibold text-ink-900 flex items-center justify-between hover:bg-cream-50 transition-colors">
                 <span className="flex-1 pr-4">{f.q}</span>

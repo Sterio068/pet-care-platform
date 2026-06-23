@@ -37,7 +37,7 @@ export function VaccineTimeline() {
               {entry.vaccines.map((v, i) => (
                 <span
                   key={i}
-                  className="inline-block px-3 py-1 rounded-[8px] bg-white border border-cream-300 text-sm text-ink-700"
+                  className="inline-block px-3 py-1 rounded-[8px] bg-[var(--surface-card)] border border-cream-300 text-sm text-ink-700"
                 >
                   {v}
                 </span>

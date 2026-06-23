@@ -222,7 +222,7 @@ export function BreedMatchQuiz() {
             key={opt.value}
             type="button"
             onClick={() => handleAnswer(opt.value)}
-            className="w-full text-left px-5 py-4 rounded-[14px] border border-cream-300 bg-white hover:border-brand-400 hover:bg-brand-50 transition-colors font-medium text-ink-900"
+            className="w-full text-left px-5 py-4 rounded-[14px] border border-cream-300 bg-[var(--surface-card)] hover:border-brand-400 hover:bg-brand-50 transition-colors font-medium text-ink-900"
           >
             {opt.label}
           </button>

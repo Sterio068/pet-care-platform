@@ -62,7 +62,7 @@ export function ArticleLeadPanel({
 
   return (
     <section className="mb-8 grid grid-cols-1 gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-      <div className="rounded-lg border border-cream-300 bg-white p-5 shadow-[0_8px_20px_rgba(42,31,26,0.05)]">
+      <div className="rounded-lg border border-cream-300 bg-[var(--surface-card)] p-5 shadow-[0_8px_20px_rgba(42,31,26,0.05)]">
         <p className="text-xs font-bold uppercase tracking-[0.08em] text-brand-600">
           本文先讀重點
         </p>
@@ -127,7 +127,7 @@ export function VetSignalPanel({ category }: { category: ArticleCategory }) {
         {CATEGORY_VET_SIGNALS[category].map((signal) => (
           <span
             key={signal}
-            className="rounded-full border border-red-200 bg-white px-3 py-1.5 text-sm font-semibold text-red-700"
+            className="rounded-full border border-red-200 bg-[var(--surface-card)] px-3 py-1.5 text-sm font-semibold text-red-700"
           >
             {signal}
           </span>

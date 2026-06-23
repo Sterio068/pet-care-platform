@@ -9,7 +9,7 @@ const NAV_ITEMS = [
 
 export function BottomNav() {
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-cream-300 shadow-[0_-2px_12px_rgba(42,31,26,0.06)]">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[var(--surface-card)] border-t border-[var(--border)] shadow-[0_-2px_12px_rgba(42,31,26,0.06)]">
       <ul className="flex items-center justify-around h-16">
         {NAV_ITEMS.map((item) => (
           <li key={item.href} className="flex-1">

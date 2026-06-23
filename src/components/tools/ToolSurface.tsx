@@ -13,7 +13,7 @@ export function ToolSurface({ toolSlug, toolName, children }: ToolSurfaceProps) 
 
   return (
     <section aria-labelledby={headingId} className="space-y-3">
-      <div className="flex flex-col gap-3 rounded-lg border border-cream-300 bg-white px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 rounded-lg border border-cream-300 bg-[var(--surface-card)] px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 id={headingId} className="text-sm font-bold text-ink-900">
             {toolName}操作區
@@ -27,7 +27,7 @@ export function ToolSurface({ toolSlug, toolName, children }: ToolSurfaceProps) 
         </span>
       </div>
       <ToolInteractionTracker toolSlug={toolSlug} toolName={toolName}>
-        <Card padding="lg" className="bg-white">
+        <Card padding="lg" className="bg-[var(--surface-card)]">
           {children}
         </Card>
       </ToolInteractionTracker>

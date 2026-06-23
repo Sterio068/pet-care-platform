@@ -36,7 +36,7 @@ export function ToxicChecker() {
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder={`輸入食物或植物名稱，例如「葡萄」「巧克力」「百合」`}
-            className="flex-1 rounded-[12px] border border-cream-300 bg-cream-50 px-4 py-3 text-base text-ink-900 placeholder:text-ink-300 focus:border-brand-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-200 transition-all"
+            className="flex-1 rounded-[12px] border border-cream-300 bg-cream-50 px-4 py-3 text-base text-ink-900 placeholder:text-ink-300 focus:border-brand-500 focus:bg-[var(--surface-elevated)] focus:outline-none focus:ring-2 focus:ring-brand-200 transition-all"
           />
           <button
             type="button"
@@ -52,7 +52,7 @@ export function ToxicChecker() {
               key={q}
               type="button"
               onClick={() => { setQuery(q); setResults(searchToxicItems(q, petType)); }}
-              className="px-3 py-1 rounded-full text-xs font-medium bg-white border border-cream-300 text-ink-700 hover:border-brand-300 hover:text-brand-600 transition-colors"
+              className="px-3 py-1 rounded-full text-xs font-medium bg-[var(--surface-card)] border border-cream-300 text-ink-700 hover:border-brand-300 hover:text-brand-600 transition-colors"
             >
               {q}
             </button>

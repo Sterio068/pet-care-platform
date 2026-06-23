@@ -41,7 +41,7 @@ export function BreedCompare() {
               className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
                 selected.includes(b.slug)
                   ? "bg-brand-500 text-white shadow-sm"
-                  : "bg-white text-ink-700 border border-cream-300 hover:border-brand-300"
+                  : "bg-[var(--surface-card)] text-ink-700 border border-cream-300 hover:border-brand-300"
               } ${!selected.includes(b.slug) && selected.length >= 3 ? "opacity-40 cursor-not-allowed" : ""}`}
               disabled={!selected.includes(b.slug) && selected.length >= 3}
             >
@@ -82,7 +82,7 @@ export function BreedCompare() {
             </thead>
             <tbody>
               <tr className="border-b border-cream-200">
-                <td className="p-3 text-ink-500 sticky left-0 bg-white">英文名</td>
+                <td className="p-3 text-ink-500 sticky left-0 bg-[var(--surface-card)]">英文名</td>
                 {breeds.map((b) => (
                   <td key={b.slug} className="p-3 text-center text-ink-700">
                     {b.nameEn}
@@ -98,7 +98,7 @@ export function BreedCompare() {
                 ))}
               </tr>
               <tr className="border-b border-cream-200">
-                <td className="p-3 text-ink-500 sticky left-0 bg-white">體重</td>
+                <td className="p-3 text-ink-500 sticky left-0 bg-[var(--surface-card)]">體重</td>
                 {breeds.map((b) => (
                   <td key={b.slug} className="p-3 text-center text-ink-700">
                     {b.weightRange}
@@ -114,7 +114,7 @@ export function BreedCompare() {
                 ))}
               </tr>
               <tr className="border-b border-cream-200">
-                <td className="p-3 text-ink-500 sticky left-0 bg-white">被毛</td>
+                <td className="p-3 text-ink-500 sticky left-0 bg-[var(--surface-card)]">被毛</td>
                 {breeds.map((b) => (
                   <td key={b.slug} className="p-3 text-center text-ink-700">
                     {b.coatLabel}
@@ -133,7 +133,7 @@ export function BreedCompare() {
                   key={key}
                   className={`border-b border-cream-200 ${key === "friendliness" || key === "shedding" ? "bg-cream-50" : ""}`}
                 >
-                  <td className={`p-3 text-ink-500 sticky left-0 ${key === "friendliness" || key === "shedding" ? "bg-cream-50" : "bg-white"}`}>
+                  <td className={`p-3 text-ink-500 sticky left-0 ${key === "friendliness" || key === "shedding" ? "bg-cream-50" : "bg-[var(--surface-card)]"}`}>
                     {label}
                   </td>
                   {breeds.map((b) => (
@@ -144,7 +144,7 @@ export function BreedCompare() {
                 </tr>
               ))}
               <tr className="border-b border-cream-200">
-                <td className="p-3 text-ink-500 sticky left-0 bg-white">個性</td>
+                <td className="p-3 text-ink-500 sticky left-0 bg-[var(--surface-card)]">個性</td>
                 {breeds.map((b) => (
                   <td key={b.slug} className="p-3 text-center">
                     <div className="flex flex-wrap gap-1 justify-center">
@@ -173,7 +173,7 @@ export function BreedCompare() {
                 ))}
               </tr>
               <tr>
-                <td className="p-3 text-ink-500 sticky left-0 bg-white">適合</td>
+                <td className="p-3 text-ink-500 sticky left-0 bg-[var(--surface-card)]">適合</td>
                 {breeds.map((b) => (
                   <td key={b.slug} className="p-3 text-center">
                     <div className="flex flex-wrap gap-1 justify-center">

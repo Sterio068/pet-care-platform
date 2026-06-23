@@ -66,7 +66,7 @@ export function VaccineReminder() {
                 {nextVaccine.vaccines.map((v, i) => (
                   <span
                     key={i}
-                    className="px-3 py-1 rounded-[8px] bg-white border border-cream-300 text-sm text-ink-700"
+                    className="px-3 py-1 rounded-[8px] bg-[var(--surface-card)] border border-cream-300 text-sm text-ink-700"
                   >
                     {v}
                   </span>
@@ -87,7 +87,7 @@ export function VaccineReminder() {
                     ? "bg-cream-100 border-cream-200 opacity-60"
                     : nextVaccine === v
                       ? "bg-brand-50 border-brand-300"
-                      : "bg-white border-cream-300"
+                      : "bg-[var(--surface-card)] border-cream-300"
                 }`}
               >
                 <div className="shrink-0 w-5 h-5 mt-0.5 rounded-full border-2 flex items-center justify-center border-brand-400">
@@ -127,7 +127,7 @@ export function VaccineReminder() {
                     {v.vaccines.map((name, i) => (
                       <span
                         key={i}
-                        className="text-xs px-2 py-0.5 rounded bg-white border border-cream-300 text-ink-700"
+                        className="text-xs px-2 py-0.5 rounded bg-[var(--surface-card)] border border-cream-300 text-ink-700"
                       >
                         {name}
                       </span>

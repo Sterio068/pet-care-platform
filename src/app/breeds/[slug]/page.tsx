@@ -405,7 +405,7 @@ export default async function BreedDetailPage({
                   <Link
                     key={t.slug}
                     href={`/breeds/trait/${t.slug}`}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-cream-300 text-ink-700 text-xs font-semibold hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600 transition-colors"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[var(--surface-card)] border border-cream-300 text-ink-700 text-xs font-semibold hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600 transition-colors"
                   >
                     <span>{t.emoji}</span>
                     <span>{t.label}</span>
@@ -487,7 +487,7 @@ export default async function BreedDetailPage({
             {faqs.map((f, i) => (
               <details
                 key={i}
-                className="group rounded-2xl border border-cream-300 bg-white open:shadow-sm transition-shadow"
+                className="group rounded-2xl border border-cream-300 bg-[var(--surface-card)] open:shadow-sm transition-shadow"
               >
                 <summary className="cursor-pointer list-none flex items-center justify-between gap-3 px-5 py-4 font-semibold text-ink-900 hover:text-brand-600">
                   <span className="flex-1">{f.q}</span>
@@ -542,7 +542,7 @@ export default async function BreedDetailPage({
             {prevBreed ? (
               <Link
                 href={`/breeds/${prevBreed.slug}`}
-                className="group flex items-center gap-3 p-4 rounded-2xl border border-cream-300 bg-white hover:border-brand-300 hover:bg-brand-50 transition-colors"
+                className="group flex items-center gap-3 p-4 rounded-2xl border border-cream-300 bg-[var(--surface-card)] hover:border-brand-300 hover:bg-brand-50 transition-colors"
               >
                 <span
                   aria-hidden="true"
@@ -563,7 +563,7 @@ export default async function BreedDetailPage({
             {nextBreed ? (
               <Link
                 href={`/breeds/${nextBreed.slug}`}
-                className="group flex items-center gap-3 p-4 rounded-2xl border border-cream-300 bg-white hover:border-brand-300 hover:bg-brand-50 transition-colors sm:justify-end sm:text-right"
+                className="group flex items-center gap-3 p-4 rounded-2xl border border-cream-300 bg-[var(--surface-card)] hover:border-brand-300 hover:bg-brand-50 transition-colors sm:justify-end sm:text-right"
               >
                 <div className="min-w-0 sm:order-1">
                   <div className="text-xs text-ink-500">下一個品種</div>

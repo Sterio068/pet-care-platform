@@ -85,7 +85,7 @@ export function SymptomChecker() {
         <div className="text-center"><h3 className="text-xl font-bold text-ink-900 mb-2">{currentQ.label}</h3></div>
         <div className="space-y-2">
           {currentQ.options.map((opt) => (
-            <button key={opt.id} type="button" onClick={() => handleFollowUpAnswer(opt)} className="w-full text-left px-5 py-4 rounded-[14px] border border-cream-300 bg-white hover:border-brand-400 hover:bg-brand-50 transition-colors"><div className="font-medium text-ink-900">{opt.label}</div></button>
+            <button key={opt.id} type="button" onClick={() => handleFollowUpAnswer(opt)} className="w-full text-left px-5 py-4 rounded-[14px] border border-cream-300 bg-[var(--surface-card)] hover:border-brand-400 hover:bg-brand-50 transition-colors"><div className="font-medium text-ink-900">{opt.label}</div></button>
           ))}
         </div>
         <div className="text-center"><button type="button" onClick={() => { if (currentFUIndex > 0) setCurrentFUIndex(currentFUIndex - 1); else setStep("select"); }} className="text-sm text-ink-500 hover:text-brand-600">← 上一步</button></div>

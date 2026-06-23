@@ -134,21 +134,21 @@ export default function SourcesPage() {
       </header>
 
       <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-        <Card padding="lg" className="bg-white">
+        <Card padding="lg" className="bg-[var(--surface-card)]">
           <p className="text-3xl font-extrabold text-brand-600">{stats.articleCount}</p>
           <p className="mt-2 text-sm font-semibold text-ink-900">篇文章已標示來源</p>
           <p className="mt-2 text-sm text-ink-500 leading-relaxed">
             每篇核心文章至少保留一組可回查來源。
           </p>
         </Card>
-        <Card padding="lg" className="bg-white">
+        <Card padding="lg" className="bg-[var(--surface-card)]">
           <p className="text-3xl font-extrabold text-brand-600">{stats.sourceCount}</p>
           <p className="mt-2 text-sm font-semibold text-ink-900">個不重複來源連結</p>
           <p className="mt-2 text-sm text-ink-500 leading-relaxed">
             優先使用官方、獸醫、學術與公開條款頁面。
           </p>
         </Card>
-        <Card padding="lg" className="bg-white">
+        <Card padding="lg" className="bg-[var(--surface-card)]">
           <p className="text-3xl font-extrabold text-brand-600">{stats.publisherCount}</p>
           <p className="mt-2 text-sm font-semibold text-ink-900">個發布單位</p>
           <p className="mt-2 text-sm text-ink-500 leading-relaxed">
@@ -177,7 +177,7 @@ export default function SourcesPage() {
         <h2 className="text-2xl font-bold text-ink-900 mb-4">常用來源類型</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {sourceGroups.map((group) => (
-            <Card key={group.title} padding="lg" className="bg-white">
+            <Card key={group.title} padding="lg" className="bg-[var(--surface-card)]">
               <h3 className="text-lg font-bold text-ink-900 mb-2">
                 {group.title}
               </h3>
@@ -205,7 +205,7 @@ export default function SourcesPage() {
         </h2>
         <div className="space-y-4">
           {articleRows.map((row) => (
-            <Card key={row.slug} padding="lg" className="bg-white">
+            <Card key={row.slug} padding="lg" className="bg-[var(--surface-card)]">
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
                 <div>
                   <h3 className="text-lg font-bold text-ink-900">
@@ -263,7 +263,7 @@ export default function SourcesPage() {
           </Link>
           <Link
             href="/editorial-policy"
-            className="inline-flex items-center justify-center rounded-[14px] bg-white px-5 py-3 text-sm font-bold text-brand-600 border border-brand-200 hover:bg-brand-50"
+            className="inline-flex items-center justify-center rounded-[14px] bg-[var(--surface-card)] px-5 py-3 text-sm font-bold text-brand-600 border border-brand-200 hover:bg-brand-50"
           >
             查看編輯政策
           </Link>

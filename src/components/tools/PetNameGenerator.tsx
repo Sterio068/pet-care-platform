@@ -53,7 +53,7 @@ export function PetNameGenerator() {
               className={`px-4 py-2 rounded-[10px] text-sm font-semibold transition-all ${
                 gender === g.value
                   ? "bg-brand-500 text-white shadow-sm"
-                  : "bg-white border border-cream-300 text-ink-700 hover:border-brand-300"
+                  : "bg-[var(--surface-card)] border border-cream-300 text-ink-700 hover:border-brand-300"
               }`}
             >
               {g.label}
@@ -73,7 +73,7 @@ export function PetNameGenerator() {
               className={`px-4 py-2 rounded-[10px] text-sm font-semibold transition-all ${
                 style === s.value
                   ? "bg-brand-500 text-white shadow-sm"
-                  : "bg-white border border-cream-300 text-ink-700 hover:border-brand-300"
+                  : "bg-[var(--surface-card)] border border-cream-300 text-ink-700 hover:border-brand-300"
               }`}
             >
               {s.label}
@@ -96,7 +96,7 @@ export function PetNameGenerator() {
               className={`relative rounded-[14px] p-4 text-center transition-all ${
                 favorites.includes(n.name)
                   ? "bg-brand-100 border-2 border-brand-400"
-                  : "bg-white border border-cream-300 hover:border-brand-300"
+                  : "bg-[var(--surface-card)] border border-cream-300 hover:border-brand-300"
               }`}
             >
               <div className="text-xl font-bold text-ink-900 mb-1">
@@ -124,7 +124,7 @@ export function PetNameGenerator() {
             {favorites.map((f) => (
               <span
                 key={f}
-                className="px-3 py-1 rounded-full bg-white text-brand-700 text-sm font-semibold shadow-sm"
+                className="px-3 py-1 rounded-full bg-[var(--surface-card)] text-brand-700 text-sm font-semibold shadow-sm"
               >
                 {f}
               </span>

@@ -202,7 +202,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
                     <Link
                       key={t.href}
                       href={t.href}
-                      className="group flex items-start gap-3 p-3 rounded-xl bg-white hover:shadow-sm hover:bg-white transition-all border border-cream-200 hover:border-brand-200"
+                      className="group flex items-start gap-3 p-3 rounded-xl bg-[var(--surface-card)] hover:shadow-sm hover:bg-[var(--surface-card)] transition-all border border-cream-200 hover:border-brand-200"
                     >
                       <span className="text-2xl mt-0.5" aria-hidden="true">{t.icon}</span>
                       <div className="min-w-0">
@@ -218,7 +218,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
             <AdBanner slot="article-bottom" format="horizontal" />
 
             {articleTopicClusters.length > 0 && (
-              <section className="mt-10 rounded-lg border border-cream-300 bg-white p-5">
+              <section className="mt-10 rounded-lg border border-cream-300 bg-[var(--surface-card)] p-5">
                 <div className="mb-4">
                   <p className="text-xs font-bold uppercase tracking-[0.08em] text-brand-600">
                     Topic Cluster
@@ -275,7 +275,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
             </footer>
 
             {sources.length > 0 && (
-              <section className="mt-8 rounded-2xl border border-cream-300 bg-white p-5">
+              <section className="mt-8 rounded-2xl border border-cream-300 bg-[var(--surface-card)] p-5">
                 <h2 className="text-base font-bold text-ink-900 mb-2">
                   資料來源與校對說明
                 </h2>
@@ -310,7 +310,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
                 {prevArticle ? (
                   <Link
                     href={`/articles/${prevArticle.slug}`}
-                    className="group flex items-center gap-3 p-4 rounded-2xl border border-cream-300 bg-white hover:border-brand-300 hover:bg-brand-50 transition-colors"
+                    className="group flex items-center gap-3 p-4 rounded-2xl border border-cream-300 bg-[var(--surface-card)] hover:border-brand-300 hover:bg-brand-50 transition-colors"
                   >
                     <span
                       aria-hidden="true"
@@ -331,7 +331,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
                 {nextArticle ? (
                   <Link
                     href={`/articles/${nextArticle.slug}`}
-                    className="group flex items-center gap-3 p-4 rounded-2xl border border-cream-300 bg-white hover:border-brand-300 hover:bg-brand-50 transition-colors sm:justify-end sm:text-right"
+                    className="group flex items-center gap-3 p-4 rounded-2xl border border-cream-300 bg-[var(--surface-card)] hover:border-brand-300 hover:bg-brand-50 transition-colors sm:justify-end sm:text-right"
                   >
                     <div className="min-w-0 sm:order-1">
                       <div className="text-xs text-ink-500">下一篇</div>

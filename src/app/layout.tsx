@@ -92,7 +92,7 @@ export default function RootLayout({
       lang="zh-TW"
       className={`${nunito.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-cream-100 text-ink-900">
+      <body className="min-h-full flex flex-col surface text-primary">
         <JsonLd data={organizationSchema()} />
         <JsonLd data={websiteSchema()} />
         {GA_ID && (

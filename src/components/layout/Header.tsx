@@ -10,12 +10,12 @@ const NAV_LINKS = [
 
 export function Header() {
   return (
-    <header className="hidden md:block sticky top-0 z-40 bg-cream-100/95 border-b border-cream-300">
+    <header className="hidden md:block sticky top-0 z-40 bg-[var(--surface)]/95 border-b border-[var(--border)]">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
         <nav className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2 font-bold text-xl">
             <span aria-hidden="true" className="text-2xl">🐾</span>
-            <span className="text-ink-900">毛孩照護站</span>
+            <span className="text-primary">毛孩照護站</span>
           </Link>
           <div className="flex items-center gap-1">
             <ul className="flex items-center gap-1">
@@ -30,7 +30,7 @@ export function Header() {
                 </li>
               ))}
             </ul>
-            <div className="ml-2 pl-2 border-l border-cream-300">
+            <div className="ml-2 pl-2 border-l border-[var(--border)]">
               <SearchDialog />
             </div>
           </div>

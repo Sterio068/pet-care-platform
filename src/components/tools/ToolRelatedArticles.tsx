@@ -23,7 +23,7 @@ export function ToolRelatedArticles({ toolSlug }: Props) {
           <Link
             key={a.slug}
             href={`/articles/${a.slug}`}
-            className="group block p-4 rounded-2xl bg-white border border-cream-300 hover:border-brand-300 hover:shadow-[0_4px_16px_rgba(42,31,26,0.09)] transition-all"
+            className="group block p-4 rounded-2xl bg-[var(--surface-card)] border border-cream-300 hover:border-brand-300 hover:shadow-[0_4px_16px_rgba(42,31,26,0.09)] transition-all"
           >
             <div className="flex items-center gap-2 mb-2">
               <span
