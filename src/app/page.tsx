@@ -322,6 +322,7 @@ export default function HomePage() {
                 <BreedCover
                   petType={breed.petType}
                   name={breed.name}
+                  slug={breed.slug}
                   coverUrl={breed.coverUrl}
                 />
                 <div className="p-3">

@@ -1,4 +1,9 @@
+import Image from "next/image";
 import type { PetType, ArticleCategory } from "@/types";
+import breedImages from "@/data/breed-images.json";
+
+type BreedImageEntry = { local: boolean; source: string | null };
+const BREED_IMAGES = breedImages as Record<string, BreedImageEntry>;
 
 interface ArticleCoverProps {
   title: string;
@@ -55,36 +60,57 @@ export function ArticleCover({ category, variant = "card" }: ArticleCoverProps) 
 interface BreedCoverProps {
   petType: PetType;
   name: string;
+  slug?: string;
   coverUrl?: string;
   variant?: "card" | "hero";
   priority?: boolean;
   preferFallback?: boolean;
 }
 
+// Cover assets render at fixed source dimensions; explicit width/height reserves
+// layout space and prevents CLS regardless of how the card scales the image.
+const COVER_WIDTH = 800;
+const COVER_HEIGHT = 600;
+
 export function BreedCover({
   petType,
   name,
+  slug,
   coverUrl,
   variant = "card",
   priority = false,
   preferFallback = false,
 }: BreedCoverProps) {
   const height = variant === "hero" ? "h-48 md:h-64" : "h-40";
+  const sizes =
+    variant === "hero"
+      ? "(max-width: 768px) 100vw, 800px"
+      : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px";
 
-  if (coverUrl && !preferFallback) {
-    return (
-      <div className={`relative overflow-hidden rounded-t-[20px] ${height}`}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={coverUrl}
-          alt={name}
-          className="absolute inset-0 w-full h-full object-cover"
-          loading={priority ? "eager" : "lazy"}
-          fetchPriority={priority ? "high" : "auto"}
-          decoding="async"
-        />
-      </div>
-    );
+  if (!preferFallback) {
+    const entry = slug ? BREED_IMAGES[slug] : undefined;
+    const localSrc = entry?.local ? `/images/breeds/${slug}.webp` : undefined;
+    // Self-hosted WebP when available; otherwise fall back to the remote
+    // Unsplash URL (kept for any breed whose download failed) so we never ship
+    // a broken image.
+    const src = localSrc ?? coverUrl;
+
+    if (src) {
+      return (
+        <div className={`relative overflow-hidden rounded-t-[20px] ${height}`}>
+          <Image
+            src={src}
+            alt={name}
+            width={COVER_WIDTH}
+            height={COVER_HEIGHT}
+            sizes={sizes}
+            priority={priority}
+            loading={priority ? undefined : "lazy"}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
+      );
+    }
   }
 
   const emoji = petType === "dog" ? "🐶" : "🐱";

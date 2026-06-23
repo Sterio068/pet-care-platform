@@ -16,6 +16,17 @@ import {
 import { getAllArticles } from "@/lib/articles";
 import { buildPageMetadata, breadcrumbListSchema, SITE_URL, SITE_NAME } from "@/lib/seo";
 import { getTraitsForBreed } from "@/lib/breed-traits";
+import breedImages from "@/data/breed-images.json";
+
+type BreedImageEntry = { local: boolean; credit?: string; sourcePage?: string | null };
+const BREED_IMAGES = breedImages as Record<string, BreedImageEntry>;
+
+// Canonical (absolute) cover URL for SEO metadata + structured data: prefer the
+// self-hosted WebP, fall back to the remote Unsplash URL only if not localized.
+function breedCoverImageUrl(slug: string, coverUrl?: string): string | undefined {
+  if (BREED_IMAGES[slug]?.local) return `${SITE_URL}/images/breeds/${slug}.webp`;
+  return coverUrl;
+}
 
 export function generateStaticParams() {
   return getAllBreeds().map((b) => ({ slug: b.slug }));
@@ -38,7 +49,7 @@ export async function generateMetadata({
     description: breed.summary,
     keywords: [breed.name, breed.nameEn, `${breed.name}個性`, `${breed.name}照顧`, `${breed.name}疾病`],
     path: `/breeds/${breed.slug}`,
-    image: breed.coverUrl,
+    image: breedCoverImageUrl(breed.slug, breed.coverUrl),
     imageAlt: `${breed.name} ${breed.nameEn}`,
     type: "article",
   });
@@ -251,7 +262,7 @@ export default async function BreedDetailPage({
           headline: `${breed.name}（${breed.nameEn}）品種介紹：個性、照護與常見疾病`,
           description: breed.summary,
 	          url: `${SITE_URL}/breeds/${breed.slug}`,
-	          image: [breed.coverUrl],
+	          image: [breedCoverImageUrl(breed.slug, breed.coverUrl)].filter(Boolean),
 	          inLanguage: "zh-TW",
 	          isAccessibleForFree: true,
 	          dateModified: "2026-05-27",
@@ -291,7 +302,27 @@ export default async function BreedDetailPage({
         />
 
         <div className="mb-6 -mx-4 sm:mx-0">
-          <BreedCover petType={breed.petType} name={breed.name} coverUrl={breed.coverUrl} variant="hero" />
+          <BreedCover petType={breed.petType} name={breed.name} slug={breed.slug} coverUrl={breed.coverUrl} variant="hero" priority />
+          {(() => {
+            const credit = BREED_IMAGES[breed.slug];
+            if (!credit?.local) return null;
+            return (
+              <p className="px-4 sm:px-0 mt-1.5 text-xs text-ink-400">
+                {credit.sourcePage ? (
+                  <a
+                    href={credit.sourcePage}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    className="hover:text-ink-600 transition-colors"
+                  >
+                    {credit.credit ?? "Photo via Unsplash"}
+                  </a>
+                ) : (
+                  credit.credit ?? "Photo via Unsplash"
+                )}
+              </p>
+            );
+          })()}
         </div>
 
         {/* Header */}
@@ -463,6 +494,7 @@ export default async function BreedDetailPage({
                     <BreedCover
                       petType={b.petType}
                       name={b.name}
+                      slug={b.slug}
                       coverUrl={b.coverUrl}
                     />
                     <div className="p-3">
