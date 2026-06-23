@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "npm run lint && npm run typecheck && npm run content:audit && npm run snippet:audit && npm run schema:audit && npm run observability:audit",
+    "test": "npm run lint && npm run typecheck && npm run content:audit && npm run snippet:audit && npm run schema:audit && npm run observability:audit && npm run sitekit:audit",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "content:audit": "node scripts/audit-content-quality.mjs",
@@ -14,7 +14,8 @@
     "schema:audit": "node scripts/audit-structured-data.mjs",
     "observability:audit": "node scripts/audit-observability.mjs",
     "design:audit": "impeccable detect --fast src/app src/components",
-    "review:check": "node scripts/verify-review-readiness.mjs"
+    "review:check": "node scripts/verify-review-readiness.mjs",
+    "sitekit:audit": "node scripts/audit-site-kit.mjs"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
