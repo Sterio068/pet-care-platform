@@ -132,6 +132,24 @@ expectIncludes(
 );
 
 expectIncludes(
+  analyticsLib,
+  ["trackWebVital", "web_vital", "tool_viewed", "tool_started", "tool_result"],
+  "Analytics helper exposes web-vitals RUM and standardized funnel aliases",
+);
+
+expectIncludes(
+  layout,
+  ["WebVitalsReporter"],
+  "Root layout mounts the web-vitals reporter",
+);
+
+expectIncludes(
+  siteAnalytics,
+  ["tool_card_click"],
+  "SiteAnalytics emits the standardized tool_card_click event",
+);
+
+expectIncludes(
   adsLib,
   ["APPROVED_AD_SLOTS", "article-mid", "article-bottom", "sidebar", "ADS_ENABLED"],
   "AdSense rendering is guarded by conservative slot allowlist",

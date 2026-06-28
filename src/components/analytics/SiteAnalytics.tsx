@@ -73,6 +73,18 @@ export function SiteAnalytics() {
         link_text: linkText,
       });
 
+      // Standardized cross-site funnel: a click whose destination is a tool
+      // page is a tool-card click (article->tool or tool directory entry).
+      if (context.content_type === "tool" && url.pathname !== pathname) {
+        trackEvent("tool_card_click", {
+          ...context,
+          tool_id: context.item_id,
+          link_url: url.pathname,
+          link_text: linkText,
+          from_path: pathname,
+        });
+      }
+
       if (context.content_type === "topic_cluster") {
         trackEvent("topic_cluster_click", {
           ...context,
@@ -84,7 +96,7 @@ export function SiteAnalytics() {
 
     document.addEventListener("click", onClick, { capture: true });
     return () => document.removeEventListener("click", onClick, { capture: true });
-  }, []);
+  }, [pathname]);
 
   return null;
 }

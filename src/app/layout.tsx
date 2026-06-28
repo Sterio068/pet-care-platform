@@ -7,6 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SiteAnalytics } from "@/components/analytics/SiteAnalytics";
+import { WebVitalsReporter } from "@/components/analytics/WebVitalsReporter";
 import { organizationSchema, websiteSchema } from "@/lib/seo";
 import { ADSENSE_ACCOUNT_ID, ADSENSE_ID, shouldRenderAds } from "@/lib/ads";
 import "./globals.css";
@@ -117,6 +118,7 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <SiteAnalytics />
         </Suspense>
+        {GA_ID && <WebVitalsReporter />}
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
