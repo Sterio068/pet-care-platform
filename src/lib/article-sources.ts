@@ -5,6 +5,30 @@ export interface ArticleSource {
 }
 
 export const ARTICLE_SOURCES: Record<string, ArticleSource[]> = {
+  "dog-safe-vegetables": [
+    {
+      title: "Fruits and Vegetables Dogs Can and Can't Eat",
+      publisher: "American Kennel Club",
+      url: "https://www.akc.org/expert-advice/nutrition/fruits-vegetables-dogs-can-and-cant-eat/",
+    },
+    {
+      title: "Onion, Garlic, Chive, and Leek Toxicity in Dogs",
+      publisher: "VCA Animal Hospitals",
+      url: "https://vcahospitals.com/know-your-pet/onion-garlic-chive-and-leek-toxicity-in-dogs",
+    },
+  ],
+  "cat-summer-shaving": [
+    {
+      title: "Hot Weather Safety Tips for Pets",
+      publisher: "American Veterinary Medical Association",
+      url: "https://www.avma.org/resources-tools/pet-owners/petcare/hot-weather-safety-pets",
+    },
+    {
+      title: "Cats and Grooming",
+      publisher: "Cornell Feline Health Center",
+      url: "https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/grooming-your-cat",
+    },
+  ],
   "rainy-season-pet-care": [
     {
       title: "Malassezia Dermatitis in Dogs and Cats",

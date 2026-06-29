@@ -394,6 +394,26 @@ export const ARTICLES: ArticleMeta[] = [
     publishedAt: "2026-06-01",
     readingMinutes: 7,
   },
+  {
+    slug: "dog-safe-vegetables",
+    title: "狗狗可以吃什麼蔬菜？安全與危險蔬菜完整清單",
+    description:
+      "紅蘿蔔、地瓜、南瓜可以吃；洋蔥、蔥蒜、酪梨千萬別碰。整理台灣常見蔬菜的狗狗食用指南、烹調原則與誤食處理。",
+    category: "food",
+    keywords: ["狗可以吃的蔬菜", "狗狗蔬菜", "狗洋蔥中毒", "狗可以吃紅蘿蔔嗎", "狗加菜"],
+    publishedAt: "2026-06-29",
+    readingMinutes: 7,
+  },
+  {
+    slug: "cat-summer-shaving",
+    title: "貓咪夏天需要剃毛嗎？破解迷思與正確消暑方法",
+    description:
+      "夏天幫貓剃毛其實弊大於利！被毛是防曬與隔熱屏障，剃掉反而易曬傷。整理剃毛風險、真正需要剃的情況與不剃毛的安全消暑法。",
+    category: "grooming",
+    keywords: ["貓剃毛", "貓夏天剃毛", "貓咪消暑", "貓剃毛風險", "貓咪散熱", "貓中暑"],
+    publishedAt: "2026-06-29",
+    readingMinutes: 7,
+  },
 ];
 
 export const CATEGORY_LABELS: Record<ArticleCategory, string> = {
